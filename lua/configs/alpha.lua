@@ -118,7 +118,7 @@ local version = {
 
 local signature = {
     type = "text",
-    val = 'Made by https://github.com/jltwheeler',
+    val = 'Configuration at https://github.com/frdwhite24/nvim',
     opts = {
         position = "center",
         hl = "Type",

@@ -61,15 +61,10 @@ return packer.startup(function(use)
   use 'nathom/filetype.nvim'  -- https://github.com/nathom/filetype.nvim
 
   -- LSP
-  use 'neovim/nvim-lspconfig'  -- Built in Neovim LSP client
-  -- TODO: implement this below
-  -- use 'williamboman/nvim-lsp-installer'  -- https://github.com/williamboman/nvim-lsp-installer/
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lspconfig",
-    requires = { "nvim-lua/plenary.nvim" },
-  }
-  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'  -- https://github.com/williamboman/nvim-lsp-installer/
+  use 'jose-elias-alvarez/null-ls.nvim' -- formatting, linting etc.
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils' -- Utilities to improve the TS dev ex
   use 'rust-lang/rust.vim'  -- rust.vim in Neovim pre-package has bug
   -- master branch on rust.vim has it fixed so update direct from there
   -- https://github.com/rust-lang/rust.vim/issues/460

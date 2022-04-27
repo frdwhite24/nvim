@@ -3,3 +3,5 @@ nvim-go:
 	chmod u+x nvim.appimage
 	sudo mv ./nvim.appimage /usr/local/bin/nvim
 	git config --global core.editor "nvim"
+	sudo apt update
+	sudo apt install xclip
