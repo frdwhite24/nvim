@@ -32,7 +32,7 @@ set.relativenumber = true
 set.number = true
 set.colorcolumn = "80"
 set.signcolumn = "yes"
-vim.highlight.create('ColorColumn', {ctermbg=0, guibg=lightgrey}, false)
+vim.highlight.create("ColorColumn", { ctermbg = 0, guibg = lightgrey }, false)
 
 -- Search
 set.incsearch = false
@@ -54,4 +54,4 @@ set.backup = false
 -- g.clipboard = "unnamedplus"
 
 -- Rust formatting
-g.rustfmt_autosave = 1 
+g.rustfmt_autosave = 1
