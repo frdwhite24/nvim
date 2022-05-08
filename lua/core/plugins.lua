@@ -1,12 +1,5 @@
--- TODO: go through this setup and take plugins that look goodplu
+-- TODO: go through this setup and take plugins that look good
 -- https://github.com/kabinspace/AstroVim
-
--- TODO: implement the mapping popup I saw in Chris@Machine's video
--- TODO: separate out my nvim config from my dotfiles and make a new gh repo
--- TODO: sort out the /after directory into nicely imported code in /lua that works out the box
--- TODO: implement this when I have time
--- use 'dhruvmanila/telescope-bookmarks.nvim'  -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
--- TODO: implement lsp installer and make sure lua is set up correctly
 
 local fn = vim.fn
 
@@ -72,8 +65,7 @@ return packer.startup(function(use)
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- https://github.com/hrsh7th/nvim-cmp
-	-- TODO: reimplement this as the cmp uses it for certain LSP source suggestions
-	-- use 'L3MON4D3/LuaSnip' -- https://github.com/L3MON4D3/LuaSnip
+	use("L3MON4D3/LuaSnip") -- https://github.com/L3MON4D3/LuaSnip
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-nvim-lsp") -- https://github.com/hrsh7th/cmp-nvim-lsp
 	use("hrsh7th/cmp-path")
