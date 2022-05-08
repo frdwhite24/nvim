@@ -17,10 +17,14 @@ keymap("n", "N", "Nzzzv", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Add undo break points for special characters
-keymap("i", ",", ",<c-g>u", { noremap = true, silent = true })
-keymap("i", ".", ".<c-g>u", { noremap = true, silent = true })
-keymap("i", "!", "!<c-g>u", { noremap = true, silent = true })
-keymap("i", "?", "?<c-g>u", { noremap = true, silent = true })
+keymap("i", ",", ",<c-g>u", opts)
+keymap("i", ".", ".<c-g>u", opts)
+keymap("i", "!", "!<c-g>u", opts)
+keymap("i", "?", "?<c-g>u", opts)
+
+-- Working with words in insert mode - more normal editing
+keymap("i", "<C-Del>", "<C-o>dw", opts)
+keymap("i", "<C-H>", "<C-w>", opts) -- https://www.reddit.com/r/neovim/comments/okbag3/comment/h597agl/?utm_source=share&utm_medium=web2x&context=3
 
 -- Working with buffers
 keymap("n", "sh", ":split<Return><C-w>w", {}) -- split window horizontally
