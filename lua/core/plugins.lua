@@ -96,7 +96,6 @@ return packer.startup(function(use)
 	-- Navigation
 	use("nvim-telescope/telescope.nvim")
 	use("kyazdani42/nvim-tree.lua") -- https://github.com/kyazdani42/nvim-tree.lua
-	use("simrat39/symbols-outline.nvim") -- https://github.com/simrat39/symbols-outline.nvim
 
 	-- Editor support
 	use("tpope/vim-commentary")
@@ -108,6 +107,7 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- https://github.com/lukas-reineke/indent-blankline.nvim
 	use("yamatsum/nvim-cursorline") -- https://github.com/yamatsum/nvim-cursorline
 	use("rmagatti/alternate-toggler") -- https://github.com/rmagatti/alternate-toggler
+	use("lewis6991/spellsitter.nvim") -- https://github.com/lewis6991/spellsitter.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
