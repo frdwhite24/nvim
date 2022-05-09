@@ -49,7 +49,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- https://github.com/nvim-lua/plenary.nvim
 	use("kyazdani42/nvim-web-devicons") -- https://github.com/kyazdani42/nvim-web-devicons
 
-	-- Peformance
+	-- Performance
 	use("lewis6991/impatient.nvim") -- https://github.com/lewis6991/impatient.nvim
 	use("nathom/filetype.nvim") -- https://github.com/nathom/filetype.nvim
 
@@ -108,6 +108,7 @@ return packer.startup(function(use)
 	use("yamatsum/nvim-cursorline") -- https://github.com/yamatsum/nvim-cursorline
 	use("rmagatti/alternate-toggler") -- https://github.com/rmagatti/alternate-toggler
 	use("lewis6991/spellsitter.nvim") -- https://github.com/lewis6991/spellsitter.nvim
+	use("folke/which-key.nvim") -- https://github.com/folke/which-key.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

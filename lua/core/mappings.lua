@@ -36,9 +36,12 @@ keymap("n", "<c-j>", "<c-w>j", opts) -- move to below split
 keymap("n", "<c-h>", "<c-w>h", opts) -- move to left split
 keymap("n", "<c-l>", "<c-w>l", opts) -- move to right split
 
-keymap("n", "<leader>sf", "z=", opts) -- fix spelling mistake
+-- Spelling related
+keymap("n", "<leader>sf", "z=", { silent = true }) -- fix spelling mistake
 keymap("n", "<leader>sa", "zg", opts) -- add word to local dictionary
 keymap("n", "<leader>sr", "zug", opts) -- remove word from local dictionary
+keymap("n", "sj", "]s", opts) -- skip to next incorrect word
+keymap("n", "sk", "[s", opts) -- skip to previous incorrect word
 
 -- File Explorer
 keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
@@ -61,6 +64,7 @@ keymap("n", "<leader>fd", "<cmd>lua require('telescope.builtin').diagnostics()<C
 keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
 keymap("n", "<leader>fc", "<cmd>lua require('core.fw.telescope').search_config_nvim()<CR>", opts)
 keymap("n", "<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], opts)
+keymap("n", "<leader>fk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], opts)
 
 -- Bufferline
 keymap("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", opts)
