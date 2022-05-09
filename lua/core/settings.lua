@@ -56,3 +56,6 @@ set.backup = false
 
 -- Rust formatting
 g.rustfmt_autosave = 1
+
+-- Which-key timeout
+set.timeoutlen = 500
