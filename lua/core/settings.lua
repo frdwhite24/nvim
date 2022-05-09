@@ -3,7 +3,8 @@ local set = vim.opt
 local g = vim.g
 
 -- Spell checking
-set.spelllang = "en"
+set.spell = true
+set.spelllang = "en_gb"
 
 -- Tabs, spaces & indent
 set.tabstop = 2

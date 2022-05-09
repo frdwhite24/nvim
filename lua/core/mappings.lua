@@ -36,6 +36,10 @@ keymap("n", "<c-j>", "<c-w>j", opts) -- move to below split
 keymap("n", "<c-h>", "<c-w>h", opts) -- move to left split
 keymap("n", "<c-l>", "<c-w>l", opts) -- move to right split
 
+keymap("n", "<leader>sf", "z=", opts) -- fix spelling mistake
+keymap("n", "<leader>sa", "zg", opts) -- add word to local dictionary
+keymap("n", "<leader>sr", "zug", opts) -- remove word from local dictionary
+
 -- File Explorer
 keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<Leader>wq", ":w|bd<CR>", opts)
@@ -71,4 +75,3 @@ keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>", opts)
 
 -- Editor support
 keymap("n", "<leader>b", "<cmd>ToggleAlternate<CR>", opts)
-keymap("n", "<leader>s", "<cmd>SymbolsOutline<CR>", opts)
