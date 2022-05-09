@@ -25,10 +25,10 @@ nvim
 
 # To do
 
-- Fill out the rest of this Readme (with screenshots)! Take inspo from
+- Fill out the rest of this Readme (with screenshots)! Take inspiration from
   [AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/main/README.md)
-- Enhance the "out of the box" functionality (improve initial startup with
-  makefile by adding prerequisites, headless neovim startup to make sure plugins,
-  treesitter parsers and language servers are all installed)
-- Record startup time and incrementally improve it
-- Pull out all the todos into a checklist in the readme
+- Enhance the "out of the box" functionality (improve initial start-up with
+  makefile by adding prerequisites, headless Neovim start-up to make sure plugins,
+  Treesitter parsers and language servers are all installed)
+- Record start-up time and incrementally improve it
+- Pull out all the to-dos into a checklist in the readme

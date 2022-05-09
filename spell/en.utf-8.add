@@ -1,3 +1,6 @@
 Bufferline
 Neovim
 Lua
+plugins
+Treesitter
+AstroNvim

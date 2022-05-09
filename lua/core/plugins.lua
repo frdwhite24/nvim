@@ -75,7 +75,7 @@ return packer.startup(function(use)
 	-- https://github.com/David-Kunz/cmp-npm
 
 	-- Syntax
-	use("EdenEast/nightfox.nvim")
+	use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
