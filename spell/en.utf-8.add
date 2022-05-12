@@ -4,3 +4,10 @@ Lua
 plugins
 Treesitter
 AstroNvim
+backend
+TODO
+#on
+#on
+eslint
+deps
+ts
