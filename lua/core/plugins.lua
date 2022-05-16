@@ -65,12 +65,14 @@ return packer.startup(function(use)
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- https://github.com/hrsh7th/nvim-cmp
-	use("L3MON4D3/LuaSnip") -- https://github.com/L3MON4D3/LuaSnip
+	-- use("L3MON4D3/LuaSnip")  -- https://github.com/L3MON4D3/LuaSnip
+	use("dcampos/nvim-snippy") -- https://github.com/dcampos/nvim-snippy
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-nvim-lsp") -- https://github.com/hrsh7th/cmp-nvim-lsp
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-nvim-lua") -- https://github.com/hrsh7th/cmp-nvim-lua
-	use("saadparwaiz1/cmp_luasnip") -- https://github.com/saadparwaiz1/cmp_luasnip
+	-- use("saadparwaiz1/cmp_luasnip") -- https://github.com/saadparwaiz1/cmp_luasnip
+	use("dcampos/cmp-snippy") -- https://github.com/dcampos/cmp-snippy
 	-- NOTE: these are on my watch list
 	-- https://github.com/David-Kunz/cmp-npm
 

@@ -3,8 +3,8 @@ if not status_cmp_ok then
 	return
 end
 
-local status_luasnip_ok, luasnip = pcall(require, "luasnip")
-if not status_luasnip_ok then
+local status_snippy_ok, snippy = pcall(require, "snippy")
+if not status_snippy_ok then
 	return
 end
 
@@ -39,7 +39,7 @@ local cmp_kinds = {
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			snippy.expand_snippet(args.body)
 		end,
 	},
 	window = {
@@ -57,6 +57,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 	}),
 	sources = cmp.config.sources({
+		{ name = "snippy" },
 		{ name = "nvim_lsp" },
 	}, {
 		{ name = "buffer" },
@@ -65,7 +66,7 @@ cmp.setup({
 	formatting = {
 		format = function(entry, vim_item)
 			vim_item.menu = ({
-				luasnip = "[LuaSnip]",
+				snippy = "[Snippy]",
 				nvim_lsp = "[LSP]",
 				buffer = "[Buffer]",
 				path = "[Path]",
