@@ -1,0 +1,77 @@
+# MAKE SURE TO COPY ANY CHANGES TO THE TYPESCRIPTREACT FILE TOO
+snippet erf "Explicit return function"
+	const ${1:name} = (${2:params}) => {
+		${0:$VISUAL}
+	}
+
+snippet irf "Implicit return function"
+	const ${1:name} = (${2:params}) => (
+	  ${0:$VISUAL}
+  )
+
+# Describe block with test
+snippet describe "Describe block"
+	describe('${1:BlockName}', () => {
+		it('${2:TestName}', () => {
+			${0:${VISUAL}}
+		})
+	})
+
+# Test block
+snippet test "Test block"
+	it('${2:TestName}', () => {
+		${0:${VISUAL}}
+	})
+
+# if
+snippet if "if (condition) { ... }"
+	if (${1:true}) {
+		${0:${VISUAL}}
+	}
+
+# if ... else
+snippet ife "if (condition) { ... } else { ... }"
+	if (${1:true}) {
+		${0:${VISUAL}}
+	} else {
+
+# switch
+snippet switch
+	switch (${1:expression}) {
+		case '${3:case}':
+			${4}
+			break;
+		${0}
+		default:
+			${2}
+	}
+
+snippet case "case 'xyz': ... break"
+	case '${1:case}':
+		${0:${VISUAL}}
+		break;
+
+snippet try "try { ... } catch(e) { ... }"
+	try {
+		${0:${VISUAL}}
+	} catch (${1:e}) {
+		${2:/* handle error */}
+	}
+
+snippet cl "console.log"
+	console.log(${0});
+
+snippet const
+	const ${1} = ${0};
+
+snippet imp "import { member } from 'xyz'"
+	import { ${1} } from '${2}';
+	
+snippet ima "import * from 'xyz'"
+	import * from '${1}';
+snippet af "() =>"
+	(${1}) => ${0:${VISUAL}}
+snippet afb "() => {}"
+	(${1}) => {
+		${0:${VISUAL}}
+	}
