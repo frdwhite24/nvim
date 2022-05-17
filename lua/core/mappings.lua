@@ -79,3 +79,6 @@ keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>", opts)
 
 -- Editor support
 keymap("n", "<leader>b", "<cmd>ToggleAlternate<CR>", opts)
+
+-- Reload Neovim
+keymap("n", "<leader>lc", "<cmd>luafile $MYVIMRC<CR>", opts)

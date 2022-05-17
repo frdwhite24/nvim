@@ -10,7 +10,6 @@ snippet ncf "Full component file"
 		);
 	};
 
-
 snippet nc "New component"
 	import { FC } from 'react';
 
@@ -21,6 +20,35 @@ snippet nc "New component"
 			${4}
 		);
 	};
+
+# Hooks
+snippet uses useState
+	const [${1:state}, set${1/.*/\u\0/g}] = useState(${2:initialState});
+
+snippet usee useEffect
+	useEffect(() => {
+		${1}
+	});
+
+snippet userd useReducer
+	const [${1:state}, ${2:dispatch}] = useReducer(${3:reducer});
+
+snippet userf useRef
+	const ${1:refContainer} = useRef(${2:initialValue});
+
+snippet usect useContext
+	const ${1:value} = useContext(${2:MyContext});
+
+snippet usecb useCallback
+	const ${1:memoizedCallback} = useCallback(
+	() => {
+		${2}(${3})
+	},
+	[$3]
+	);
+
+snippet usem useMemo
+	const ${1:memoizedCallback} = useMemo(() => ${2}(${3}), [$3]);
 
 # THE BELOW IS COPIED FROM THE TYPESCRIPT SNIPPETS, DO NOT CHANGE HERE AS IT
 # WILL BE OVERWRITTEN
@@ -94,6 +122,8 @@ snippet imp "import { member } from 'xyz'"
 	
 snippet ima "import * from 'xyz'"
 	import * from '${1}';
+snippet expa "export * from 'xyz'"
+	export * from '${1}';
 snippet af "() =>"
 	(${1}) => ${0:${VISUAL}}
 snippet afb "() => {}"
