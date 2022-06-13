@@ -43,6 +43,9 @@ keymap("n", "<leader>sr", "zug", opts) -- remove word from local dictionary
 keymap("n", "sj", "]s", opts) -- skip to next incorrect word
 keymap("n", "sk", "[s", opts) -- skip to previous incorrect word
 
+-- Dependency array
+keymap("n", "<leader>da", "miyiw/]<CR>i, <esc>p`i", opts) -- add current variable under cursor to dep array
+
 -- File Explorer
 keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<Leader>wq", ":w|bd<CR>", opts)
@@ -82,3 +85,6 @@ keymap("n", "<leader>b", "<cmd>ToggleAlternate<CR>", opts)
 
 -- Reload Neovim
 keymap("n", "<leader>lc", "<cmd>luafile $MYVIMRC<CR>", opts)
+
+-- Undotree
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<CR>", opts)

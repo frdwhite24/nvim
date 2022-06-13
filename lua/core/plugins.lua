@@ -111,6 +111,7 @@ return packer.startup(function(use)
 	use("rmagatti/alternate-toggler") -- https://github.com/rmagatti/alternate-toggler
 	use("lewis6991/spellsitter.nvim") -- https://github.com/lewis6991/spellsitter.nvim
 	use("folke/which-key.nvim") -- https://github.com/folke/which-key.nvim
+	use("jiaoshijie/undotree") -- https://github.com/jiaoshijie/undotree
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
