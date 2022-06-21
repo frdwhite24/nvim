@@ -1,5 +1,10 @@
 require("core.plugins")
 
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+	return
+end
+
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -37,7 +42,7 @@ keymap("n", "<c-h>", "<c-w>h", opts) -- move to left split
 keymap("n", "<c-l>", "<c-w>l", opts) -- move to right split
 
 -- Spelling related
-keymap("n", "<leader>sf", "z=", { silent = true }) -- fix spelling mistake
+keymap("n", "<leader>sf", "z=", { silent = true }) -- fix spelling mistake, cant have noremap
 keymap("n", "<leader>sa", "zg", opts) -- add word to local dictionary
 keymap("n", "<leader>sr", "zug", opts) -- remove word from local dictionary
 keymap("n", "sj", "]s", opts) -- skip to next incorrect word
@@ -56,10 +61,6 @@ keymap("n", "<C-p>", "<cmd>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
 keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>", opts)
-keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').git_files()<CR>", opts)
-keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').git_stash()<CR>", opts)
-keymap("n", "<leader>fe", "<cmd>lua require('telescope.builtin').git_status()<CR>", opts)
 keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
 keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
@@ -70,6 +71,22 @@ keymap("n", "<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>
 keymap("n", "<leader>fk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], opts)
 keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+wk.register({
+	f = {
+		name = "Telescope",
+		f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>", "Find files" },
+		g = { "<cmd>lua require('telescope.builtin').git_files()<CR>", "Find Git files" },
+		s = { "<cmd>lua require('telescope.builtin').git_stash()<CR>", "Find Git stash" },
+		e = { "<cmd>lua require('telescope.builtin').git_status()<CR>", "Find Git edited files" },
+	},
+}, {
+	mode = "n", -- NORMAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = false, -- use `nowait` when creating keymaps
+})
 
 -- Bufferline
 keymap("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", opts)

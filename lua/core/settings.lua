@@ -17,7 +17,7 @@ set.softtabstop = 2
 set.cindent = true
 
 -- Wrapping, viewports and windows
-set.scrolloff = 8
+-- set.scrolloff = 8  this is not applicable while i have the autocommand to centralise cursorline
 set.splitbelow = true
 set.splitright = true
 set.errorbells = false
