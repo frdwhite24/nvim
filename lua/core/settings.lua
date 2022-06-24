@@ -31,9 +31,7 @@ g.cursorline_timeout = 25
 set.ruler = true
 set.relativenumber = true
 set.number = true
-set.colorcolumn = "80"
 set.signcolumn = "yes"
-vim.highlight.create("ColorColumn", { ctermbg = 0, guibg = lightgrey }, false)
 
 -- Search
 set.incsearch = false

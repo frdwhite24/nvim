@@ -4,4 +4,4 @@ nvim-go:
 	sudo mv ./nvim.appimage /usr/local/bin/nvim
 	git config --global core.editor "nvim"
 	sudo apt update
-	sudo apt install xclip
+	sudo apt install xclip fd-find
