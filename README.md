@@ -7,6 +7,9 @@ and the configuration is written entirely in Lua.
 - Install [this
 font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
 to get completion menu icons properly rendering
+- Install [pyenv](https://github.com/pyenv/pyenv-installer#installation--update--uninstallation)
+- Install Python using pyenv `pyenv install 3.10.3` and setting it globally `pyenv global 3.10.3`
+- Install `pynvim` and `black` globally using `pip install --user --upgrade black pynvim`
 
 # Usage
 

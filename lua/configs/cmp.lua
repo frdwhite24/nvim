@@ -115,13 +115,5 @@ cmp.setup.cmdline(":", {
 	},
 })
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig")["tsserver"].setup({
-	capabilities = capabilities,
-})
-require("lspconfig")["rust_analyzer"].setup({
-	capabilities = capabilities,
-})
-
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
