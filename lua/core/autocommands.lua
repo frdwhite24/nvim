@@ -10,10 +10,6 @@ utils.define_augroups({
 		-- Highlight on yank
 		{ "TextYankPost", "*", "silent! lua vim.highlight.on_yank()" },
 
-		-- Change tabs to be 4 spaces for specific langs
-		{ "FileType", "python", "setl shiftwidth=4 sts=4 ts=2 etc" },
-		{ "FileType", "php", "setl shiftwidth=4 sts=4 ts=2 etc" },
-
 		-- Auto-resize splits when Vim gets resized
 		{ "VimResized", "*", "wincmd =" },
 
