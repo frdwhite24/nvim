@@ -1,6 +1,6 @@
 require("core.plugins")
 
-local status_ok, wk = pcall(require, "which-key")
+local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
 	return
 end
@@ -8,19 +8,16 @@ end
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Leader
+-- leader
 keymap("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = " "
 
+-- Visual mode mappings
 -- Easier indenting
 keymap("v", "<", "<gv", opts) -- reselect after indent left
 keymap("v", ">", ">gv", opts) -- reselect after indent right
 
--- Keep searches and joins centered
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
-keymap("n", "J", "mzJ`z", opts)
-
+-- Insert mode mappings
 -- Add undo break points for special characters
 keymap("i", ",", ",<c-g>u", opts)
 keymap("i", ".", ".<c-g>u", opts)
@@ -30,6 +27,12 @@ keymap("i", "?", "?<c-g>u", opts)
 -- Working with words in insert mode - more normal editing
 keymap("i", "<C-Del>", "<C-o>dw", opts)
 keymap("i", "<C-H>", "<C-w>", opts) -- https://www.reddit.com/r/neovim/comments/okbag3/comment/h597agl/?utm_source=share&utm_medium=web2x&context=3
+
+-- No leader mappings
+-- Keep searches and joins centered
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+keymap("n", "J", "mzJ`z", opts)
 
 -- Working with buffers
 keymap("n", "sh", ":split<Return><C-w>w", {}) -- split window horizontally
@@ -41,69 +44,64 @@ keymap("n", "<c-j>", "<c-w>j", opts) -- move to below split
 keymap("n", "<c-h>", "<c-w>h", opts) -- move to left split
 keymap("n", "<c-l>", "<c-w>l", opts) -- move to right split
 
--- Spelling related
-keymap("n", "<leader>sf", "z=", { silent = true }) -- fix spelling mistake, cant have noremap
-keymap("n", "<leader>sa", "zg", opts) -- add word to local dictionary
-keymap("n", "<leader>sr", "zug", opts) -- remove word from local dictionary
-keymap("n", "sj", "]s", opts) -- skip to next incorrect word
-keymap("n", "sk", "[s", opts) -- skip to previous incorrect word
-
--- Dependency array
-keymap("n", "<leader>da", "miyiw/]<CR>i, <esc>p`i", opts) -- add current variable under cursor to dep array
-
--- File Explorer
-keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<Leader>wq", ":w|bd<CR>", opts)
-keymap("n", "<Leader>q", ":bd<CR>", opts)
-
 -- LSP
-keymap("n", "<C-p>", "<cmd>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
-keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
-keymap("n", "<leader>fd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", opts)
-keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
-keymap("n", "<leader>fc", "<cmd>lua require('core.fw.telescope').search_config_nvim()<CR>", opts)
-keymap("n", "<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], opts)
-keymap("n", "<leader>fk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], opts)
-keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-wk.register({
-	f = {
-		name = "Telescope",
-		f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>", "Find files" },
-		g = { "<cmd>lua require('telescope.builtin').git_files()<CR>", "Find Git files" },
-		s = { "<cmd>lua require('telescope.builtin').git_stash()<CR>", "Find Git stash" },
-		e = { "<cmd>lua require('telescope.builtin').git_status()<CR>", "Find Git edited files" },
+keymap("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
+keymap("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
+which_key.register({
+	g = {
+		name = "Go to...",
+		d = { "<CMD>Telescope lsp_definitions<CR>", "definitions" },
+		r = { "<CMD>Telescope lsp_references<CR>", "references" },
 	},
-}, {
-	mode = "n", -- NORMAL mode
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = false, -- use `nowait` when creating keymaps
 })
 
--- Bufferline
-keymap("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", opts)
-keymap("n", "<leader>2", "<cmd>BufferLineGoToBuffer 2<CR>", opts)
-keymap("n", "<leader>3", "<cmd>BufferLineGoToBuffer 3<CR>", opts)
-keymap("n", "<leader>4", "<cmd>BufferLineGoToBuffer 4<CR>", opts)
-keymap("n", "<leader>5", "<cmd>BufferLineGoToBuffer 5<CR>", opts)
-keymap("n", "<leader>6", "<cmd>BufferLineGoToBuffer 6<CR>", opts)
-keymap("n", "<leader>7", "<cmd>BufferLineGoToBuffer 7<CR>", opts)
-keymap("n", "<leader>8", "<cmd>BufferLineGoToBuffer 8<CR>", opts)
-keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>", opts)
-
--- Editor support
-keymap("n", "<leader>b", "<cmd>ToggleAlternate<CR>", opts)
-
--- Reload Neovim
-keymap("n", "<leader>lc", "<cmd>luafile $MYVIMRC<CR>", opts)
-
--- Undotree
-keymap("n", "<leader>u", "<cmd>UndotreeToggle<CR>", opts)
+-- Leader prefix mappings
+which_key.register({
+	b = { "<CMD>ToggleAlternate<CR>", "Toggle value" },
+	d = {
+		name = "Hook dependency arrays",
+		a = { "miyiw/]<CR>i, <ESC>p`i", "Add variable to array" },
+	},
+	e = { ":NvimTreeToggle<CR>", "Open file tree" },
+	f = {
+		name = "Find...",
+		b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" },
+		c = { "<CMD>lua require('core.fw.telescope').search_config_nvim()<CR>", "Neovim config" },
+		d = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics" },
+		e = { "<CMD>lua require('telescope.builtin').git_status()<CR>", "Git edited files" },
+		f = { "<CMD>lua require('telescope.builtin').find_files({hidden=true})<CR>", "Files" },
+		g = { "<CMD>lua require('telescope.builtin').git_files()<CR>", "Git files" },
+		h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help / manuals" },
+		k = { "<CMD>lua require('telescope.builtin').keymaps()<CR>", "Key mappings" },
+		o = { "<CMD>lua require('telescope.builtin').oldfiles()<CR>", "Recent files" },
+		s = { "<CMD>lua require('telescope.builtin').git_stash()<CR>", "Git stash" },
+		t = { "<CMD>TodoTelescope<CR>", "TODOs" },
+		w = { "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Words" },
+	},
+	q = { ":bd<CR>", "Close buffer" },
+	r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
+	s = {
+		name = "Spelling",
+		f = { "z=", "Fix spelling mistake", noremap = false },
+		a = { "zg", "Add to local dictionary" },
+		r = { "zug", "Remove word from local dictionary" },
+		j = { "]s", "Skip to next mistake" },
+		k = { "[s", "Skip to previous mistake" },
+	},
+	u = { "<CMD>UndotreeToggle<CR>", "Toggle undo tree" },
+	w = {
+		name = "Buffer",
+		q = { ":w|bd<CR>", "Save and close" },
+	},
+	["1"] = { "<CMD>BufferLineGoToBuffer 1<CR>", "Go to buffer no. 1" },
+	["2"] = { "<CMD>BufferLineGoToBuffer 2<CR>", "Go to buffer no. 2" },
+	["3"] = { "<CMD>BufferLineGoToBuffer 3<CR>", "Go to buffer no. 3" },
+	["4"] = { "<CMD>BufferLineGoToBuffer 4<CR>", "Go to buffer no. 4" },
+	["5"] = { "<CMD>BufferLineGoToBuffer 5<CR>", "Go to buffer no. 5" },
+	["6"] = { "<CMD>BufferLineGoToBuffer 6<CR>", "Go to buffer no. 6" },
+	["7"] = { "<CMD>BufferLineGoToBuffer 7<CR>", "Go to buffer no. 7" },
+	["8"] = { "<CMD>BufferLineGoToBuffer 8<CR>", "Go to buffer no. 8" },
+	["9"] = { "<CMD>BufferLineGoToBuffer 9<CR>", "Go to buffer no. 9" },
+}, {
+	prefix = "<leader>",
+})
