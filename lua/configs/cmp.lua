@@ -63,6 +63,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 	}),
 	sources = cmp.config.sources({
+		{ name = "crates" },
 		{ name = "snippy" },
 		{ name = "nvim_lsp" },
 	}, {

@@ -68,6 +68,8 @@ keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
 keymap("n", "<leader>fc", "<cmd>lua require('core.fw.telescope').search_config_nvim()<CR>", opts)
 keymap("n", "<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], opts)
 keymap("n", "<leader>fk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], opts)
+keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 
 -- Bufferline
 keymap("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", opts)

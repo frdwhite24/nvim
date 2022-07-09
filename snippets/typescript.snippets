@@ -72,6 +72,8 @@ snippet ima "import * from 'xyz'"
 	import * from '${1}';
 snippet expa "export * from 'xyz'"
 	export * from '${1}';
+snippet exp "export { member } from 'xyz'"
+	export { ${1} } from '${2}';
 snippet af "() =>"
 	(${1}) => ${0:${VISUAL}}
 snippet afb "() => {}"
