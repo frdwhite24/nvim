@@ -8,54 +8,77 @@ end
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- leader
+-- Leader
 keymap("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = " "
 
--- Visual mode mappings
--- Easier indenting
-keymap("v", "<", "<gv", opts) -- reselect after indent left
-keymap("v", ">", ">gv", opts) -- reselect after indent right
+-- Visual
+which_key.register({
+	["<"] = { "<gv", "Reselect after indent left" },
+	[">"] = { ">gv", "Reselect after indent left" },
+}, {
+	mode = "v",
+})
 
--- Insert mode mappings
--- Add undo break points for special characters
-keymap("i", ",", ",<c-g>u", opts)
-keymap("i", ".", ".<c-g>u", opts)
-keymap("i", "!", "!<c-g>u", opts)
-keymap("i", "?", "?<c-g>u", opts)
+-- Visual + leader
+which_key.register({
+	g = {
+		name = "Git",
+		y = { "<CMD>lua require('gitlinker').get_buf_range_url('v')<CR>", "Remote range link" },
+	},
+}, {
+	prefix = "<leader>",
+	mode = "v",
+})
 
--- Working with words in insert mode - more normal editing
-keymap("i", "<C-Del>", "<C-o>dw", opts)
-keymap("i", "<C-H>", "<C-w>", opts) -- https://www.reddit.com/r/neovim/comments/okbag3/comment/h597agl/?utm_source=share&utm_medium=web2x&context=3
+-- Insert
+which_key.register({
+	[","] = { ",<C-g>u", "which_key_ignore" }, -- add undo break point for ,
+	["."] = { ".<C-g>u", "which_key_ignore" }, -- add undo break point for .
+	["!"] = { "!<C-g>u", "which_key_ignore" }, -- add undo break point for !
+	["?"] = { "?<C-g>u", "which_key_ignore" }, -- add undo break point for ?
+}, {
+	mode = "i",
+})
+keymap("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
+keymap("i", "<C-BS>", "<C-w>", opts) -- delete word before
 
--- No leader mappings
--- Keep searches and joins centered
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
-keymap("n", "J", "mzJ`z", opts)
-
--- Working with buffers
-keymap("n", "sh", ":split<Return><C-w>w", {}) -- split window horizontally
-keymap("n", "sv", ":vsplit<Return><C-w>w", {}) -- split window vertically
-keymap("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
-keymap("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
-keymap("n", "<c-k>", "<c-w>k", opts) -- move to above split
-keymap("n", "<c-j>", "<c-w>j", opts) -- move to below split
-keymap("n", "<c-h>", "<c-w>h", opts) -- move to left split
-keymap("n", "<c-l>", "<c-w>l", opts) -- move to right split
-
--- LSP
 keymap("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
 keymap("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
+keymap("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
+keymap("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "tlo", ":TSLspOrganize<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "tlr", ":TSLspRenameFile<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "tli", ":TSLspImportAll<CR>", opts)
+-- Normal
 which_key.register({
 	g = {
 		name = "Go to...",
 		d = { "<CMD>Telescope lsp_definitions<CR>", "definitions" },
 		r = { "<CMD>Telescope lsp_references<CR>", "references" },
 	},
+	s = {
+		name = "Split buffer...",
+		h = { ":split<Return><C-w>w", "horizontally" },
+		v = { ":vsplit<Return><C-w>w", "vertically" },
+	},
+	["<C-k>"] = { "<C-w>k", "Move up to split" },
+	["<C-j>"] = { "<C-w>j", "Move down to split" },
+	["<C-h>"] = { "<C-w>h", "Move left to split" },
+	["<C-l>"] = { "<C-w>l", "Move right to split" },
+	K = { "<CMD>lua vim.lsp.buf.hover()<CR>" },
+}, {
+	mode = "n",
 })
 
--- Leader prefix mappings
+-- Normal + leader
 which_key.register({
 	b = { "<CMD>ToggleAlternate<CR>", "Toggle value" },
 	d = {
@@ -77,6 +100,10 @@ which_key.register({
 		s = { "<CMD>lua require('telescope.builtin').git_stash()<CR>", "Git stash" },
 		t = { "<CMD>TodoTelescope<CR>", "TODOs" },
 		w = { "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Words" },
+	},
+	g = {
+		name = "Git",
+		l = { "<CMD>lua require('gitlinker').get_buf_range_url('n')<CR>", "Remote line link" },
 	},
 	q = { ":bd<CR>", "Close buffer" },
 	r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
@@ -104,4 +131,5 @@ which_key.register({
 	["9"] = { "<CMD>BufferLineGoToBuffer 9<CR>", "Go to buffer no. 9" },
 }, {
 	prefix = "<leader>",
+	mode = "n",
 })

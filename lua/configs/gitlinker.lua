@@ -1,8 +1,6 @@
 local status_ok, gitlinker = pcall(require, "gitlinker")
-if not status_ok then
-	return
+if status_ok then
+	gitlinker.setup({
+		mappings = nil,
+	})
 end
-
-gitlinker.setup({
-  mappings = "<leader>gl"
-})
