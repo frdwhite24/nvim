@@ -61,8 +61,8 @@ keymap("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 which_key.register({
 	g = {
 		name = "Go to...",
-		d = { "<CMD>Telescope lsp_definitions<CR>", "definitions" },
-		r = { "<CMD>Telescope lsp_references<CR>", "references" },
+		d = { "<CMD>lua require('telescope.builtin').lsp_definitions({show_line = false})<CR>", "definitions" },
+		r = { "<CMD>lua require('telescope.builtin').lsp_references({show_line = false})<CR>", "references" },
 	},
 	s = {
 		name = "Split buffer...",
