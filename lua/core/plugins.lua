@@ -62,6 +62,7 @@ return packer.startup(function(use)
 	-- master branch on rust.vim has it fixed so update direct from there
 	-- https://github.com/rust-lang/rust.vim/issues/460
 	use("simrat39/rust-tools.nvim")
+	use("Maan2003/lsp_lines.nvim")
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- https://github.com/hrsh7th/nvim-cmp
