@@ -1,29 +1,68 @@
-local utils = require("core.utils")
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+MyGroup = augroup("MyGroup", {})
 
-utils.define_augroups({
-	_general_settings = {
-		-- Disable continuation of comments on next line
-		{ "BufWinEnter", "*", "lua vim.opt.formatoptions:remove({'c', 'o'})" },
-		{ "BufRead", "*", "lua vim.opt.formatoptions:remove({'c', 'o', 'r'})" },
-		{ "BufNewFile", "*", "lua vim.opt.formatoptions:remove({'c', 'o', 'r'})" },
+-- Highlight on yank
+autocmd("TextYankPost", {
+	group = MyGroup,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 175,
+		})
+	end,
+})
 
-		-- Highlight on yank
-		{ "TextYankPost", "*", "silent! lua vim.highlight.on_yank()" },
+-- Disable continuation of comments on next line apart from on enter in insert
+autocmd("BufWinEnter", {
+	group = MyGroup,
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions:remove({ "c", "o" })
+	end,
+})
+autocmd({ "BufRead", "BufNewFile" }, {
+	group = MyGroup,
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions:remove({ "c", "o", "r" })
+	end,
+})
 
-		-- Auto-resize splits when Vim gets resized
-		{ "VimResized", "*", "wincmd =" },
+-- Auto-resize splits when Vim gets resized
+autocmd("VimResized", {
+	group = MyGroup,
+	pattern = "*",
+	command = "wincmd =",
+})
 
-		-- Update a buffer's contents on focus if it changed outside of Vim
-		{ "FocusGained", "*", ":checktime" },
-		{ "BufEnter", "*", ":checktime" },
+-- Update a buffer's contents on focus if it changed outside of Vim
+autocmd({ "FocusGained", "BufEnter" }, {
+	group = MyGroup,
+	pattern = "*",
+	command = ":checktime",
+})
 
-		-- Keep cursorline centered on move
-		{ "CursorMoved", "*", ':exec "norm zz"' },
+-- Keep cursorline centered on move
+autocmd("CursorMoved", {
+	group = MyGroup,
+	pattern = "*",
+	command = "norm zz",
+})
 
-		-- Format toml on save
-		{ "BufWritePre", "*.toml,*.html", "lua vim.lsp.buf.formatting_sync()" },
+-- Format toml on save
+autocmd("BufWritePre", {
+	group = MyGroup,
+	pattern = "*.toml,*.html",
+	callback = function()
+		vim.lsp.buf.formatting_sync()
+	end,
+})
 
-		-- Disable lsp diagnostics for .lock files
-		{ "BufEnter", "*.lock", "LspStop" },
-	},
+-- Disable lsp diagnostics for .lock files
+autocmd("BufEnter", {
+	group = MyGroup,
+	pattern = "*.lock",
+	command = "LspStop",
 })
