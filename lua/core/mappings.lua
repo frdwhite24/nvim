@@ -80,7 +80,6 @@ which_key.register({
 
 -- Normal + leader
 which_key.register({
-	b = { "<CMD>ToggleAlternate<CR>", "Toggle value" },
 	d = {
 		name = "Hook dependency arrays",
 		a = { "miyiw/]<CR>i, <ESC>p`i", "Add variable to array" },
@@ -88,7 +87,8 @@ which_key.register({
 	e = { ":NvimTreeToggle<CR>", "Open file tree" },
 	f = {
 		name = "Find...",
-		b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" },
+		-- b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" }, -- disabled in favour of bookmarks
+		b = { "<CMD>lua require('telescope').extensions.bookmarks.bookmarks()<CR>", "Bookmarks" },
 		c = { "<CMD>lua require('core.fw.telescope').search_config_nvim()<CR>", "Neovim config" },
 		d = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics" },
 		e = { "<CMD>lua require('telescope.builtin').git_status()<CR>", "Git edited files" },
@@ -115,6 +115,7 @@ which_key.register({
 		j = { "]s", "Skip to next mistake" },
 		k = { "[s", "Skip to previous mistake" },
 	},
+	t = { "<CMD>ToggleAlternate<CR>", "Toggle value" },
 	u = { "<CMD>UndotreeToggle<CR>", "Toggle undo tree" },
 	w = {
 		name = "Buffer",

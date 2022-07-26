@@ -41,7 +41,7 @@ autocmd("VimResized", {
 autocmd({ "FocusGained", "BufEnter" }, {
 	group = MyGroup,
 	pattern = "*",
-	command = ":checktime",
+	command = "checktime",
 })
 
 -- Keep cursorline centered on move
