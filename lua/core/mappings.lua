@@ -96,6 +96,7 @@ which_key.register({
 		g = { "<CMD>lua require('telescope.builtin').git_files()<CR>", "Git files" },
 		h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help / manuals" },
 		k = { "<CMD>lua require('telescope.builtin').keymaps()<CR>", "Key mappings" },
+		n = { "<CMD>lua require('telescope').extensions.notify.notify()<CR>", "Notifications" },
 		o = { "<CMD>lua require('telescope.builtin').oldfiles()<CR>", "Recent files" },
 		s = { "<CMD>lua require('telescope.builtin').git_stash()<CR>", "Git stash" },
 		t = { "<CMD>TodoTelescope<CR>", "TODOs" },
