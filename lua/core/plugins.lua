@@ -94,6 +94,7 @@ return packer.startup(function(use)
 	use("akinsho/bufferline.nvim")
 	use("hoob3rt/lualine.nvim") -- https://github.com/nvim-lualine/lualine.nvim
 	use("goolord/alpha-nvim") -- https://github.com/goolord/alpha-nvim
+	use("rcarriga/nvim-notify") -- https://github.com/rcarriga/nvim-notify
 
 	-- Version control
 	use("lewis6991/gitsigns.nvim") -- https://github.com/lewis6991/gitsigns.nvim
