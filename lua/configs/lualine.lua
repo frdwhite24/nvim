@@ -1,6 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
@@ -29,6 +26,10 @@ local conditions = {
 		local filepath = vim.fn.expand("%:p:h")
 		local gitdir = vim.fn.finddir(".git", filepath .. ";")
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
+	end,
+	is_not_dashboard = function()
+		local file_type = vim.bo.filetype
+		return file_type ~= "alpha"
 	end,
 }
 
@@ -76,8 +77,8 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
+-- TODO: work out how to make this an actual highlight group rather than an insert into the status line
 ins_left({
-	-- mode component
 	function()
 		local mode_color = {
 			n = colors.red,
@@ -101,23 +102,29 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-		return ""
+		vim.api.nvim_command("hi! LualineMode guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.bg)
+		return ""
 	end,
 	color = "LualineMode",
 	left_padding = 0,
 })
 
 ins_left({
+	"mode",
+	color = "LualineMode",
+	cond = conditions.is_not_dashboard,
+})
+
+ins_left({
 	"branch",
 	icon = "",
-	condition = conditions.check_git_workspace,
+	cond = conditions.check_git_workspace,
 })
 
 ins_left({
 	"diff",
 	symbols = { removed = " ", modified = " ", added = " " },
-	condition = conditions.check_git_workspace,
+	cond = conditions.check_git_workspace,
 })
 
 ins_left({
@@ -131,18 +138,20 @@ ins_right({
 		local row, column = unpack(vim.api.nvim_win_get_cursor(0))
 		return "Ln " .. row .. ", Col " .. column
 	end,
+	cond = conditions.is_not_dashboard,
 })
 
 ins_right({
 	"o:encoding", -- option component same as &encoding in viml
 	fmt = string.upper,
-	cond = conditions.hide_in_width,
+	cond = conditions.hide_in_width and conditions.is_not_dashboard,
 })
 
 ins_right({
 	"fileformat",
 	fmt = string.upper,
 	icons_enabled = false,
+	cond = conditions.is_not_dashboard,
 })
 
 local function title_case(first, rest)
@@ -151,14 +160,10 @@ end
 
 ins_right({
 	function()
-		local file_type = vim.bo.filetype
-		if file_type == "alpha" then
-			return ""
-		end
-
-		return string.gsub(file_type, "(%a)([%w_']*)", title_case)
+		return string.gsub(vim.bo.filetype, "(%a)([%w_']*)", title_case)
 	end,
 	icons_enabled = false,
+	cond = conditions.is_not_dashboard,
 })
 
 lualine.setup(config)

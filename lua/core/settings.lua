@@ -57,3 +57,9 @@ g.rustfmt_autosave = 1
 
 -- Which-key timeout
 set.timeoutlen = 500
+
+-- Clean up command line for things already shown in statusbar
+-- TODO: look into why this isn't setting correctly
+vim.cmd([[
+  set noshowmode
+]])
