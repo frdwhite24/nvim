@@ -35,7 +35,7 @@ local conditions = {
 
 local config = {
 	options = {
-		-- Disable sections and component separators
+		disabled_filetypes = { "NvimTree" },
 		component_separators = "",
 		section_separators = "",
 		theme = {
@@ -124,13 +124,16 @@ ins_left({
 ins_left({
 	"diff",
 	symbols = { removed = " ", modified = " ", added = " " },
-	cond = conditions.check_git_workspace,
+	cond = conditions.check_git_workspace and conditions.hide_in_width,
 })
 
 ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " " },
+	-- NOTE: have a think about these options below
+	-- sections = { "error", "warn" },
+	-- always_visible = true,
 })
 
 ins_right({
@@ -142,7 +145,14 @@ ins_right({
 })
 
 ins_right({
-	"o:encoding", -- option component same as &encoding in viml
+	function()
+		return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+	end,
+	cond = conditions.is_not_dashboard,
+})
+
+ins_right({
+	"o:encoding",
 	fmt = string.upper,
 	cond = conditions.hide_in_width and conditions.is_not_dashboard,
 })
