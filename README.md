@@ -10,6 +10,7 @@ to get completion menu icons properly rendering
 - Install [pyenv](https://github.com/pyenv/pyenv-installer#installation--update--uninstallation)
 - Install Python using pyenv `pyenv install 3.10.3` and setting it globally `pyenv global 3.10.3`
 - Install `pynvim` and `black` globally using `pip install --user --upgrade black pynvim`
+- Install `neovim` lib for Node.js with `npm i -g neovim`
 
 # Usage
 
