@@ -7,7 +7,6 @@ telescope.setup({
 	extensions = {
 		bookmarks = {
 			selected_browser = "brave",
-			url_open_command = "xdg-open",
 		},
 	},
 })

@@ -117,7 +117,6 @@ which_key.register({
 		k = { "[s", "Skip to previous mistake" },
 	},
 	t = { name = "Toggle...", v = { "<CMD>ToggleAlternate<CR>", "value" } },
-	u = { "<CMD>UndotreeToggle<CR>", "Toggle undo tree" },
 	w = {
 		name = "Buffer",
 		q = { ":w|bd<CR>", "Save and close" },

@@ -54,8 +54,8 @@ return packer.startup(function(use)
 	use("nathom/filetype.nvim") -- https://github.com/nathom/filetype.nvim
 
 	-- LSP
-	use("neovim/nvim-lspconfig")
 	use("williamboman/nvim-lsp-installer") -- https://github.com/williamboman/nvim-lsp-installer/
+	use("neovim/nvim-lspconfig")
 	use("jose-elias-alvarez/null-ls.nvim") -- formatting, linting etc.
 	use("jose-elias-alvarez/nvim-lsp-ts-utils") -- Utilities to improve the TS dev ex
 	use("rust-lang/rust.vim") -- rust.vim in Neovim pre-package has bug
@@ -116,7 +116,6 @@ return packer.startup(function(use)
 	use("rmagatti/alternate-toggler") -- https://github.com/rmagatti/alternate-toggler
 	use("lewis6991/spellsitter.nvim") -- https://github.com/lewis6991/spellsitter.nvim
 	use("folke/which-key.nvim") -- https://github.com/folke/which-key.nvim
-	use("jiaoshijie/undotree") -- https://github.com/jiaoshijie/undotree
 	use("dhruvmanila/telescope-bookmarks.nvim") -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
