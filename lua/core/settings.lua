@@ -22,7 +22,7 @@ set.splitbelow = true
 set.splitright = true
 set.errorbells = false
 set.hidden = true
-set.cmdheight = 1
+set.cmdheight = 0
 set.wrap = true
 
 -- Rulers and columns
@@ -63,3 +63,10 @@ set.timeoutlen = 500
 vim.cmd([[
   set noshowmode
 ]])
+
+-- Recommended from https://github.com/kyazdani42/nvim-tree.lua#setup
+g.loaded = 1
+g.loaded_netrwPlugin = 1
+
+-- Python env setup
+g.python3_host_prog = '/Users/fred/.pyenv/versions/py3nvim/bin/python'

@@ -8,7 +8,7 @@ require("core.colourscheme")
 -- impatient needs to be setup before any other lua plugin is loaded
 local status_ok, _ = pcall(require, "impatient")
 if not status_ok then
-	return
+  return
 end
 
 require("configs.alpha")
@@ -27,7 +27,6 @@ require("configs.lsp-installer")
 require("configs.lsp")
 require("configs.notify")
 require("configs.snippy")
-require("configs.spellsitter")
 require("configs.telescope")
 require("configs.todo")
 require("configs.tree")

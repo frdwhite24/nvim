@@ -56,7 +56,7 @@ autocmd("BufWritePre", {
 	group = MyGroup,
 	pattern = "*.toml,*.html",
 	callback = function()
-		vim.lsp.buf.formatting_sync()
+		vim.lsp.buf.format()
 	end,
 })
 
