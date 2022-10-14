@@ -26,6 +26,7 @@ which_key.register({
 		name = "Git",
 		y = { "<CMD>lua require('gitlinker').get_buf_range_url('v')<CR>", "Remote range link" },
 	},
+	y = { ":Silicon  ~/Pictures/Code<CR>", "Yank code image" },
 }, {
 	prefix = "<leader>",
 	mode = "v",
