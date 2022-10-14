@@ -82,13 +82,13 @@ return packer.startup(function(use)
 
 	-- Syntax
 	use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
+	-- use({ "kartikp10/noctis.nvim", requires = { "rktjmp/lush.nvim" } }) -- https://github.com/kartikp10/noctis.nvim
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		runglobal = ":TSUpdate",
 	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("norcalli/nvim-colorizer.lua")
-	use("narutoxy/dim.lua") -- https://github.com/NarutoXY/dim.lua
 
 	-- Layout
 	use("akinsho/bufferline.nvim")
@@ -114,7 +114,6 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- https://github.com/lukas-reineke/indent-blankline.nvim
 	use("yamatsum/nvim-cursorline") -- https://github.com/yamatsum/nvim-cursorline
 	use("rmagatti/alternate-toggler") -- https://github.com/rmagatti/alternate-toggler
-	use("lewis6991/spellsitter.nvim") -- https://github.com/lewis6991/spellsitter.nvim
 	use("folke/which-key.nvim") -- https://github.com/folke/which-key.nvim
 	use("dhruvmanila/telescope-bookmarks.nvim") -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
 
