@@ -108,7 +108,7 @@ return packer.startup(function(use)
 	use("tpope/vim-commentary")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("folke/todo-comments.nvim") -- https://github.com/folke/todo-comments.nvim
-	use("tpope/vim-surround") -- Vim surround support (change brackets with cs)
+	use({ "kylechui/nvim-surround", tag = "*" }) -- https://github.com/kylechui/nvim-surround
 	use("windwp/nvim-autopairs") -- https://github.com/windwp/nvim-autopairs
 	use("windwp/nvim-ts-autotag")
 	use("lukas-reineke/indent-blankline.nvim") -- https://github.com/lukas-reineke/indent-blankline.nvim
