@@ -12,6 +12,7 @@ if not status_ok then
 end
 
 require("configs.alpha")
+require("configs.autolist")
 require("configs.autopairs")
 require("configs.bufferline")
 require("configs.cmp")

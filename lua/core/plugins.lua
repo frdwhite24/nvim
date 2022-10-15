@@ -117,6 +117,7 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim") -- https://github.com/folke/which-key.nvim
 	use("dhruvmanila/telescope-bookmarks.nvim") -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
 	use("segeljakt/vim-silicon") -- https://github.com/segeljakt/vim-silicon
+	use("gaoDean/autolist.nvim") -- https://github.com/gaoDean/autolist.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
