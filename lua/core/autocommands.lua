@@ -2,18 +2,6 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 MyGroup = augroup("MyGroup", {})
 
--- Highlight on yank
-autocmd("TextYankPost", {
-	group = MyGroup,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "IncSearch",
-			timeout = 175,
-		})
-	end,
-})
-
 -- Disable continuation of comments on next line apart from on enter in insert
 autocmd("BufWinEnter", {
 	group = MyGroup,
