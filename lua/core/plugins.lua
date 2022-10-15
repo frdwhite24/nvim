@@ -119,6 +119,7 @@ return packer.startup(function(use)
 	use("segeljakt/vim-silicon") -- https://github.com/segeljakt/vim-silicon
 	use("gaoDean/autolist.nvim") -- https://github.com/gaoDean/autolist.nvim
 	use("smjonas/inc-rename.nvim") -- https://github.com/smjonas/inc-rename.nvim
+	use("ja-ford/delaytrain.nvim") -- https://github.com/ja-ford/delaytrain.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
