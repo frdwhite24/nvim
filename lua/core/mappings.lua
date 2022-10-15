@@ -43,7 +43,6 @@ which_key.register({
 })
 keymap("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
 keymap("i", "<C-BS>", "<C-w>", opts) -- delete word before
-
 keymap("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
 keymap("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
 keymap("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
@@ -108,7 +107,11 @@ which_key.register({
 		l = { "<CMD>lua require('gitlinker').get_buf_range_url('n')<CR>", "Remote line link" },
 	},
 	q = { ":bd<CR>", "Close buffer" },
-	r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
+	r = {
+		name = "Reload / Rename...",
+		c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" },
+		n = { "<CMD>IncRename ", "variable" },
+	},
 	s = {
 		name = "Spelling",
 		f = { "z=", "Fix spelling mistake", noremap = false },

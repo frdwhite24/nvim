@@ -118,6 +118,7 @@ return packer.startup(function(use)
 	use("dhruvmanila/telescope-bookmarks.nvim") -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
 	use("segeljakt/vim-silicon") -- https://github.com/segeljakt/vim-silicon
 	use("gaoDean/autolist.nvim") -- https://github.com/gaoDean/autolist.nvim
+	use("smjonas/inc-rename.nvim") -- https://github.com/smjonas/inc-rename.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
