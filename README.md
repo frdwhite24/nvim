@@ -36,4 +36,3 @@ nvim
   makefile by adding prerequisites, headless Neovim start-up to make sure plugins,
   Treesitter parsers and language servers are all installed)
 - Record start-up time and incrementally improve it
-- Pull out all the to-dos into a checklist in the readme
