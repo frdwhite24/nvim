@@ -1,6 +1,6 @@
 # Introduction
 
-This is my custom Neovim configuration. I am currently using Neovim version 0.7
+This is my custom Neovim configuration. I am currently using Neovim version 0.8
 and the configuration is written entirely in Lua.
 
 # Prerequisites
