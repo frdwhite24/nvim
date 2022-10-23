@@ -69,4 +69,4 @@ g.loaded = 1
 g.loaded_netrwPlugin = 1
 
 -- Python env setup
-g.python3_host_prog = '/Users/fred/.pyenv/versions/py3nvim/bin/python'
+g.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"

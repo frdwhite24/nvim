@@ -51,7 +51,6 @@ return packer.startup(function(use)
 
 	-- Performance
 	use("lewis6991/impatient.nvim") -- https://github.com/lewis6991/impatient.nvim
-	use("nathom/filetype.nvim") -- https://github.com/nathom/filetype.nvim
 
 	-- LSP
 	use("williamboman/nvim-lsp-installer") -- https://github.com/williamboman/nvim-lsp-installer/
