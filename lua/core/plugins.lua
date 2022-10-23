@@ -120,6 +120,7 @@ return packer.startup(function(use)
 	use("smjonas/inc-rename.nvim") -- https://github.com/smjonas/inc-rename.nvim
 	use("ja-ford/delaytrain.nvim") -- https://github.com/ja-ford/delaytrain.nvim
 	use("ibhagwan/smartyank.nvim") -- https://github.com/ibhagwan/smartyank.nvim
+	use("phelipetls/jsonpath.nvim") -- https://github.com/phelipetls/jsonpath.nvim
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

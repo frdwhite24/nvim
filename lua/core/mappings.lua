@@ -125,6 +125,12 @@ which_key.register({
 		name = "Buffer",
 		q = { ":w|bd<CR>", "Save and close" },
 	},
+	y = {
+		p = {
+			"<CMD>lua vim.fn.setreg('+', require('jsonpath').get())<CR>",
+			"Copy JSON path",
+		},
+	},
 	["1"] = { "<CMD>BufferLineGoToBuffer 1<CR>", "Go to buffer no. 1" },
 	["2"] = { "<CMD>BufferLineGoToBuffer 2<CR>", "Go to buffer no. 2" },
 	["3"] = { "<CMD>BufferLineGoToBuffer 3<CR>", "Go to buffer no. 3" },

@@ -22,7 +22,7 @@ set.splitbelow = true
 set.splitright = true
 set.errorbells = false
 set.hidden = true
-set.cmdheight = 0
+set.cmdheight = 1
 set.wrap = true
 
 -- Rulers and columns
