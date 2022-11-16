@@ -34,8 +34,8 @@ set.number = true
 set.signcolumn = "yes"
 
 -- Search
-set.incsearch = false
-set.hlsearch = false
+set.incsearch = true
+set.hlsearch = true
 set.ignorecase = true
 set.smartcase = true
 
