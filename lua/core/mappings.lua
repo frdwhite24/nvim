@@ -12,6 +12,12 @@ local opts = { noremap = true, silent = true }
 keymap("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = " "
 
+-- Rename plugin requires command not to be executed as requires new name
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
+vim.keymap.set("n", "<leader>rm", function()
+	return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
+
 -- Visual
 which_key.register({
 	["<"] = { "<gv", "Reselect after indent left" },
@@ -108,9 +114,8 @@ which_key.register({
 	},
 	q = { ":bd<CR>", "Close buffer" },
 	r = {
-		name = "Reload / Rename...",
+		name = "Reload...",
 		c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" },
-		n = { "<CMD>IncRename ", "variable" },
 	},
 	s = {
 		name = "Spelling",
