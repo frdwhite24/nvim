@@ -94,9 +94,16 @@ return packer.startup(function(use)
 	use("hoob3rt/lualine.nvim") -- https://github.com/nvim-lualine/lualine.nvim
 	use("goolord/alpha-nvim") -- https://github.com/goolord/alpha-nvim
 	use("rcarriga/nvim-notify") -- https://github.com/rcarriga/nvim-notify
+	use({
+		"petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+		requires = { "kevinhwang91/nvim-hlslens" },
+	})
 
 	-- Version control
-	use("lewis6991/gitsigns.nvim") -- https://github.com/lewis6991/gitsigns.nvim
+	use({
+		"lewis6991/gitsigns.nvim", -- https://github.com/lewis6991/gitsigns.nvim
+		requires = { "petertriho/nvim-scrollbar" },
+	})
 	use("ruifm/gitlinker.nvim") -- https://github.com/ruifm/gitlinker.nvim
 
 	-- Navigation
@@ -121,6 +128,7 @@ return packer.startup(function(use)
 	use("ja-ford/delaytrain.nvim") -- https://github.com/ja-ford/delaytrain.nvim
 	use("ibhagwan/smartyank.nvim") -- https://github.com/ibhagwan/smartyank.nvim
 	use("phelipetls/jsonpath.nvim") -- https://github.com/phelipetls/jsonpath.nvim
+	use({ "kevinhwang91/nvim-hlslens" }) -- https://github.com/kevinhwang91/nvim-hlslens
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -42,7 +42,7 @@ autocmd("CursorMoved", {
 -- Format toml on save
 autocmd("BufWritePre", {
 	group = MyGroup,
-	pattern = "*.toml,*.html",
+	pattern = "*.toml,*.html,*.json",
 	callback = function()
 		vim.lsp.buf.format()
 	end,
