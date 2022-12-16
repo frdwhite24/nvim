@@ -90,6 +90,10 @@ which_key.register({
 	g = {
 		name = "Go to...",
 		d = { "<CMD>lua require('telescope.builtin').lsp_definitions({show_line = false})<CR>", "definitions" },
+		D = {
+			"<CMD>lua require('telescope.builtin').lsp_type_definitions({show_line = false})<CR>",
+			"type definitions",
+		},
 		r = { "<CMD>lua require('telescope.builtin').lsp_references({show_line = false})<CR>", "references" },
 	},
 	s = {
@@ -118,7 +122,10 @@ which_key.register({
 		-- b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" }, -- disabled in favour of bookmarks
 		b = { "<CMD>lua require('telescope').extensions.bookmarks.bookmarks()<CR>", "Bookmarks" },
 		c = { "<CMD>lua require('core.fw.telescope').search_config_nvim()<CR>", "Neovim config" },
-		d = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics" },
+		d = {
+			"<CMD>lua require('telescope.builtin').diagnostics({line_width = 99})<CR>",
+			"Diagnostics",
+		},
 		e = { "<CMD>lua require('telescope.builtin').git_status()<CR>", "Git edited files" },
 		f = { "<CMD>lua require('telescope.builtin').find_files({hidden=true})<CR>", "Files" },
 		g = { "<CMD>lua require('telescope.builtin').git_files()<CR>", "Git files" },
@@ -149,8 +156,9 @@ which_key.register({
 	},
 	t = { name = "Toggle...", v = { "<CMD>ToggleAlternate<CR>", "value" } },
 	w = {
-		name = "Buffer",
+		name = "Buffer / Wipe...",
 		q = { ":w|bd<CR>", "Save and close" },
+		h = { "<CMD>nohlsearch<CR>", "search highlights" },
 	},
 	y = {
 		p = {
