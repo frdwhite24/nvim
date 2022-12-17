@@ -8,6 +8,11 @@ if not status_cmp_ok then
   return
 end
 
+local status_luasnip_ok, luasnip = pcall(require, 'luasnip')
+if not status_luasnip_ok then
+  return
+end
+
 local builtin = require('telescope.builtin')
 
 lsp.preset("recommended")
@@ -27,17 +32,24 @@ lsp.ensure_installed({
 lsp.setup_nvim_cmp({
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-    ["<C-j>"] = cmp.mapping.scroll_docs(4),
-    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-j>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<C-k>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   }),
-  sources = cmp.config.sources({
-    { name = "crates" },
-    { name = "snippy" },
-    { name = "nvim_lsp" },
-  }, {
-    { name = "buffer" },
-    { name = "path" },
-  })
 })
 
 lsp.set_preferences({

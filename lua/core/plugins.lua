@@ -65,12 +65,13 @@ return packer.startup(function(use)
       { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
+      { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
-      { "dcampos/cmp-snippy" },
 
       -- Snippets
-      { "dcampos/nvim-snippy" }
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
     },
   })
 
@@ -121,7 +122,6 @@ return packer.startup(function(use)
   use("segeljakt/vim-silicon") -- https://github.com/segeljakt/vim-silicon
   use("gaoDean/autolist.nvim") -- https://github.com/gaoDean/autolist.nvim
   use("smjonas/inc-rename.nvim") -- https://github.com/smjonas/inc-rename.nvim
-  use("ibhagwan/smartyank.nvim") -- https://github.com/ibhagwan/smartyank.nvim
   use("phelipetls/jsonpath.nvim") -- https://github.com/phelipetls/jsonpath.nvim
   use({ "kevinhwang91/nvim-hlslens" }) -- https://github.com/kevinhwang91/nvim-hlslens
 

@@ -18,6 +18,9 @@ vim.keymap.set("n", "<leader>rm", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
+-- Replace current word under cursor
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- Search highlight plugin
 local kopts = { noremap = true, silent = true }
 vim.keymap.set(
@@ -53,8 +56,22 @@ vim.keymap.set("n", "{", "{zzzv")
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
--- Void pasting
+-- Void pasting, deleting and copying
 vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>d", "\"_d")
+
+vim.keymap.set("n", "Q", "<nop>")
+
+-- Quick fix list navigation
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
 
 -- Visual + leader
 which_key.register({
