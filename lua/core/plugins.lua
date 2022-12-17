@@ -74,6 +74,7 @@ return packer.startup(function(use)
       { "rafamadriz/friendly-snippets" },
     },
   })
+  use "lukas-reineke/lsp-format.nvim"
 
   -- Syntax
   use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim

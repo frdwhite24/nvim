@@ -47,9 +47,6 @@ vim.opt.updatetime = 50
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- Rust formatting
-vim.g.rustfmt_autosave = 1
-
 -- Editing help
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true

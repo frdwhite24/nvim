@@ -31,19 +31,3 @@ autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
   command = "checktime",
 })
-
--- Format toml on save
-autocmd("BufWritePre", {
-  group = MyGroup,
-  pattern = "*.toml,*.html,*.json,*.lua,*.ts,*.tsx",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
--- Disable lsp diagnostics for .lock files
-autocmd("BufEnter", {
-  group = MyGroup,
-  pattern = "*.lock",
-  command = "LspStop",
-})

@@ -8,25 +8,36 @@ if not status_cmp_ok then
   return
 end
 
-local status_luasnip_ok, luasnip = pcall(require, 'luasnip')
+local status_luasnip_ok, luasnip = pcall(require, "luasnip")
 if not status_luasnip_ok then
   return
 end
 
-local builtin = require('telescope.builtin')
+local status_format_ok, lsp_format = pcall(require, "lsp-format")
+if status_format_ok then
+  lsp_format.setup()
+end
+
+local builtin = require("telescope.builtin")
+
+require("mason.settings").set({
+  ui = {
+    border = "rounded"
+  }
+})
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'sumneko_lua',
-  'rust_analyzer',
-  'pyright',
-  'cssls',
-  'html',
-  'jsonls',
-  'taplo'
+  "tsserver",
+  "eslint",
+  "sumneko_lua",
+  "rust_analyzer",
+  "pyright",
+  "cssls",
+  "html",
+  "jsonls",
+  "taplo"
 })
 
 lsp.setup_nvim_cmp({
@@ -35,20 +46,20 @@ lsp.setup_nvim_cmp({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ['<C-j>'] = cmp.mapping(function(fallback)
+    ["<C-j>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<C-k>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<C-k>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
   }),
 })
 
@@ -65,17 +76,19 @@ vim.diagnostic.config({
   virtual_text = true
 })
 
-lsp.configure('sumneko_lua', {
+lsp.configure("sumneko_lua", {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
+        globals = { "vim" }
       }
     }
   }
 })
 
-lsp.on_attach(function(_, bufnr)
+lsp.on_attach(function(client, bufnr)
+  lsp_format.on_attach(client)
+
   local opts = { buffer = bufnr, remap = false }
   local func_opts = { show_line = false }
   local border = { border = "rounded" }
