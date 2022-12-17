@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Leader
@@ -13,32 +13,51 @@ keymap("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = " "
 
 -- Rename plugin requires command not to be executed as requires new name
-vim.keymap.set("n", "<leader>rn", ":IncRename ")
-vim.keymap.set("n", "<leader>rm", function()
+keymap("n", "<leader>rn", ":IncRename ")
+keymap("n", "<leader>rm", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
 -- Search highlight plugin
 local kopts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap(
+-- Telescope
+local builtin = require('telescope.builtin')
+local telescope = require('telescope')
+local fw = require('core.fw.telescope')
+
+keymap('n', '<leader>fb', telescope.extensions.bookmarks.bookmarks, {})
+keymap('n', '<leader>fc', fw.search_config_nvim, {})
+keymap('n', '<leader>fd', function() builtin.diagnostics({ line_width = 99 }) end, {})
+keymap('n', '<leader>ff', function() builtin.find_files({ hidden = true }) end, {})
+keymap('n', '<leader>fe', builtin.git_status, {})
+keymap('n', '<leader>fg', builtin.git_files, {})
+keymap('n', '<leader>fh', builtin.help_tags, {})
+keymap('n', '<leader>fk', builtin.keymaps, {})
+keymap('n', '<leader>fn', telescope.extensions.notify.notify, {})
+keymap('n', '<leader>fo', builtin.oldfiles, {})
+keymap('n', '<leader>fs', builtin.git_stash, {})
+keymap('n', '<leader>fw', builtin.live_grep, {})
+keymap('n', '<leader>ft', vim.cmd.TodoTelescope, {})
+
+keymap(
   "n",
   "n",
   [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
   kopts
 )
-vim.api.nvim_set_keymap(
+keymap(
   "n",
   "N",
   [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
   kopts
 )
-vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 
-vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
+keymap("n", "<Leader>l", ":noh<CR>", kopts)
 
 -- Visual
 which_key.register({
@@ -108,26 +127,6 @@ which_key.register({
     a = { "miyiw/]<CR>i, <ESC>p`i", "Add variable to array" },
   },
   e = { ":NvimTreeToggle<CR>", "Open file tree" },
-  f = {
-    name = "Find...",
-    -- b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" }, -- disabled in favour of bookmarks
-    b = { "<CMD>lua require('telescope').extensions.bookmarks.bookmarks()<CR>", "Bookmarks" },
-    c = { "<CMD>lua require('core.fw.telescope').search_config_nvim()<CR>", "Neovim config" },
-    d = {
-      "<CMD>lua require('telescope.builtin').diagnostics({line_width = 99})<CR>",
-      "Diagnostics",
-    },
-    e = { "<CMD>lua require('telescope.builtin').git_status()<CR>", "Git edited files" },
-    f = { "<CMD>lua require('telescope.builtin').find_files({hidden=true})<CR>", "Files" },
-    g = { "<CMD>lua require('telescope.builtin').git_files()<CR>", "Git files" },
-    h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help / manuals" },
-    k = { "<CMD>lua require('telescope.builtin').keymaps()<CR>", "Key mappings" },
-    n = { "<CMD>lua require('telescope').extensions.notify.notify()<CR>", "Notifications" },
-    o = { "<CMD>lua require('telescope.builtin').oldfiles()<CR>", "Recent files" },
-    s = { "<CMD>lua require('telescope.builtin').git_stash()<CR>", "Git stash" },
-    t = { "<CMD>TodoTelescope<CR>", "TODOs" },
-    w = { "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Words" },
-  },
   g = {
     name = "Git",
     l = { "<CMD>lua require('gitlinker').get_buf_range_url('n')<CR>", "Remote line link" },
