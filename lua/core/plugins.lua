@@ -96,6 +96,10 @@ return packer.startup(function(use)
     "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
     requires = { "kevinhwang91/nvim-hlslens" },
   })
+  use {
+    "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
+    requires = "kyazdani42/nvim-web-devicons",
+  }
 
   -- Version control
   use({
