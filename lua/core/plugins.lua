@@ -107,6 +107,7 @@ return packer.startup(function(use)
   -- Navigation
   use("nvim-telescope/telescope.nvim")
   use("kyazdani42/nvim-tree.lua") -- https://github.com/kyazdani42/nvim-tree.lua
+  use('mbbill/undotree') -- https://github.com/mbbill/undotree
 
   -- Editor support
   use("tpope/vim-commentary")

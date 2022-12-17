@@ -16,12 +16,17 @@ lsp.ensure_installed({
   'tsserver',
   'eslint',
   'sumneko_lua',
-  'rust_analyzer'
+  'rust_analyzer',
+  'pyright',
+  'cssls',
+  'html',
+  'jsonls',
+  'taplo'
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ["<Tab>"] = cmp.mapping.confirm(cmp_select),
+  ["<Tab>"] = cmp.mapping.confirm({ select = true }),
   ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
   ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
   ["<C-d>"] = cmp.mapping.scroll_docs(-4),
