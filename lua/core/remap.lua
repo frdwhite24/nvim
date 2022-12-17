@@ -79,7 +79,7 @@ which_key.register({
     name = "Git",
     y = { "<CMD>lua require('gitlinker').get_buf_range_url('v')<CR>", "Remote range link" },
   },
-  y = { ":Silicon  ~/Pictures/Code<CR>", "Yank code image" },
+  i = { ":Silicon  ~/Pictures/Code<CR>", "Yank code image" },
 }, {
   prefix = "<leader>",
   mode = "v",
@@ -145,12 +145,6 @@ which_key.register({
     name = "Buffer / Wipe...",
     q = { ":w|bd<CR>", "Save and close" },
     h = { "<CMD>nohlsearch<CR>", "search highlights" },
-  },
-  y = {
-    p = {
-      "<CMD>lua vim.fn.setreg('+', require('jsonpath').get())<CR>",
-      "Copy JSON path",
-    },
   },
   ["1"] = { "<CMD>BufferLineGoToBuffer 1<CR>", "Go to buffer no. 1" },
   ["2"] = { "<CMD>BufferLineGoToBuffer 2<CR>", "Go to buffer no. 2" },

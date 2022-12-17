@@ -30,7 +30,6 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
   "tsserver",
-  "eslint",
   "sumneko_lua",
   "rust_analyzer",
   "pyright",
@@ -72,10 +71,6 @@ lsp.set_preferences({
   }
 })
 
-vim.diagnostic.config({
-  virtual_text = true
-})
-
 lsp.configure("sumneko_lua", {
   settings = {
     Lua = {
@@ -87,7 +82,9 @@ lsp.configure("sumneko_lua", {
 })
 
 lsp.on_attach(function(client, bufnr)
-  lsp_format.on_attach(client)
+  if client.name ~= "null-ls" then
+    lsp_format.on_attach(client)
+  end
 
   local opts = { buffer = bufnr, remap = false }
   local func_opts = { show_line = false }
@@ -106,6 +103,10 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+vim.diagnostic.config({
+  virtual_text = true
+})
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

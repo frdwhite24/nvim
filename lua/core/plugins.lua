@@ -75,6 +75,7 @@ return packer.startup(function(use)
     },
   })
   use "lukas-reineke/lsp-format.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- Syntax
   use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
@@ -123,7 +124,6 @@ return packer.startup(function(use)
   use("segeljakt/vim-silicon") -- https://github.com/segeljakt/vim-silicon
   use("gaoDean/autolist.nvim") -- https://github.com/gaoDean/autolist.nvim
   use("smjonas/inc-rename.nvim") -- https://github.com/smjonas/inc-rename.nvim
-  use("phelipetls/jsonpath.nvim") -- https://github.com/phelipetls/jsonpath.nvim
   use({ "kevinhwang91/nvim-hlslens" }) -- https://github.com/kevinhwang91/nvim-hlslens
 
   -- Automatically set up your configuration after cloning packer.nvim
