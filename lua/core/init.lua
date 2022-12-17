@@ -1,4 +1,4 @@
-require("core.settings")
+require("core.set")
 require("core.plugins")
 require("core.remap")
 require("core.autocommands")

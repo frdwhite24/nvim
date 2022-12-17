@@ -8,64 +8,50 @@ end
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Leader
-keymap("n", "<Space>", "<NOP>", opts)
-vim.g.mapleader = " "
+-- Move text under selection up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Rename plugin requires command not to be executed as requires new name
-keymap("n", "<leader>rn", ":IncRename ")
-keymap("n", "<leader>rm", function()
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
+vim.keymap.set("n", "<leader>rm", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
 -- Search highlight plugin
 local kopts = { noremap = true, silent = true }
-
--- Telescope
-local builtin = require('telescope.builtin')
-local telescope = require('telescope')
-local fw = require('core.fw.telescope')
-
-keymap('n', '<leader>fb', telescope.extensions.bookmarks.bookmarks, {})
-keymap('n', '<leader>fc', fw.search_config_nvim, {})
-keymap('n', '<leader>fd', function() builtin.diagnostics({ line_width = 99 }) end, {})
-keymap('n', '<leader>fe', builtin.git_status, {})
-keymap('n', '<leader>ff', builtin.git_files, {})
-keymap('n', '<leader>fg', function() builtin.find_files({ hidden = true }) end, {})
-keymap('n', '<leader>fh', builtin.help_tags, {})
-keymap('n', '<leader>fk', builtin.keymaps, {})
-keymap('n', '<leader>fn', telescope.extensions.notify.notify, {})
-keymap('n', '<leader>fo', builtin.oldfiles, {})
-keymap('n', '<leader>fs', builtin.git_stash, {})
-keymap('n', '<leader>ft', vim.cmd.TodoTelescope, {})
-keymap('n', '<leader>fw', builtin.live_grep, {})
-
-keymap(
+vim.keymap.set(
   "n",
   "n",
   [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
   kopts
 )
-keymap(
+vim.keymap.set(
   "n",
   "N",
   [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
   kopts
 )
-keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "<Leader>l", ":noh<CR>", kopts)
 
-keymap("n", "<Leader>l", ":noh<CR>", kopts)
+-- Keep cursor in same position when using J
+vim.keymap.set("n", "J", "mzJ`z")
 
--- Visual
-which_key.register({
-  ["<"] = { "<gv", "Reselect after indent left" },
-  [">"] = { ">gv", "Reselect after indent left" },
-}, {
-  mode = "v",
-})
+-- Centralise cursor after certain actions
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "}", "}zzzv")
+vim.keymap.set("n", "{", "{zzzv")
+
+-- Reselect text when indenting
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 -- Visual + leader
 which_key.register({
@@ -88,22 +74,13 @@ which_key.register({
 }, {
   mode = "i",
 })
-keymap("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
-keymap("i", "<C-BS>", "<C-w>", opts) -- delete word before
-keymap("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
-keymap("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
-keymap("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
-keymap("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "tlo", ":TSLspOrganize<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "tlr", ":TSLspRenameFile<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "tli", ":TSLspImportAll<CR>", opts)
+vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
+vim.keymap.set("i", "<C-BS>", "<C-w>", opts) -- delete word before
+vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>", opts)
+vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opts)
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
+vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
+
 -- Normal
 which_key.register({
   s = {
@@ -115,7 +92,6 @@ which_key.register({
   ["<C-j>"] = { "<C-w>j", "Move down to split" },
   ["<C-h>"] = { "<C-w>h", "Move left to split" },
   ["<C-l>"] = { "<C-w>l", "Move right to split" },
-  K = { "<CMD>lua vim.lsp.buf.hover()<CR>" },
 }, {
   mode = "n",
 })

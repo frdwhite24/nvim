@@ -32,13 +32,6 @@ autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
 
--- Keep cursorline centered on move
-autocmd("CursorMoved", {
-  group = MyGroup,
-  pattern = "*",
-  command = "norm zz",
-})
-
 -- Format toml on save
 autocmd("BufWritePre", {
   group = MyGroup,
