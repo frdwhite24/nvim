@@ -1,0 +1,5 @@
+require("core.settings")
+require("core.plugins")
+require("core.remap")
+require("core.autocommands")
+require("core.colourscheme")

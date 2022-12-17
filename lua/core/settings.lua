@@ -23,7 +23,7 @@ set.splitright = true
 set.errorbells = false
 set.hidden = true
 set.cmdheight = 1
-set.wrap = true
+set.wrap = false
 
 -- Rulers and columns
 set.cursorline = true
