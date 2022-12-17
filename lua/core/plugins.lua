@@ -54,7 +54,7 @@ return packer.startup(function(use)
 
   -- LSP and completion
   use({
-    "VonHeikemen/lsp-zero.nvim",
+    "VonHeikemen/lsp-zero.nvim", -- https://github.com/VonHeikemen/lsp-zero.nvim
     requires = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },
@@ -74,8 +74,8 @@ return packer.startup(function(use)
       { "rafamadriz/friendly-snippets" },
     },
   })
-  use "lukas-reineke/lsp-format.nvim"
-  use "jose-elias-alvarez/null-ls.nvim"
+  use "lukas-reineke/lsp-format.nvim" -- https://github.com/lukas-reineke/lsp-format.nvim
+  use "jose-elias-alvarez/null-ls.nvim" -- https://github.com/jose-elias-alvarez/null-ls.nvim
 
   -- Syntax
   use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
