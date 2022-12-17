@@ -24,22 +24,46 @@ lsp.ensure_installed({
   'taplo'
 })
 
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-  ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-  ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-  ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-  ["<C-f>"] = cmp.mapping.scroll_docs(4),
-  ["<C-Space>"] = cmp.mapping.complete(),
-  ["<C-e>"] = cmp.mapping.abort(),
-})
-
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp.mapping.preset.insert({
+    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-j>"] = cmp.mapping.scroll_docs(4),
+    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+  }),
+  sources = cmp.config.sources({
+    { name = "crates" },
+    { name = "snippy" },
+    { name = "nvim_lsp" },
+  }, {
+    { name = "buffer" },
+    { name = "path" },
+  })
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.set_preferences({
+  sign_icons = {
+    error = "",
+    warn = "",
+    hint = "",
+    info = ""
+  }
+})
+
+vim.diagnostic.config({
+  virtual_text = true
+})
+
+lsp.configure('sumneko_lua', {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+})
+
+lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
   local func_opts = { show_line = false }
   local border = { border = "rounded" }
@@ -57,3 +81,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

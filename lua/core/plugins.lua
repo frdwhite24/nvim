@@ -53,8 +53,6 @@ return packer.startup(function(use)
   use("lewis6991/impatient.nvim") -- https://github.com/lewis6991/impatient.nvim
 
   -- LSP and completion
-  -- use("dcampos/nvim-snippy") -- https://github.com/dcampos/nvim-snippy
-  -- use("dcampos/cmp-snippy") -- https://github.com/dcampos/cmp-snippy
   use({
     "VonHeikemen/lsp-zero.nvim",
     requires = {
@@ -67,13 +65,12 @@ return packer.startup(function(use)
       { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
+      { "dcampos/cmp-snippy" },
 
       -- Snippets
-      { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets" },
+      { "dcampos/nvim-snippy" }
     },
   })
 

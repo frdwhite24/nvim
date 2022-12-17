@@ -53,6 +53,9 @@ vim.keymap.set("n", "{", "{zzzv")
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
+-- Void pasting
+vim.keymap.set("x", "<leader>p", "\"_dP")
+
 -- Visual + leader
 which_key.register({
   g = {
