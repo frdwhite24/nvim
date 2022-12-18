@@ -1,56 +1,21 @@
--- TODO: go through this setup and take plugins that look good
--- https://github.com/kabinspace/AstroVim
-
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-  print("Installing packer close and reopen Neovim...")
-  vim.cmd([[packadd packer.nvim]])
+-- Auto install packer if not already installed
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd [[packadd packer.nvim]]
 end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
--- Have packer use a popup window
-packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
-  },
-})
 
 -- Install plugins from here
-return packer.startup(function(use)
+require("packer").startup(function(use)
   -- Core
   use("wbthomason/packer.nvim") -- https://github.com/wbthomason/packer.nvim
-  use("nvim-lua/popup.nvim") -- https://github.com/nvim-lua/popup.nvim
   use("nvim-lua/plenary.nvim") -- https://github.com/nvim-lua/plenary.nvim
   use("kyazdani42/nvim-web-devicons") -- https://github.com/kyazdani42/nvim-web-devicons
 
   -- Performance
-  use("lewis6991/impatient.nvim") -- https://github.com/lewis6991/impatient.nvim
+  -- use("lewis6991/impatient.nvim") -- https://github.com/lewis6991/impatient.nvim
 
   -- LSP and completion
   use({
@@ -76,6 +41,7 @@ return packer.startup(function(use)
   })
   use "lukas-reineke/lsp-format.nvim" -- https://github.com/lukas-reineke/lsp-format.nvim
   use "jose-elias-alvarez/null-ls.nvim" -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  use "j-hui/fidget.nvim" -- https://github.com/j-hui/fidget.nvim
 
   -- Syntax
   use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
@@ -115,6 +81,7 @@ return packer.startup(function(use)
 
   -- Editor support
   use("tpope/vim-commentary")
+  use 'tpope/vim-sleuth' -- https://github.com/tpope/vim-sleuth
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("folke/todo-comments.nvim") -- https://github.com/folke/todo-comments.nvim
   use({ "kylechui/nvim-surround", tag = "*" }) -- https://github.com/kylechui/nvim-surround
@@ -131,8 +98,15 @@ return packer.startup(function(use)
   use({ "kevinhwang91/nvim-hlslens" }) -- https://github.com/kevinhwang91/nvim-hlslens
 
   -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
+  if is_bootstrap then
+    require('packer').sync()
   end
 end)
+
+-- Automatically source and re-compile packer whenever you save this file
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | PackerCompile',
+  group = packer_group,
+  pattern = 'plugins.lua',
+})

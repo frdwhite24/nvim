@@ -5,8 +5,14 @@ if not status_ok then
   return
 end
 
-local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
+
+-- Wipe leader mappings
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap nicely
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Move text under selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

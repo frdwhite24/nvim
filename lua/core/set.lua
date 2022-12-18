@@ -1,18 +1,17 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Spell checking
 vim.opt.spell = true
 vim.opt.spelllang = "en_gb"
 
 -- Tabs, spaces & indent
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.smarttab = true
 vim.opt.cindent = true
+vim.opt.breakindent = true
 
 -- Wrapping, viewports and windows
 vim.opt.splitbelow = true
@@ -41,7 +40,7 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 
 -- Long update time (default 4s) leads to poor UX
-vim.opt.updatetime = 50
+vim.opt.updatetime = 250
 
 -- Get rid of swap files and backups - don't use these features
 vim.opt.swapfile = false

@@ -18,7 +18,6 @@ if status_format_ok then
   lsp_format.setup()
 end
 
-local builtin = require("telescope.builtin")
 
 require("mason.settings").set({
   ui = {
@@ -30,6 +29,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
   "tsserver",
+  "eslint",
   "sumneko_lua",
   "rust_analyzer",
   "pyright",
@@ -85,21 +85,31 @@ lsp.on_attach(function(client, bufnr)
   if client.name ~= "null-ls" then
     lsp_format.on_attach(client)
   end
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
 
-  local opts = { buffer = bufnr, remap = false }
-  local func_opts = { show_line = false }
-  local border = { border = "rounded" }
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
 
-  vim.keymap.set("n", "gd", function() builtin.lsp_definitions(func_opts) end, opts)
-  vim.keymap.set("n", "gD", function() builtin.lsp_type_definitions(func_opts) end, opts)
-  vim.keymap.set("n", "gr", function() builtin.lsp_references(func_opts) end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
-  vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-  vim.keymap.set("n", "ga", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev(border) end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next(border) end, opts)
-  vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
+  local builtin = require("telescope.builtin")
+  nmap("gd", function()
+    builtin.lsp_definitions({ show_line = false })
+  end, "[G]o to [D]efinition")
+  nmap("gD", function()
+    builtin.lsp_type_definitions({ show_line = false })
+  end, "[G]o to type [D]efinition")
+  nmap("gr", function()
+    builtin.lsp_references({ show_line = false })
+  end, "[G]o [R]eferences")
+  nmap("K", vim.lsp.buf.hover, "Hover documentation")
+  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+  nmap("gi", vim.lsp.buf.implementation, "[G]o to [I]mplementation")
+  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  nmap("[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
+  nmap("]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
+  nmap("gl", vim.diagnostic.open_float, "[G]o to [L]ine diagnostic float")
 end)
 
 lsp.setup()
@@ -108,5 +118,6 @@ vim.diagnostic.config({
   virtual_text = true
 })
 
+-- this inserts () after selecting a function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
