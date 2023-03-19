@@ -1,10 +1,3 @@
-require("core.plugins")
-
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
 local opts = { noremap = true, silent = true }
 
 -- Wipe leader mappings
@@ -39,7 +32,7 @@ vim.keymap.set(
   "n",
   [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
   kopts
-)
+  )
 vim.keymap.set(
   "n",
   "N",
@@ -83,12 +76,13 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  return
+end
+
 -- Visual + leader
 which_key.register({
-  g = {
-    name = "Git",
-    y = { "<CMD>lua require('gitlinker').get_buf_range_url('v')<CR>", "Remote range link" },
-  },
   i = { ":Silicon  ~/Pictures/Code<CR>", "Yank code image" },
 }, {
   prefix = "<leader>",
@@ -111,6 +105,8 @@ vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>", opt
 vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
 vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
+-- UI
+
 -- Normal
 which_key.register({
   s = {
@@ -131,11 +127,6 @@ which_key.register({
   d = {
     name = "Hook dependency arrays",
     a = { "miyiw/]<CR>i, <ESC>p`i", "Add variable to array" },
-  },
-  e = { ":NvimTreeToggle<CR>", "Open file tree" },
-  g = {
-    name = "Git",
-    l = { "<CMD>lua require('gitlinker').get_buf_range_url('n')<CR>", "Remote line link" },
   },
   q = { ":bd<CR>", "Close buffer" },
   r = {
