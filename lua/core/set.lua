@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Spell checking
 vim.opt.spell = true
 vim.opt.spelllang = "en_gb"
