@@ -5,7 +5,8 @@ if not status_ok then
 end
 
 local sources = {
-  null_ls.builtins.formatting.prettier
+  null_ls.builtins.formatting.prettier,
+  null_ls.builtins.formatting.stylua,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -18,12 +19,12 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 1000 })
-      end
+      end,
     })
   end
 end
 
 null_ls.setup({
   sources = sources,
-  on_attach = on_attach
+  on_attach = on_attach,
 })

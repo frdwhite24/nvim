@@ -43,9 +43,11 @@ require("packer").startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- https://github.com/jose-elias-alvarez/null-ls.nvim
   use "j-hui/fidget.nvim" -- https://github.com/j-hui/fidget.nvim
 
-  -- Syntax
+  -- Syntax highlighting / theme
   use("EdenEast/nightfox.nvim") -- https://github.com/EdenEast/nightfox.nvim
   -- use({ "kartikp10/noctis.nvim", requires = { "rktjmp/lush.nvim" } }) -- https://github.com/kartikp10/noctis.nvim
+  -- use { 'nyoom-engineering/oxocarbon.nvim' } -- https://github.com/nyoom-engineering/oxocarbon.nvim
+  -- use 'B4mbus/oxocarbon-lua.nvim'
   use({
     "nvim-treesitter/nvim-treesitter",
     runglobal = ":TSUpdate",
