@@ -16,5 +16,4 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 vim.g.maplocalleader = " " -- I (Fred) added this in i think from a Primeagen vid
 
 require("lazy").setup("plugins")
-
 require("core")
