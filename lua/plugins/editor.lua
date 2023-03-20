@@ -21,8 +21,7 @@ return {
     {
         "windwp/nvim-autopairs", -- https://github.com/windwp/nvim-autopairs
         config = true
-    }, 
-    {
+    }, {
         "windwp/nvim-ts-autotag" -- https://github.com/windwp/nvim-ts-autotag
     }, {
         "gaoDean/autolist.nvim", -- https://github.com/gaoDean/autolist.nvim
