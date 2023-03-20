@@ -24,23 +24,5 @@ return {
     }, {
         "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
         config = true
-    }, {
-        "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
-        build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = {
-                    "bash", "dockerfile", "graphql", "html", "help",
-                    "javascript", "json", "lua", "php", "python", "markdown",
-                    "rust", "css", "scss", "tsx", "typescript", "yaml"
-                },
-                sync_install = false,
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false
-                }
-            }
-        end
     }
 }
