@@ -51,8 +51,9 @@ return {
                 end
             })
         end
-    }, {"smjonas/inc-rename.nvim"}, -- https://github.com/smjonas/inc-rename.nvim
-    {
+    }, {
+        "smjonas/inc-rename.nvim" -- https://github.com/smjonas/inc-rename.nvim
+    }, {
         "ethanholz/nvim-lastplace", -- https://github.com/ethanholz/nvim-lastplace
         config = true
     }
