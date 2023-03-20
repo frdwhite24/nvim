@@ -69,6 +69,17 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
+vim.keymap.set("i", "<C-BS>", "<C-w>", opts) -- delete word before
+vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>",
+               opts)
+vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>",
+               opts)
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
+vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
+
+vim.keymap.set("n", "<leader>q", ":bd<CR>")
+
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then return end
 
@@ -83,14 +94,6 @@ which_key.register({
     ["!"] = {"!<C-g>u", "which_key_ignore"}, -- add undo break point for !
     ["?"] = {"?<C-g>u", "which_key_ignore"} -- add undo break point for ?
 }, {mode = "i"})
-vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
-vim.keymap.set("i", "<C-BS>", "<C-w>", opts) -- delete word before
-vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>",
-               opts)
-vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>",
-               opts)
-vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
-vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
 -- UI
 
@@ -113,7 +116,6 @@ which_key.register({
         name = "Hook dependency arrays",
         a = {"miyiw/]<CR>i, <ESC>p`i", "Add variable to array"}
     },
-    q = {":bd<CR>", "Close buffer"},
     r = {name = "Reload...", c = {"<CMD>luafile $MYVIMRC<CR>", "Neovim config"}},
     s = {
         name = "Spelling",
