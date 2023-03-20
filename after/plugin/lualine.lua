@@ -22,7 +22,7 @@ local conditions = {
         local filepath = vim.fn.expand("%:p:h")
         local gitdir = vim.fn.finddir(".git", filepath .. ";")
         return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end,
+    end
 }
 
 local config = {
@@ -127,26 +127,18 @@ ins_right({
     function()
         local row, column = unpack(vim.api.nvim_win_get_cursor(0))
         return "Ln " .. row .. ", Col " .. column
-    end,
+    end
 })
 
 ins_right({
     function()
         return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-    end,
+    end
 })
 
-ins_right({
-    "o:encoding",
-    fmt = string.upper,
-    cond = conditions.hide_in_width
-})
+ins_right({"o:encoding", fmt = string.upper, cond = conditions.hide_in_width})
 
-ins_right({
-    "fileformat",
-    fmt = string.upper,
-    icons_enabled = false,
-})
+ins_right({"fileformat", fmt = string.upper, icons_enabled = false})
 
 local function title_case(first, rest) return first:upper() .. rest:lower() end
 
@@ -154,7 +146,7 @@ ins_right({
     function()
         return string.gsub(vim.bo.filetype, "(%a)([%w_']*)", title_case)
     end,
-    icons_enabled = false,
+    icons_enabled = false
 })
 
 lualine.setup(config)
