@@ -79,6 +79,8 @@ vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
 vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
 vim.keymap.set("n", "<leader>q", ":bd<CR>")
+vim.keymap.set("n", "<leader>wh", "<CMD>nohlsearch<CR>",
+               {desc = "Wipe search highlights"})
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then return end

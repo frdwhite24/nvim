@@ -1,5 +1,4 @@
 return {
-
     {"akinsho/bufferline.nvim"}, -- https://github.com/akinsho/bufferline.nvim
     {"hoob3rt/lualine.nvim"}, -- https://github.com/nvim-lualine/lualine.nvim
     {
@@ -27,5 +26,8 @@ return {
             },
             actions = {open_file = {quit_on_open = true}}
         }
+    }, {
+        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+        dependencies = {"kevinhwang91/nvim-hlslens"}
     }
 }

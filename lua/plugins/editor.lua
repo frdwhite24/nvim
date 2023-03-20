@@ -20,6 +20,5 @@ return {
     }, {"kylechui/nvim-surround", version = "*"}, -- https://github.com/kylechui/nvim-surround
     {"windwp/nvim-autopairs"}, -- https://github.com/windwp/nvim-autopairs
     {"windwp/nvim-ts-autotag"}, {"gaoDean/autolist.nvim"}, -- https://github.com/gaoDean/autolist.nvim
-    {"smjonas/inc-rename.nvim"}, -- https://github.com/smjonas/inc-rename.nvim
-    {"kevinhwang91/nvim-hlslens"} -- https://github.com/kevinhwang91/nvim-hlslens
+    {"smjonas/inc-rename.nvim"} -- https://github.com/smjonas/inc-rename.nvim
 }
