@@ -56,5 +56,8 @@ return {
     }, {
         "ethanholz/nvim-lastplace", -- https://github.com/ethanholz/nvim-lastplace
         config = true
+    }, {
+        "NvChad/nvim-colorizer.lua", -- https://github.com/NvChad/nvim-colorizer.lua
+        config = true
     }
 }
