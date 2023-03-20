@@ -83,9 +83,13 @@ vim.keymap.set("n", "<leader>q", ":bd<CR>")
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then return end
 
--- Visual + leader
-which_key.register({i = {":Silicon  ~/Pictures/Code<CR>", "Yank code image"}},
-                   {prefix = "<leader>", mode = "v"})
+-- Insert
+which_key.register({
+    [","] = {",<C-g>u", "which_key_ignore"}, -- add undo break point for ,
+    ["."] = {".<C-g>u", "which_key_ignore"}, -- add undo break point for .
+    ["!"] = {"!<C-g>u", "which_key_ignore"}, -- add undo break point for !
+    ["?"] = {"?<C-g>u", "which_key_ignore"} -- add undo break point for ?
+}, {mode = "i"})
 
 -- Insert
 which_key.register({
