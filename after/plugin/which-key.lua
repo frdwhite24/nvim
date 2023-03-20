@@ -1,16 +1,7 @@
 local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-	return
-end
+if not status_ok then return end
 
 which_key.setup({
-	plugins = {
-		spelling = {
-			enabled = true,
-			suggestions = 20,
-		},
-	},
-	window = {
-		border = "single",
-	},
+    plugins = {spelling = {enabled = true, suggestions = 20}},
+    window = {border = "single"}
 })
