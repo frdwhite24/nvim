@@ -1,7 +1,9 @@
 return {
     {"akinsho/bufferline.nvim"}, -- https://github.com/akinsho/bufferline.nvim
-    {"hoob3rt/lualine.nvim"}, -- https://github.com/nvim-lualine/lualine.nvim
     {
+        "hoob3rt/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
+        dependencies = "kyazdani42/nvim-web-devicons"
+    }, {
         "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
         lazy = true
     }, {

@@ -10,5 +10,9 @@ return {
         {'hrsh7th/nvim-cmp'}, -- Required
         {'hrsh7th/cmp-nvim-lsp'}, -- Required
         {'L3MON4D3/LuaSnip'} -- Required
-    }
+    },
+    -- {
+    --     "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
+    --     config = true
+    -- }
 }

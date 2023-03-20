@@ -33,9 +33,6 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Colour scheme
-vim.opt.termguicolors = true
-
 -- Long update time (default 4s) leads to poor UX
 vim.opt.updatetime = 250
 
