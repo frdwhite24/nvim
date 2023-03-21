@@ -68,5 +68,10 @@ return {
     }, {
         "NvChad/nvim-colorizer.lua", -- https://github.com/NvChad/nvim-colorizer.lua
         config = true
+    }, {
+        'saecki/crates.nvim', -- https://github.com/Saecki/crates.nvim
+        version = 'v0.3.0',
+        dependencies = {'nvim-lua/plenary.nvim'},
+        config = true
     }
 }
