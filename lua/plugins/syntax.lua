@@ -25,5 +25,9 @@ return {
                 }
             }
         end
+    }, {
+        "folke/twilight.nvim", -- https://github.com/folke/twilight.nvim
+        config = true,
+        keys = {{"<leader>z", "<CMD>Twilight<CR>", desc = "Toggle zen mode"}}
     }
 }
