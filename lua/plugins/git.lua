@@ -1,6 +1,7 @@
 return {
     {
         "ruifm/gitlinker.nvim", -- https://github.com/ruifm/gitlinker.nvim
+        lazy = true,
         keys = {
             {
                 "<leader>gl",
