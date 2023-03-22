@@ -27,6 +27,8 @@ return {
         end
     }, {
         "folke/twilight.nvim", -- https://github.com/folke/twilight.nvim
+        lazy = true,
+        cmd = 'Twilight',
         config = true,
         keys = {{"<leader>z", "<CMD>Twilight<CR>", desc = "Toggle zen mode"}}
     }

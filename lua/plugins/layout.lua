@@ -81,7 +81,6 @@ return {
         lazy = true,
         cmd = "UndotreeToggle",
         keys = {
-
             {
                 "<leader>u",
                 "<CMD>UndotreeToggle<CR>",
