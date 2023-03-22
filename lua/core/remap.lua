@@ -1,9 +1,10 @@
 local opts = {noremap = true, silent = true}
 
--- Wipe leader mappings
+-- Wipe mappings
 vim.keymap.set({"n", "v"}, "<Space>", "<Nop>", {silent = true})
+vim.keymap.set("n", "Q", "<nop>")
 
--- Remap for dealing with word wrap nicely
+-- Treat word-wrapped lines as multiple lines with cursor
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'",
                {expr = true, silent = true})
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'",
@@ -54,14 +55,12 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Void pasting, deleting and copying
-vim.keymap.set("x", "<leader>p", '"_dP')
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("v", "<leader>d", '"_d')
-
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("x", "<leader>p", '"_dP', {desc = "Void paste"})
+vim.keymap.set("n", "<leader>y", '"+y', {desc = "Yank movement to clipboard"})
+vim.keymap.set("v", "<leader>y", '"+y', {desc = "Yank selection to clipboard"})
+vim.keymap.set("n", "<leader>Y", '"+Y', {desc = "Yank line to clipboard"})
+vim.keymap.set("n", "<leader>d", '"_d', {desc = "Void delete movement"})
+vim.keymap.set("v", "<leader>d", '"_d', {desc = "Void delete selection"})
 
 -- Quick fix list navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -71,17 +70,19 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
 vim.keymap.set("i", "<C-BS>", "<C-w>", opts) -- delete word before
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
+vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
+
+-- LSP, should these move?
 vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>",
                opts)
 vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>",
                opts)
-vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
-vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
-vim.keymap.set("n", "<leader>q", ":bd<CR>")
+-- general buffer helpers
+vim.keymap.set("n", "<leader>q", ":bd<CR>", {desc = "Close buffer"})
 vim.keymap.set("n", "<leader>wh", "<CMD>nohlsearch<CR>",
                {desc = "Wipe search highlights"})
-
 vim.keymap.set("n", "<C-k>", "<C-w>k", {desc = "Move up to split"})
 vim.keymap.set("n", "<C-j>", "<C-w>j", {desc = "Move down to split"})
 vim.keymap.set("n", "<C-h>", "<C-w>h", {desc = "Move left to split"})
@@ -106,8 +107,6 @@ which_key.register({
     ["?"] = {"?<C-g>u", "which_key_ignore"} -- add undo break point for ?
 }, {mode = "i"})
 
--- UI
-
 -- Normal
 which_key.register({
     s = {
@@ -119,10 +118,6 @@ which_key.register({
 
 -- Normal + leader
 which_key.register({
-    d = {
-        name = "Hook dependency arrays",
-        a = {"miyiw/]<CR>i, <ESC>p`i", "Add variable to array"}
-    },
     r = {name = "Reload...", c = {"<CMD>luafile $MYVIMRC<CR>", "Neovim config"}},
     s = {
         name = "Spelling",
@@ -132,19 +127,9 @@ which_key.register({
         j = {"]s", "Skip to next mistake"},
         k = {"[s", "Skip to previous mistake"}
     },
-    t = {name = "Toggle...", v = {"<CMD>ToggleAlternate<CR>", "value"}},
     w = {
         name = "Buffer / Wipe...",
         q = {":w|bd<CR>", "Save and close"},
         h = {"<CMD>nohlsearch<CR>", "search highlights"}
-    },
-    ["1"] = {"<CMD>BufferLineGoToBuffer 1<CR>", "Go to buffer no. 1"},
-    ["2"] = {"<CMD>BufferLineGoToBuffer 2<CR>", "Go to buffer no. 2"},
-    ["3"] = {"<CMD>BufferLineGoToBuffer 3<CR>", "Go to buffer no. 3"},
-    ["4"] = {"<CMD>BufferLineGoToBuffer 4<CR>", "Go to buffer no. 4"},
-    ["5"] = {"<CMD>BufferLineGoToBuffer 5<CR>", "Go to buffer no. 5"},
-    ["6"] = {"<CMD>BufferLineGoToBuffer 6<CR>", "Go to buffer no. 6"},
-    ["7"] = {"<CMD>BufferLineGoToBuffer 7<CR>", "Go to buffer no. 7"},
-    ["8"] = {"<CMD>BufferLineGoToBuffer 8<CR>", "Go to buffer no. 8"},
-    ["9"] = {"<CMD>BufferLineGoToBuffer 9<CR>", "Go to buffer no. 9"}
+    }
 }, {prefix = "<leader>", mode = "n"})

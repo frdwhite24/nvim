@@ -104,5 +104,17 @@ return {
             plugins = {spelling = {enabled = true, suggestions = 20}},
             window = {border = "single"}
         }
+    }, {
+        "rmagatti/alternate-toggler", -- https://github.com/rmagatti/alternate-toggler
+        config = true,
+        lazy = true,
+        cmd = "ToggleAlternate",
+        keys = {
+            {
+                "<leader>tv",
+                "<CMD>ToggleAlternate<CR>",
+                desc = "Toggle alternative value"
+            }
+        }
     }
 }
