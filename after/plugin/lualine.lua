@@ -22,10 +22,6 @@ local conditions = {
         local filepath = vim.fn.expand("%:p:h")
         local gitdir = vim.fn.finddir(".git", filepath .. ";")
         return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end,
-    is_not_dashboard = function()
-        local file_type = vim.bo.filetype
-        return file_type ~= "alpha"
     end
 }
 
@@ -108,7 +104,7 @@ ins_left({
     left_padding = 0
 })
 
-ins_left({"mode", color = "LualineMode", cond = conditions.is_not_dashboard})
+ins_left({"mode", color = "LualineMode"})
 
 ins_left({"branch", icon = "", cond = conditions.check_git_workspace})
 
@@ -131,29 +127,18 @@ ins_right({
     function()
         local row, column = unpack(vim.api.nvim_win_get_cursor(0))
         return "Ln " .. row .. ", Col " .. column
-    end,
-    cond = conditions.is_not_dashboard
+    end
 })
 
 ins_right({
     function()
         return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-    end,
-    cond = conditions.is_not_dashboard
+    end
 })
 
-ins_right({
-    "o:encoding",
-    fmt = string.upper,
-    cond = conditions.hide_in_width and conditions.is_not_dashboard
-})
+ins_right({"o:encoding", fmt = string.upper, cond = conditions.hide_in_width})
 
-ins_right({
-    "fileformat",
-    fmt = string.upper,
-    icons_enabled = false,
-    cond = conditions.is_not_dashboard
-})
+ins_right({"fileformat", fmt = string.upper, icons_enabled = false})
 
 local function title_case(first, rest) return first:upper() .. rest:lower() end
 
@@ -161,8 +146,7 @@ ins_right({
     function()
         return string.gsub(vim.bo.filetype, "(%a)([%w_']*)", title_case)
     end,
-    icons_enabled = false,
-    cond = conditions.is_not_dashboard
+    icons_enabled = false
 })
 
 lualine.setup(config)
