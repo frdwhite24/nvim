@@ -1,17 +1,29 @@
 return {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {'nvim-lua/plenary.nvim'},
-    tag = '0.1.1',
-    cmd = "Telescope",
-    version = false,
-    keys = {
-        {
-            '<leader>fd',
-            function()
-                require("telescope.builtin").diagnostics({line_width = 99})
-            end,
-            desc = "[F]ind [D]iagnostics"
-        }, {
+    {
+        "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        tag = '0.1.1',
+        cmd = "Telescope",
+        version = false,
+        opts = {
+            extensions = {
+                bookmarks = {
+                    selected_browser = "brave",
+                },
+            },
+        },
+        config = function()
+            require('telescope').load_extension("bookmarks")
+            require("telescope").load_extension("dir")
+        end,
+        keys = {
+            {
+                '<leader>fd',
+                function()
+                    require("telescope.builtin").diagnostics({ line_width = 99 })
+                end,
+                desc = "[F]ind [D]iagnostics"
+            }, {
             '<leader>fc',
             function()
                 require('telescope.builtin').find_files({
@@ -28,14 +40,15 @@ return {
         }, {
             '<leader>ff',
             function()
-                require("telescope.builtin").find_files({hidden = true})
+                require("telescope.builtin").find_files({ hidden = true })
             end,
             desc = "[F]ind [F]iles"
-        }, {
-            '<leader>fg',
-            function() require("telescope.builtin").git_files() end,
-            desc = "[F]ind [G]it files"
-        }, {
+        },
+            {
+                '<leader>fg',
+                function() require("telescope.builtin").git_files() end,
+                desc = "[F]ind [G]it files"
+            }, {
             '<leader>fh',
             function() require("telescope.builtin").help_tags() end,
             desc = "[F]ind Neovim [H]elp"
@@ -58,24 +71,43 @@ return {
             function() require("telescope.builtin").git_stash() end,
             desc = "[F]ind Git [S]tash"
         },
-        {'<leader>ft', vim.cmd.TodoTelescope, desc = "[F]ind [T]odo comments"},
-        {
-            '<leader>fw',
-            function() require("telescope.builtin").live_grep() end,
-            desc = "[F]ind [W]ord"
-        }
+            {
+                '<leader>ft',
+                vim.cmd.TodoTelescope,
+                desc =
+                "[F]ind [T]odo comments"
+            },
+            {
+                '<leader>fw',
+                function() require("telescope.builtin").live_grep() end,
+                desc = "[F]ind [W]ord"
+            }, {
+            '<leader>fb',
+            function()
+                require('telescope').extensions.bookmarks.bookmarks()
+            end,
+            desc = "[F]ind [B]ookmarks"
+        },
+            {
+                '<leader>fu',
+                function() require("telescope").extensions.dir.live_grep() end,
+                desc =
+                "[F]ind word in directory"
+            },
+            {
+                '<leader>fi',
+                function() require("telescope").extensions.dir.find_files() end,
+                desc =
+                "[F]ind file in directory"
+            },
+        },
+    },
+    {
+        "princejoogie/dir-telescope.nvim", -- https://github.com/princejoogie/dir-telescope.nvim
+        dependencies = { "nvim-telescope/telescope.nvim" },
+    },
+    {
+        "dhruvmanila/telescope-bookmarks.nvim", -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
+        dependencies = { "nvim-telescope/telescope.nvim" },
     }
 }
-
---            {'<leader>fb', function()
---                    require('telescope').extensions.bookmarks.bookmarks()
---            end, desc = "[F]ind [B]ookmarks"},
--- telescope.setup({
---   extensions = {
---     bookmarks = {
---       selected_browser = "brave",
---     },
---   },
--- })
--- 
--- telescope.load_extension("bookmarks")
