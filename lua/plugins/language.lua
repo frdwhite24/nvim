@@ -57,6 +57,11 @@ return {
 
             lsp.on_attach(function(client, bufnr)
                 if client.name == "tsserver" then require("twoslash-queries").attach(client, bufnr) end
+
+                if client.server_capabilities.documentSymbolProvider then
+                    require("nvim-navic").attach(client, bufnr)
+                end
+
                 lsp.default_keymaps({ buffer = bufnr })
                 require("lsp-format").on_attach(client, bufnr)
 
@@ -101,6 +106,9 @@ return {
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end
     }, {
+    "SmiteshP/nvim-navic",
+    dependencies = { "neovim/nvim-lspconfig" }
+}, {
     "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
     config = true
 }, {
