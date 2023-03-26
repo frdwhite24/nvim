@@ -13,8 +13,9 @@ return {
             },
         },
         config = function()
-            require('telescope').load_extension("bookmarks")
-            require("telescope").load_extension("dir")
+            local telescope = require('telescope')
+            telescope.load_extension('bookmarks')
+            telescope.load_extension('dir')
         end,
         keys = {
             {
@@ -99,7 +100,7 @@ return {
                 function() require("telescope").extensions.dir.find_files() end,
                 desc =
                 "[F]ind file in directory"
-            },
+            }
         },
     },
     {
@@ -109,5 +110,5 @@ return {
     {
         "dhruvmanila/telescope-bookmarks.nvim", -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
         dependencies = { "nvim-telescope/telescope.nvim" },
-    }
+    },
 }
