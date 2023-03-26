@@ -55,13 +55,8 @@ return {
                 }
             })
 
-            require("lspconfig")["tsserver"].setup({
-                on_attach = function(client, bufnr)
-                    require("twoslash-queries").attach(client, bufnr)
-                end,
-            })
-
             lsp.on_attach(function(client, bufnr)
+                if client.name == "tsserver" then require("twoslash-queries").attach(client, bufnr) end
                 lsp.default_keymaps({ buffer = bufnr })
                 require("lsp-format").on_attach(client, bufnr)
 
