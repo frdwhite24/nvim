@@ -30,10 +30,11 @@ local conditions = {
 
 local config = {
     options = {
-        disabled_filetypes = { "NvimTree" },
+        disabled_filetypes = {"NvimTree"},
         component_separators = "",
         section_separators = "",
-        theme = 'auto'
+        theme = 'auto',
+        globalstatus = true
         -- theme = {
         -- 	-- We are going to use lualine_c an lualine_x as left and
         -- 	-- right section. Both are highlighted by c theme .  So we
@@ -99,28 +100,28 @@ ins_left({
             t = colors.red
         }
         vim.api.nvim_command("hi! LualineMode guibg=" ..
-            mode_color[vim.fn.mode()] .. " guifg=" ..
-            colors.bg)
+                                 mode_color[vim.fn.mode()] .. " guifg=" ..
+                                 colors.bg)
         return ""
     end,
     color = "LualineMode",
     left_padding = 0
 })
 
-ins_left({ "mode", color = "LualineMode" })
+ins_left({"mode", color = "LualineMode"})
 
-ins_left({ "branch", icon = "", cond = conditions.check_git_workspace })
+ins_left({"branch", icon = "", cond = conditions.check_git_workspace})
 
 ins_left({
     "diff",
-    symbols = { removed = " ", modified = " ", added = " " },
+    symbols = {removed = " ", modified = " ", added = " "},
     cond = conditions.check_git_workspace and conditions.hide_in_width
 })
 
 ins_left({
     "diagnostics",
-    sources = { "nvim_diagnostic" },
-    symbols = { error = " ", warn = " ", info = " " }
+    sources = {"nvim_diagnostic"},
+    symbols = {error = " ", warn = " ", info = " "}
     -- NOTE: have a think about these options below
     -- sections = { "error", "warn" },
     -- always_visible = true,
@@ -136,9 +137,7 @@ ins_right({
             return full_message
         end
     end,
-    cond = function()
-        return navic.is_available()
-    end
+    cond = function() return navic.is_available() end
 })
 
 ins_right({
@@ -154,9 +153,9 @@ ins_right({
     end
 })
 
-ins_right({ "o:encoding", fmt = string.upper, cond = conditions.hide_in_width })
+ins_right({"o:encoding", fmt = string.upper, cond = conditions.hide_in_width})
 
-ins_right({ "fileformat", fmt = string.upper, icons_enabled = false })
+ins_right({"fileformat", fmt = string.upper, icons_enabled = false})
 
 local function title_case(first, rest) return first:upper() .. rest:lower() end
 

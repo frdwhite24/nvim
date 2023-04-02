@@ -21,9 +21,9 @@ vim.keymap.set("n", "<leader>rm",
                {expr = true})
 
 -- Replace current word under cursor
-vim.keymap.set("n", "<leader>s",
+vim.keymap.set("n", "<leader>rw",
                [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-               {desc = "Replace word under cursor"})
+               {desc = "[R]eplace [W]ord under cursor"})
 
 -- Search highlight plugin
 local kopts = {noremap = true, silent = true}
