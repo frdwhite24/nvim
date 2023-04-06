@@ -65,7 +65,10 @@ return {
                 end
 
                 lsp.default_keymaps({buffer = bufnr})
-                require("lsp-format").on_attach(client, bufnr)
+
+                if client.name ~= "tsserver" then
+                    require("lsp-format").on_attach(client, bufnr)
+                end
 
                 local nmap = function(keys, func, desc)
                     if desc then desc = "LSP: " .. desc end
