@@ -22,70 +22,72 @@ return {
             }
         }
     }, {
-        "hoob3rt/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
-        dependencies = "kyazdani42/nvim-web-devicons"
-    }, {
-        "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
-        lazy = true
-    }, {
-        "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
-        lazy = true,
-        cmd = "NvimTreeToggle",
-        keys = {
-            {"<leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree"}
+    "hoob3rt/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
+    dependencies = "kyazdani42/nvim-web-devicons"
+}, {
+    "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
+    lazy = true
+}, {
+    "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
+    lazy = true,
+    cmd = "NvimTreeToggle",
+    commit = "94e3b0990017a42fa4581ea3d0bc08b897727d4d",
+    keys = {
+        { "<leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree" }
+    },
+    opts = {
+        open_on_setup = false,
+        auto_reload_on_write = true,
+        update_focused_file = { enable = true, update_cwd = false },
+        git = { enable = true, ignore = false, timeout = 500 },
+        view = {
+            width = 60,
+            hide_root_folder = true,
+            side = 'right',
+            number = false,
+            relativenumber = true,
+            signcolumn = "no"
         },
-        opts = {
-            open_on_setup = false,
-            auto_reload_on_write = true,
-            update_focused_file = {enable = true, update_cwd = false},
-            git = {enable = true, ignore = false, timeout = 500},
-            view = {
-                width = 60,
-                hide_root_folder = true,
-                side = 'right',
-                number = false,
-                relativenumber = true,
-                signcolumn = "no"
-            },
-            actions = {open_file = {quit_on_open = true}}
-        }
-    }, {
-        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
-        dependencies = {"kevinhwang91/nvim-hlslens"},
-        config = function()
-            require('scrollbar').setup()
-            require("scrollbar.handlers.search").setup({
-                override_lens = function() end
-            })
-        end
-    }, {
-        "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
-        config = function() vim.notify = require('notify') end
-    }, {
-        "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
-        cmd = "TroubleToggle",
-        lazy = true,
-        dependencies = "kyazdani42/nvim-web-devicons",
-        opts = {padding = false, use_diagnostic_signs = true},
-        keys = {
+        actions = { open_file = { quit_on_open = true } }
+    }
+}, {
+    "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+    dependencies = { "kevinhwang91/nvim-hlslens" },
+    config = function()
+        require('scrollbar').setup()
+        require("scrollbar.handlers.search").setup({
+            override_lens = function()
+            end
+        })
+    end
+}, {
+    "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
+    config = function() vim.notify = require('notify') end
+}, {
+    "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
+    cmd = "TroubleToggle",
+    lazy = true,
+    dependencies = "kyazdani42/nvim-web-devicons",
+    opts = { padding = false, use_diagnostic_signs = true },
+    keys = {
 
-            {
-                "<leader>x",
-                "<CMD>TroubleToggle<CR>",
-                desc = "Toggle language diagnostics bottom bar"
-            }
-        }
-    }, {
-        'mbbill/undotree', -- https://github.com/mbbill/undotree
-        config = true,
-        lazy = true,
-        cmd = "UndotreeToggle",
-        keys = {
-            {
-                "<leader>u",
-                "<CMD>UndotreeToggle<CR>",
-                desc = "[U]ndo tree toggle"
-            }
+        {
+            "<leader>x",
+            "<CMD>TroubleToggle<CR>",
+            desc = "Toggle language diagnostics bottom bar"
         }
     }
+}, {
+    'mbbill/undotree', -- https://github.com/mbbill/undotree
+    config = true,
+    lazy = true,
+    cmd = "UndotreeToggle",
+    keys = {
+        {
+            "<leader>u",
+            "<CMD>UndotreeToggle<CR>",
+            desc = "[U]ndo tree toggle"
+        }
+    }
+}
 }
