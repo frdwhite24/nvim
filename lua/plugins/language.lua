@@ -18,7 +18,7 @@ return {
 
             lsp.preset("recommended")
             lsp.ensure_installed({
-                "tsserver", "eslint", "lua_ls", "rust_analyzer", "pyright",
+                "vtsls", "eslint", "lua_ls", "rust_analyzer", "pyright",
                 "cssls", "html", "jsonls", "taplo"
             })
             lsp.nvim_workspace()
@@ -56,7 +56,7 @@ return {
             })
 
             lsp.on_attach(function(client, bufnr)
-                if client.name == "tsserver" then
+                if client.name == "vtsls" then
                     require("twoslash-queries").attach(client, bufnr)
                 end
 
@@ -66,7 +66,7 @@ return {
 
                 lsp.default_keymaps({ buffer = bufnr })
 
-                if client.name ~= "tsserver" then
+                if client.name ~= "vtsls" then
                     require("lsp-format").on_attach(client, bufnr)
                 end
 
@@ -112,7 +112,8 @@ return {
         end
     }, { "SmiteshP/nvim-navic", dependencies = { "neovim/nvim-lspconfig" } }, {
     "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
-    config = true
+    config = true,
+    tag = 'legacy'
 }, {
     "jose-elias-alvarez/null-ls.nvim", -- https://github.com/jose-elias-alvarez/null-ls.nvim
     config = function()
