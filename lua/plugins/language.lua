@@ -43,7 +43,14 @@ return {
                             fallback()
                         end
                     end, { "i", "s" })
-                })
+                }),
+                sources = {
+                    { name = 'path' },
+                    { name = 'nvim_lsp' },
+                    { name = 'codeium' },
+                    { name = 'buffer',  keyword_length = 3 },
+                    { name = 'luasnip', keyword_length = 2 },
+                }
             })
 
             lsp.set_preferences({
@@ -114,36 +121,42 @@ return {
     "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
     config = true,
     tag = 'legacy'
-}, {
-    "jose-elias-alvarez/null-ls.nvim", -- https://github.com/jose-elias-alvarez/null-ls.nvim
-    config = function()
-        local null_ls = require("null-ls")
-        local sources = { null_ls.builtins.formatting.prettier }
+},
+    {
+        "jcdickinson/codeium.nvim", -- https://github.com/jcdickinson/codeium.nvim
+        commit = "b1ff0d6c993e3d87a4362d2ccd6c660f7444599f",
+        config = true,
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim", -- https://github.com/jose-elias-alvarez/null-ls.nvim
+        config = function()
+            local null_ls = require("null-ls")
+            local sources = { null_ls.builtins.formatting.prettier }
 
-        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-        local on_attach = function(client, bufnr)
-            if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_clear_autocmds({
-                    group = augroup,
-                    buffer = bufnr
-                })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = augroup,
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format({
-                            bufnr = bufnr,
-                            timeout_ms = 1000
-                        })
-                    end
-                })
+            local on_attach = function(client, bufnr)
+                if client.supports_method("textDocument/formatting") then
+                    vim.api.nvim_clear_autocmds({
+                        group = augroup,
+                        buffer = bufnr
+                    })
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = augroup,
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.format({
+                                bufnr = bufnr,
+                                timeout_ms = 1000
+                            })
+                        end
+                    })
+                end
             end
-        end
 
-        null_ls.setup({ sources = sources, on_attach = on_attach })
-    end
-}, {
+            null_ls.setup({ sources = sources, on_attach = on_attach })
+        end
+    }, {
     "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
     config = true,
     lazy = true,
