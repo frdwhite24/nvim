@@ -9,7 +9,6 @@ return {
             "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua", "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
-            { "lukas-reineke/lsp-format.nvim", config = true }
         },
         config = function()
             local lsp = require("lsp-zero")
@@ -73,10 +72,6 @@ return {
 
                 lsp.default_keymaps({ buffer = bufnr })
 
-                if client.name ~= "vtsls" then
-                    require("lsp-format").on_attach(client, bufnr)
-                end
-
                 local nmap = function(keys, func, desc)
                     if desc then desc = "LSP: " .. desc end
 
@@ -121,6 +116,35 @@ return {
     "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
     config = true,
     tag = 'legacy'
+}, {
+    "elentok/format-on-save.nvim", -- https://github.com/elentok/format-on-save.nvim
+    config = function()
+        local format_on_save = require("format-on-save")
+        local formatters = require("format-on-save.formatters")
+
+        format_on_save.setup({
+            exclude_path_patterns = {
+                "/node_modules/",
+                ".local/share/nvim/lazy",
+            },
+            formatter_by_ft = {
+                css = formatters.lsp,
+                html = formatters.lsp,
+                javascript = formatters.lsp,
+                json = formatters.lsp,
+                lua = formatters.lsp,
+                markdown = formatters.prettierd,
+                python = formatters.black,
+                rust = formatters.lsp,
+                scss = formatters.lsp,
+                sh = formatters.shfmt,
+                typescript = formatters.prettierd,
+                typescriptreact = formatters.prettierd,
+                yaml = formatters.lsp,
+                toml = formatters.lsp
+            },
+        })
+    end
 },
     {
         "jcdickinson/codeium.nvim", -- https://github.com/jcdickinson/codeium.nvim
@@ -128,45 +152,16 @@ return {
         config = true,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim", -- https://github.com/jose-elias-alvarez/null-ls.nvim
-        config = function()
-            local null_ls = require("null-ls")
-            local sources = { null_ls.builtins.formatting.prettier }
-
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-            local on_attach = function(client, bufnr)
-                if client.supports_method("textDocument/formatting") then
-                    vim.api.nvim_clear_autocmds({
-                        group = augroup,
-                        buffer = bufnr
-                    })
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        group = augroup,
-                        buffer = bufnr,
-                        callback = function()
-                            vim.lsp.buf.format({
-                                bufnr = bufnr,
-                                timeout_ms = 1000
-                            })
-                        end
-                    })
-                end
-            end
-
-            null_ls.setup({ sources = sources, on_attach = on_attach })
-        end
-    }, {
-    "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
-    config = true,
-    lazy = true,
-    cmd = "InspectTwoslashQueries",
-    keys = {
-        {
-            "<leader>it",
-            "<CMD>InspectTwoslashQueries<CR>",
-            desc = "[I]nspect [T]ype"
+        "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
+        config = true,
+        lazy = true,
+        cmd = "InspectTwoslashQueries",
+        keys = {
+            {
+                "<leader>it",
+                "<CMD>InspectTwoslashQueries<CR>",
+                desc = "[I]nspect [T]ype"
+            }
         }
     }
-}
 }

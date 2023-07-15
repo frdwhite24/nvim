@@ -4,14 +4,16 @@ This is my custom Neovim configuration. I am currently using Neovim version 0.8
 and the configuration is written entirely in Lua.
 
 # Prerequisites
+
 - Install [this
-font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
-to get completion menu icons properly rendering
+  font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
+  to get completion menu icons properly rendering
 - Install [pyenv](https://github.com/pyenv/pyenv-installer#installation--update--uninstallation)
 - Install Python using pyenv `pyenv install 3.10.3` and setting it globally `pyenv global 3.10.3`
 - Install `pynvim` and `black` globally using `pip install --user --upgrade black pynvim`
 - Install `neovim` lib for Node.js with `npm i -g neovim`
 - Install `silicon` cli, can use Brew for this `brew install silicon`
+- Install `prettierd` globally with `npm install -g @fsouza/prettierd`
 
 # Usage
 
