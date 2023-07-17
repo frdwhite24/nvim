@@ -1,9 +1,6 @@
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then return end
 
-local navic_status_ok, navic = pcall(require, "nvim-navic")
-if not navic_status_ok then return end
-
 -- Color table for highlights
 local colors = {
     bg = "#2c3043",
@@ -30,7 +27,7 @@ local conditions = {
 
 local config = {
     options = {
-        disabled_filetypes = {"NvimTree"},
+        disabled_filetypes = { "NvimTree" },
         component_separators = "",
         section_separators = "",
         theme = 'auto',
@@ -100,44 +97,31 @@ ins_left({
             t = colors.red
         }
         vim.api.nvim_command("hi! LualineMode guibg=" ..
-                                 mode_color[vim.fn.mode()] .. " guifg=" ..
-                                 colors.bg)
+            mode_color[vim.fn.mode()] .. " guifg=" ..
+            colors.bg)
         return ""
     end,
     color = "LualineMode",
     left_padding = 0
 })
 
-ins_left({"mode", color = "LualineMode"})
+ins_left({ "mode", color = "LualineMode" })
 
-ins_left({"branch", icon = "", cond = conditions.check_git_workspace})
+ins_left({ "branch", icon = "", cond = conditions.check_git_workspace })
 
 ins_left({
     "diff",
-    symbols = {removed = " ", modified = " ", added = " "},
+    symbols = { removed = " ", modified = " ", added = " " },
     cond = conditions.check_git_workspace and conditions.hide_in_width
 })
 
 ins_left({
     "diagnostics",
-    sources = {"nvim_diagnostic"},
-    symbols = {error = " ", warn = " ", info = " "}
+    sources = { "nvim_diagnostic" },
+    symbols = { error = " ", warn = " ", info = " " }
     -- NOTE: have a think about these options below
     -- sections = { "error", "warn" },
     -- always_visible = true,
-})
-
-ins_right({
-    function()
-        local full_message = navic.get_location()
-        local shortened_message = string.sub(full_message, 0, 50)
-        if string.len(full_message) ~= string.len(shortened_message) then
-            return shortened_message .. '...'
-        else
-            return full_message
-        end
-    end,
-    cond = function() return navic.is_available() end
 })
 
 ins_right({
@@ -153,9 +137,9 @@ ins_right({
     end
 })
 
-ins_right({"o:encoding", fmt = string.upper, cond = conditions.hide_in_width})
+ins_right({ "o:encoding", fmt = string.upper, cond = conditions.hide_in_width })
 
-ins_right({"fileformat", fmt = string.upper, icons_enabled = false})
+ins_right({ "fileformat", fmt = string.upper, icons_enabled = false })
 
 local function title_case(first, rest) return first:upper() .. rest:lower() end
 

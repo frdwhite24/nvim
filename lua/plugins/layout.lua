@@ -61,9 +61,6 @@ return {
         })
     end
 }, {
-    "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
-    config = function() vim.notify = require('notify') end
-}, {
     "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
     cmd = "TroubleToggle",
     lazy = true,
