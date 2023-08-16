@@ -1,5 +1,9 @@
 return {
     {
+        "hrsh7th/nvim-cmp",
+        commit = "6c84bc75c64f778e9f1dcb798ed41c7fcb93b639"
+    },
+    {
         "VonHeikemen/lsp-zero.nvim", -- https://github.com/VonHeikemen/lsp-zero.nvim
         branch = "v2.x",
         dependencies = {
@@ -45,8 +49,8 @@ return {
                 }),
                 sources = {
                     { name = 'path' },
-                    { name = 'nvim_lsp' },
                     { name = 'codeium' },
+                    { name = 'nvim_lsp' },
                     { name = 'buffer',  keyword_length = 3 },
                     { name = 'luasnip', keyword_length = 2 },
                 }

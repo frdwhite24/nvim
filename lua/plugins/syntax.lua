@@ -8,7 +8,7 @@ return {
             vim.cmd.colorscheme("carbonfox")
         end
     }, {
-    "nvim-treesitter/nvim-treesitter",     -- https://github.com/nvim-treesitter/nvim-treesitter
+    "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter.configs").setup {
@@ -29,7 +29,7 @@ return {
         }
     end
 }, {
-    "folke/twilight.nvim",     -- https://github.com/folke/twilight.nvim
+    "folke/twilight.nvim", -- https://github.com/folke/twilight.nvim
     lazy = true,
     cmd = 'Twilight',
     config = true,
