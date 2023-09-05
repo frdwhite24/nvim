@@ -131,7 +131,8 @@ return {
                 css = formatters.lsp,
                 html = formatters.lsp,
                 javascript = formatters.lsp,
-                json = formatters.lsp,
+                json = formatters.prettierd,
+                jsonc = formatters.prettierd,
                 lua = formatters.lsp,
                 markdown = formatters.prettierd,
                 python = formatters.black,
@@ -143,6 +144,10 @@ return {
                 yaml = formatters.lsp,
                 toml = formatters.lsp
             },
+            -- fallback_formatter = {
+            --     formatters.remove_trailing_whitespace,
+            --     formatters.prettierd,
+            -- }
         })
     end
 },
@@ -163,5 +168,31 @@ return {
                 desc = "[I]nspect [T]ype"
             }
         }
+    },
+    {
+        'andythigpen/nvim-coverage', -- https://github.com/andythigpen/nvim-coverage
+        opts = {
+            auto_reload = true,
+        },
+        config = true,
+        keys = {
+            {
+                "<leader>cl",
+                "<CMD>Coverage<CR>",
+                desc = "[C]overage [L]oad"
+            },
+            {
+                "<leader>ct",
+                "<CMD>CoverageToggle<CR>",
+                desc = "[C]overage [T]oggle"
+            },
+            {
+                "<leader>cs",
+                "<CMD>CoverageSummary<CR>",
+                desc = "[C]overage [S]ummary"
+            }
+
+        }
+
     }
 }
