@@ -17,10 +17,21 @@ return {
         opts = { mappings = nil }
     }, {
     "lewis6991/gitsigns.nvim", -- https://github.com/lewis6991/gitsigns.nvim
-    dependencies = { "petertriho/nvim-scrollbar" }
+    dependencies = { "petertriho/nvim-scrollbar" },
+    -- options are still in /after dir, yet to be migrated
 }, {
     "f-person/git-blame.nvim", -- https://github.com/f-person/git-blame.nvim#configuration
-    lazy = true,
+    lazy = false,
+    opts = {
+        enabled = 1,
+        display_virtual_text = 1,
+        delay = 1000,
+        set_extmark_options = { -- this solves the git blame overriding cursorline highlighting
+            hl_mode = "combine"
+        },
+        date_format = '(%r) • %d/%m/%y',
+        message_template = '  <author> <date> • <summary>'
+    },
     keys = {
         {
             "<leader>go",
