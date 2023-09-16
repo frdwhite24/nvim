@@ -18,6 +18,7 @@ return {
             local lsp = require("lsp-zero")
             local cmp = require("cmp")
             local luasnip = require("luasnip")
+            local lspconfig = require("lspconfig")
 
             lsp.preset("recommended")
             lsp.ensure_installed({
@@ -104,6 +105,15 @@ return {
             end)
 
             require("mason.settings").set({ ui = { border = "rounded" } })
+
+            lspconfig.pyright.setup({
+                python = {
+                    analysis = {
+                        useLibraryCodeForTypes = false
+                    }
+                }
+            })
+
             lsp.setup()
 
             vim.diagnostic.config({ virtual_text = true })
@@ -194,5 +204,17 @@ return {
 
         }
 
+    },
+    {
+        "linux-cultist/venv-selector.nvim", -- https://github.com/linux-cultist/venv-selector.nvim
+        dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
+        opts = {
+            name = ".venv",
+            -- auto_refresh = false
+        },
+        keys = {
+            { "<leader>vs", "<cmd>:VenvSelect<cr>" },
+            { "<leader>vc", "<cmd>:VenvSelectCached<cr>" }
+        }
     }
 }
