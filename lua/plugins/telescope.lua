@@ -5,9 +5,28 @@ return {
         tag = '0.1.1',
         cmd = "Telescope",
         version = false,
-        opts = { extensions = { bookmarks = { selected_browser = "brave" } } },
-        config = function()
+        lazy = true,
+        opts = {
+            extensions = { bookmarks = { selected_browser = "brave" } },
+            defaults = {
+                initial_mode = "insert",
+                layout_strategy = "vertical",
+                sorting_strategy = 'ascending',
+                layout_config = {
+                    vertical = {
+                        mirror = false,
+                        prompt_position = "top",
+                    },
+                },
+                path_display = { "truncate" },
+                winblend = 20,
+                color_devicons = true,
+                set_env = { ["COLORTERM"] = "truecolor" },
+            }
+        },
+        config = function(_, opts)
             local telescope = require('telescope')
+            telescope.setup(opts)
             telescope.load_extension('bookmarks')
             telescope.load_extension('dir')
         end,
@@ -100,10 +119,12 @@ return {
         }
         }
     }, {
-    "princejoogie/dir-telescope.nvim",     -- https://github.com/princejoogie/dir-telescope.nvim
-    dependencies = { "nvim-telescope/telescope.nvim" }
+    "princejoogie/dir-telescope.nvim", -- https://github.com/princejoogie/dir-telescope.nvim
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    lazy = true,
 }, {
-    "dhruvmanila/telescope-bookmarks.nvim",     -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
-    dependencies = { "nvim-telescope/telescope.nvim" }
+    "dhruvmanila/telescope-bookmarks.nvim", -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    lazy = true
 }
 }
