@@ -19,7 +19,7 @@ return {
                     },
                 },
                 path_display = { "truncate" },
-                winblend = 20,
+                -- winblend = 20,
                 color_devicons = true,
                 set_env = { ["COLORTERM"] = "truecolor" },
             }
@@ -48,23 +48,29 @@ return {
             end,
             desc = "[F]ind Neovim [C]onfig"
         }, {
+            '<leader>fp',
+            function()
+                require("telescope.builtin").resume()
+            end,
+            desc = "[F]ind [P]arrot (Repeat)"
+        }, {
             '<leader>fe',
             function()
                 require("telescope.builtin").git_status()
             end,
             desc = "[F]ind [E]dited files"
         }, {
-            '<leader>ff',
+            '<leader>fa',
             function()
                 require("telescope.builtin").find_files({ hidden = true })
             end,
-            desc = "[F]ind [F]iles"
+            desc = "[F]ind [A]ll files"
         }, {
-            '<leader>fg',
+            '<leader>ff',
             function()
-                require("telescope.builtin").git_files()
+                require("telescope.builtin").git_files({ show_untracked = true })
             end,
-            desc = "[F]ind [G]it files"
+            desc = "[F]ind git [F]iles"
         }, {
             '<leader>fh',
             function()
