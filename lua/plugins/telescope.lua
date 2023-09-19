@@ -7,7 +7,7 @@ return {
         version = false,
         lazy = true,
         opts = {
-            extensions = { bookmarks = { selected_browser = "brave" } },
+            extensions = { bookmarks = { selected_browser = "arc" } },
             defaults = {
                 initial_mode = "insert",
                 layout_strategy = "vertical",
