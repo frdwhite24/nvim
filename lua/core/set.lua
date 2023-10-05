@@ -26,6 +26,7 @@ vim.opt.ruler = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#353535" })
 
 -- Search
 vim.opt.incsearch = true

@@ -86,5 +86,24 @@ return {
             desc = "[U]ndo tree toggle"
         }
     }
-}
+},
+    {
+        "m4xshen/smartcolumn.nvim",
+        opts = {
+            disabled_filetypes = {
+                "help",
+                "text",
+                "markdown",
+                'javascriptreact',
+                'typescriptreact',
+                'javascript',
+                'typescript',
+                'lua',
+                'lazy'
+            },
+            custom_colorcolumn = {
+                python = "88"
+            }
+        }
+    },
 }
