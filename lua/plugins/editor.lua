@@ -35,7 +35,13 @@ return {
     end
 }, {
     "lukas-reineke/indent-blankline.nvim", -- https://github.com/lukas-reineke/indent-blankline.nvim
-    opts = { show_current_context = true }
+    main = "ibl",
+    opts = {
+        scope = {
+            show_start = false,
+            show_end = false
+        }
+    },
 }, {
     "yamatsum/nvim-cursorline", -- https://github.com/yamatsum/nvim-cursorline
     opts = {

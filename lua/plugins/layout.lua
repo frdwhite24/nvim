@@ -92,6 +92,8 @@ return {
         opts = {
             disabled_filetypes = {
                 "help",
+                'lazy', -- lazy install window
+                'qf',   -- quick fix list
                 "text",
                 "markdown",
                 'javascriptreact',
@@ -99,7 +101,6 @@ return {
                 'javascript',
                 'typescript',
                 'lua',
-                'lazy'
             },
             custom_colorcolumn = {
                 python = "88"
