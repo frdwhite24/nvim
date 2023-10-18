@@ -2,7 +2,7 @@ return {
     {
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
         dependencies = { 'nvim-lua/plenary.nvim' },
-        tag = '0.1.1',
+        branch = '0.1.x',
         cmd = "Telescope",
         version = false,
         lazy = true,
