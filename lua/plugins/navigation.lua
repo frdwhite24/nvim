@@ -15,6 +15,7 @@ return {
                 layout_config = {
                     vertical = {
                         mirror = false,
+                        preview_cutoff = 1,
                         prompt_position = "top",
                     },
                 },
