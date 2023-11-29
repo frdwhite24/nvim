@@ -23,7 +23,7 @@ return {
             lsp.preset("recommended")
             lsp.ensure_installed({
                 "vtsls", "eslint", "lua_ls", "rust_analyzer", "pyright",
-                "cssls", "html", "jsonls", "taplo"
+                "cssls", "html", "jsonls", "taplo", "bashls" -- "shfmt" NOTE: install this manually
             })
             lsp.nvim_workspace()
 
