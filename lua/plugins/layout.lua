@@ -26,9 +26,8 @@ return {
     dependencies = "kyazdani42/nvim-web-devicons"
 }, {
     "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
-    lazy = true
 }, {
-    "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
+    "kyazdani42/nvim-tree.lua",     -- https://github.com/kyazdani42/nvim-tree.lua
     lazy = true,
     cmd = "NvimTreeToggle",
     commit = "94e3b0990017a42fa4581ea3d0bc08b897727d4d",
@@ -100,6 +99,7 @@ return {
                 'typescriptreact',
                 'javascript',
                 'typescript',
+                "svelte",
                 'lua',
             },
             custom_colorcolumn = {

@@ -23,7 +23,8 @@ return {
             lsp.preset("recommended")
             lsp.ensure_installed({
                 "vtsls", "eslint", "lua_ls", "rust_analyzer", "pyright",
-                "cssls", "html", "jsonls", "taplo", "bashls" -- "shfmt" NOTE: install this manually
+                "cssls", "html", "jsonls", "taplo", "bashls", -- "shfmt" NOTE: install this manually
+                "svelte", "yamlls"
             })
             lsp.nvim_workspace()
 
@@ -138,20 +139,21 @@ return {
                 ".local/share/nvim/lazy",
             },
             formatter_by_ft = {
-                css = formatters.lsp,
+                css = formatters.prettierd,
                 html = formatters.lsp,
                 javascript = formatters.lsp,
                 json = formatters.prettierd,
                 jsonc = formatters.prettierd,
                 lua = formatters.lsp,
                 markdown = formatters.prettierd,
+                svelte = formatters.prettierd,
                 python = formatters.black,
                 rust = formatters.lsp,
                 scss = formatters.lsp,
                 sh = formatters.shfmt,
                 typescript = formatters.prettierd,
                 typescriptreact = formatters.prettierd,
-                yaml = formatters.lsp,
+                yaml = formatters.prettierd,
                 toml = formatters.lsp
             },
             -- fallback_formatter = {
