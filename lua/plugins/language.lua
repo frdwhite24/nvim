@@ -24,7 +24,7 @@ return {
             lsp.ensure_installed({
                 "vtsls", "eslint", "lua_ls", "rust_analyzer", "pyright",
                 "cssls", "html", "jsonls", "taplo", "bashls", -- "shfmt" NOTE: install this manually
-                "svelte", "yamlls"
+                "svelte", "yamlls", "jdtls"
             })
             lsp.nvim_workspace()
 
