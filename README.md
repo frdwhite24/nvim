@@ -17,6 +17,7 @@ and the configuration is written entirely in Lua.
 
 # Usage
 
+⚠️ I haven't updated this for Mac setup yet, this is still a todo. And so this code block is likely not to work!
 ```bash
 # NOTE: Make sure you move or delete your existing nvim config before running this
 git clone git@github.com:frdwhite24/nvim.git ~/.config/nvim
