@@ -1,14 +1,14 @@
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 -- Wipe mappings
-vim.keymap.set({"n", "v"}, "<Space>", "<Nop>", {silent = true})
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Treat word-wrapped lines as multiple lines with cursor
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'",
-               {expr = true, silent = true})
+    { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'",
-               {expr = true, silent = true})
+    { expr = true, silent = true })
 
 -- Move text under selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -17,22 +17,22 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Rename plugin requires command not to be executed as requires new name
 vim.keymap.set("n", "<leader>rn", ":IncRename ")
 vim.keymap.set("n", "<leader>rm",
-               function() return ":IncRename " .. vim.fn.expand("<cword>") end,
-               {expr = true})
+    function() return ":IncRename " .. vim.fn.expand("<cword>") end,
+    { expr = true })
 
 -- Replace current word under cursor
 vim.keymap.set("n", "<leader>rw",
-               [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-               {desc = "[R]eplace [W]ord under cursor"})
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "[R]eplace [W]ord under cursor" })
 
 -- Search highlight plugin
-local kopts = {noremap = true, silent = true}
+local kopts = { noremap = true, silent = true }
 vim.keymap.set("n", "n",
-               [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-               kopts)
+    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    kopts)
 vim.keymap.set("n", "N",
-               [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-               kopts)
+    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    kopts)
 vim.keymap.set("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -55,12 +55,12 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Void pasting, deleting and copying
-vim.keymap.set("x", "<leader>p", '"_dP', {desc = "Void paste"})
-vim.keymap.set("n", "<leader>y", '"+y', {desc = "Yank movement to clipboard"})
-vim.keymap.set("v", "<leader>y", '"+y', {desc = "Yank selection to clipboard"})
-vim.keymap.set("n", "<leader>Y", '"+Y', {desc = "Yank line to clipboard"})
-vim.keymap.set("n", "<leader>d", '"_d', {desc = "Void delete movement"})
-vim.keymap.set("v", "<leader>d", '"_d', {desc = "Void delete selection"})
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Void paste" })
+vim.keymap.set("n", "<leader>y", '"+y', { desc = "Yank movement to clipboard" })
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to clipboard" })
+vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "Yank line to clipboard" })
+vim.keymap.set("n", "<leader>d", '"_d', { desc = "Void delete movement" })
+vim.keymap.set("v", "<leader>d", '"_d', { desc = "Void delete selection" })
 
 -- Quick fix list navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -68,68 +68,69 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
-vim.keymap.set("i", "<C-BS>", "<C-w>", opts) -- delete word before
-vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts) -- move to next buffer
+vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts)        -- delete word after
+vim.keymap.set("i", "<C-BS>", "<C-w>", opts)           -- delete word before
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts)       -- move to next buffer
 vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
 -- LSP, should these move?
 vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>",
-               opts)
+    opts)
 vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>",
-               opts)
+    opts)
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart language server" })
 
 -- general buffer helpers
-vim.keymap.set("n", "<leader>q", ":bd<CR>", {desc = "Close buffer"})
+vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>wh", "<CMD>nohlsearch<CR>",
-               {desc = "Wipe search highlights"})
-vim.keymap.set("n", "<C-k>", "<C-w>k", {desc = "Move up to split"})
-vim.keymap.set("n", "<C-j>", "<C-w>j", {desc = "Move down to split"})
-vim.keymap.set("n", "<C-h>", "<C-w>h", {desc = "Move left to split"})
-vim.keymap.set("n", "<C-l>", "<C-w>l", {desc = "Move right to split"})
+    { desc = "Wipe search highlights" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up to split" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move down to split" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move left to split" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right to split" })
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then return end
 
 -- Insert
 which_key.register({
-    [","] = {",<C-g>u", "which_key_ignore"}, -- add undo break point for ,
-    ["."] = {".<C-g>u", "which_key_ignore"}, -- add undo break point for .
-    ["!"] = {"!<C-g>u", "which_key_ignore"}, -- add undo break point for !
-    ["?"] = {"?<C-g>u", "which_key_ignore"} -- add undo break point for ?
-}, {mode = "i"})
+    [","] = { ",<C-g>u", "which_key_ignore" }, -- add undo break point for ,
+    ["."] = { ".<C-g>u", "which_key_ignore" }, -- add undo break point for .
+    ["!"] = { "!<C-g>u", "which_key_ignore" }, -- add undo break point for !
+    ["?"] = { "?<C-g>u", "which_key_ignore" }  -- add undo break point for ?
+}, { mode = "i" })
 
 -- Insert
 which_key.register({
-    [","] = {",<C-g>u", "which_key_ignore"}, -- add undo break point for ,
-    ["."] = {".<C-g>u", "which_key_ignore"}, -- add undo break point for .
-    ["!"] = {"!<C-g>u", "which_key_ignore"}, -- add undo break point for !
-    ["?"] = {"?<C-g>u", "which_key_ignore"} -- add undo break point for ?
-}, {mode = "i"})
+    [","] = { ",<C-g>u", "which_key_ignore" }, -- add undo break point for ,
+    ["."] = { ".<C-g>u", "which_key_ignore" }, -- add undo break point for .
+    ["!"] = { "!<C-g>u", "which_key_ignore" }, -- add undo break point for !
+    ["?"] = { "?<C-g>u", "which_key_ignore" }  -- add undo break point for ?
+}, { mode = "i" })
 
 -- Normal
 which_key.register({
     s = {
         name = "Split buffer...",
-        h = {":split<Return><C-w>w", "horizontally"},
-        v = {":vsplit<Return><C-w>w", "vertically"}
+        h = { ":split<Return><C-w>w", "horizontally" },
+        v = { ":vsplit<Return><C-w>w", "vertically" }
     }
-}, {mode = "n"})
+}, { mode = "n" })
 
 -- Normal + leader
 which_key.register({
-    r = {name = "Reload...", c = {"<CMD>luafile $MYVIMRC<CR>", "Neovim config"}},
+    r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
     s = {
         name = "Spelling",
-        f = {"z=", "Fix spelling mistake", noremap = false},
-        a = {"zg", "Add to local dictionary"},
-        r = {"zug", "Remove word from local dictionary"},
-        j = {"]s", "Skip to next mistake"},
-        k = {"[s", "Skip to previous mistake"}
+        f = { "z=", "Fix spelling mistake", noremap = false },
+        a = { "zg", "Add to local dictionary" },
+        r = { "zug", "Remove word from local dictionary" },
+        j = { "]s", "Skip to next mistake" },
+        k = { "[s", "Skip to previous mistake" }
     },
     w = {
         name = "Buffer / Wipe...",
-        q = {":w|bd<CR>", "Save and close"},
-        h = {"<CMD>nohlsearch<CR>", "search highlights"}
+        q = { ":w|bd<CR>", "Save and close" },
+        h = { "<CMD>nohlsearch<CR>", "search highlights" }
     }
-}, {prefix = "<leader>", mode = "n"})
+}, { prefix = "<leader>", mode = "n" })
