@@ -72,12 +72,13 @@ return {
     "NvChad/nvim-colorizer.lua", -- https://github.com/NvChad/nvim-colorizer.lua
     config = true
 }, {
-    'saecki/crates.nvim', -- https://github.com/Saecki/crates.nvim
-    version = 'v0.3.0',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = true
+    'saecki/crates.nvim',
+    event = { "BufRead Cargo.toml" },
+    config = function()
+        require('crates').setup()
+    end,
 }, {
-    "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
+    "folke/which-key.nvim",     -- https://github.com/folke/which-key.nvim
     opts = {
         plugins = { spelling = { enabled = true, suggestions = 20 } },
         window = { border = "single" }
