@@ -28,20 +28,46 @@ return {
     "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
 }, {
     "kyazdani42/nvim-tree.lua",     -- https://github.com/kyazdani42/nvim-tree.lua
-    lazy = true,
     cmd = "NvimTreeToggle",
-    commit = "94e3b0990017a42fa4581ea3d0bc08b897727d4d",
     keys = {
         { "<leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree" }
     },
     opts = {
-        open_on_setup = false,
+        hijack_cursor = true,
         auto_reload_on_write = true,
+        git = {
+            enable = true,
+            show_on_dirs = false,
+            timeout = 500
+        },
+        diagnostics = {
+            enable = true,
+            show_on_dirs = false
+        },
+        modified = {
+            enable = true,
+            show_on_dirs = false
+        },
+        renderer = {
+            group_empty = true,
+            root_folder_label = false,
+            highlight_diagnostics = "name",
+            indent_markers = {
+                enable = true,
+
+            },
+            icons = {
+                git_placement = "after",
+                diagnostics_placement = "after",
+                modified_placement = "after",
+            }
+        },
         update_focused_file = { enable = true, update_cwd = false },
-        git = { enable = true, ignore = false, timeout = 500 },
         view = {
-            width = 60,
-            hide_root_folder = true,
+            centralize_selection = true,
+            width = {
+                min = 60,
+            },
             side = 'right',
             number = false,
             relativenumber = true,
