@@ -4,6 +4,11 @@ return {
         commit = "6c84bc75c64f778e9f1dcb798ed41c7fcb93b639"
     },
     {
+        'barrett-ruth/import-cost.nvim',
+        build = 'sh install.sh npm',
+        config = true
+    },
+    {
         "VonHeikemen/lsp-zero.nvim", -- https://github.com/VonHeikemen/lsp-zero.nvim
         branch = "v2.x",
         dependencies = {

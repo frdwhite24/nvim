@@ -18,6 +18,7 @@
   "git-blame.nvim": { "branch": "master", "commit": "ad1d1365c9189d89797fe8d559677d5f55dc2830" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "gitsigns.nvim": { "branch": "main", "commit": "d96ef3bbff0bdbc3916a220f5c74a04c4db033f2" },
+  "import-cost.nvim": { "branch": "main", "commit": "39ef36f438574db0b26e9c957316eb1cb22e970f" },
   "inc-rename.nvim": { "branch": "main", "commit": "5e03e986625961d1fac296d1bf332a6510c3add6" },
   "indent-blankline.nvim": { "branch": "master", "commit": "3d08501caef2329aba5121b753e903904088f7e6" },
   "lazy.nvim": { "branch": "main", "commit": "31ddbea7c10b6920c9077b66c97951ca8682d5c8" },
