@@ -24,6 +24,7 @@ return {
     }, {
     "hoob3rt/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
     dependencies = "kyazdani42/nvim-web-devicons"
+    -- options are still in /after dir, yet to be migrated
 }, {
     "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
 }, {
@@ -79,7 +80,11 @@ return {
     "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
     dependencies = { "kevinhwang91/nvim-hlslens" },
     config = function()
-        require('scrollbar').setup()
+        require('scrollbar').setup({
+            excluded_filetypes = {
+                "NvimTree",
+            },
+        })
         require("scrollbar.handlers.search").setup({
             override_lens = function()
             end
@@ -92,10 +97,9 @@ return {
     dependencies = "kyazdani42/nvim-web-devicons",
     opts = { padding = false, use_diagnostic_signs = true },
     keys = {
-
         {
             "<leader>x",
-            "<CMD>TroubleToggle<CR>",
+            "<cmd>Trouble diagnostics toggle<cr>",
             desc = "Toggle language diagnostics bottom bar"
         }
     }
@@ -113,7 +117,7 @@ return {
     }
 },
     {
-        "m4xshen/smartcolumn.nvim",
+        "m4xshen/smartcolumn.nvim", -- https://github.com/m4xshen/smartcolumn.nvim
         opts = {
             disabled_filetypes = {
                 "help",

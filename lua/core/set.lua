@@ -52,9 +52,5 @@ vim.opt.timeoutlen = 500
 -- TODO: look into why this isn't vim.optting correctly
 -- vim.opt.noshowmode = false
 
--- Recommended from https://github.com/kyazdani42/nvim-tree.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Python env vim.optup
 vim.g.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"

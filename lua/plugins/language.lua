@@ -1,6 +1,6 @@
 return {
     {
-        "hrsh7th/nvim-cmp",
+        "hrsh7th/nvim-cmp", -- https://github.com/hrsh7th/nvim-cmp
     },
     {
         'barrett-ruth/import-cost.nvim',

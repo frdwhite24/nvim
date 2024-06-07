@@ -1,6 +1,7 @@
 return {
     {
         "ruifm/gitlinker.nvim", -- https://github.com/ruifm/gitlinker.nvim
+        requires = 'nvim-lua/plenary.nvim',
         lazy = true,
         keys = {
             {

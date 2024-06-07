@@ -7,7 +7,6 @@ return {
         version = false,
         lazy = true,
         opts = {
-            -- extensions = { bookmarks = { selected_browser = "arc" } },
             defaults = {
                 initial_mode = "insert",
                 layout_strategy = "vertical",
@@ -28,7 +27,6 @@ return {
         config = function(_, opts)
             local telescope = require('telescope')
             telescope.setup(opts)
-            telescope.load_extension('bookmarks')
             telescope.load_extension('dir')
         end,
         keys = {
@@ -39,21 +37,11 @@ return {
                 end,
                 desc = "[F]ind [D]iagnostics"
             }, {
-            '<leader>fc',
-            function()
-                require('telescope.builtin').find_files({
-                    prompt_title = "< NVIM RC >",
-                    cwd = "~/.config/nvim/",
-                    hidden = true
-                })
-            end,
-            desc = "[F]ind Neovim [C]onfig"
-        }, {
             '<leader>fp',
             function()
                 require("telescope.builtin").resume()
             end,
-            desc = "[F]ind [P]arrot (Repeat)"
+            desc = "[F]ind [P]revious search results"
         }, {
             '<leader>fe',
             function()
@@ -63,7 +51,7 @@ return {
         }, {
             '<leader>fa',
             function()
-                require("telescope.builtin").find_files({ hidden = true })
+                require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
             end,
             desc = "[F]ind [A]ll files"
         }, {
@@ -100,17 +88,29 @@ return {
                 vim.cmd.TodoTelescope,
                 desc = "[F]ind [T]odo comments"
             }, {
+            '<leader>fc',
+            function()
+                require("telescope.builtin").grep_string({
+                    -- these args have been found using rg --help
+                    additional_args = {
+                        "--hidden",
+                        "--smart-case"
+                    }
+                })
+            end,
+            desc = "[F]ind [C]urrent word"
+        }, {
             '<leader>fw',
             function()
-                require("telescope.builtin").live_grep()
+                require("telescope.builtin").live_grep({
+                    -- these args have been found using rg --help
+                    additional_args = {
+                        "--hidden",
+                        "--smart-case"
+                    }
+                })
             end,
             desc = "[F]ind [W]ord"
-        }, {
-            '<leader>fb',
-            function()
-                require('telescope').extensions.bookmarks.bookmarks()
-            end,
-            desc = "[F]ind [B]ookmarks"
         }, {
             '<leader>fu',
             function()
@@ -129,10 +129,6 @@ return {
     "princejoogie/dir-telescope.nvim", -- https://github.com/princejoogie/dir-telescope.nvim
     dependencies = { "nvim-telescope/telescope.nvim" },
     lazy = true,
-}, {
-    "dhruvmanila/telescope-bookmarks.nvim", -- https://github.com/dhruvmanila/telescope-bookmarks.nvim
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    lazy = true
 },
     {
         "dzfrias/arena.nvim", -- https://github.com/dzfrias/arena.nvim
