@@ -1,3 +1,12 @@
+local js_inlay_hints_opts = {
+    parameterNames = { enabled = "all" },
+    parameterTypes = { enabled = true },
+    variableTypes = { enabled = true },
+    propertyDeclarationTypes = { enabled = true },
+    functionLikeReturnTypes = { enabled = true },
+    enumMemberValues = { enabled = true },
+}
+
 return {
     {
         'barrett-ruth/import-cost.nvim', -- https://github.com/barrett-ruth/import-cost.nvim
@@ -7,7 +16,7 @@ return {
     { 'williamboman/mason.nvim' },           -- https://github.com/williamboman/mason.nvim
     { 'williamboman/mason-lspconfig.nvim' }, -- https://github.com/williamboman/mason-lspconfig.nvim
     {
-        "MysticalDevil/inlay-hints.nvim",
+        "MysticalDevil/inlay-hints.nvim",    -- https://github.com/MysticalDevil/inlay-hints.nvim
         event = "LspAttach",
         dependencies = { "neovim/nvim-lspconfig" },
         config = true
@@ -91,26 +100,12 @@ return {
                             end,
                             settings = {
                                 javascript = {
-                                    inlayHints = {
-                                        parameterNames = { enabled = "literals" },
-                                        parameterTypes = { enabled = true },
-                                        variableTypes = { enabled = true },
-                                        propertyDeclarationTypes = { enabled = true },
-                                        functionLikeReturnTypes = { enabled = true },
-                                        enumMemberValues = { enabled = true },
-                                    }
+                                    inlayHints = js_inlay_hints_opts,
                                 },
                                 typescript = {
-                                    inlayHints = {
-                                        parameterNames = { enabled = "literals" },
-                                        parameterTypes = { enabled = true },
-                                        variableTypes = { enabled = true },
-                                        propertyDeclarationTypes = { enabled = true },
-                                        functionLikeReturnTypes = { enabled = true },
-                                        enumMemberValues = { enabled = true },
-                                    }
+                                    inlayHints = js_inlay_hints_opts,
                                 },
-                            }
+                            },
                         })
                     end,
                     jdtls = function()
@@ -144,7 +139,7 @@ return {
                             settings = {
                                 Lua = {
                                     hint = {
-                                        enable = true, -- necessary
+                                        enable = true,
                                     }
                                 }
                             }
@@ -159,15 +154,11 @@ return {
                     svelte = function()
                         require('lspconfig').svelte.setup({
                             settings = {
+                                javascript = {
+                                    inlayHints = js_inlay_hints_opts,
+                                },
                                 typescript = {
-                                    inlayHints = {
-                                        parameterNames = { enabled = 'all' },
-                                        parameterTypes = { enabled = true },
-                                        variableTypes = { enabled = true },
-                                        propertyDeclarationTypes = { enabled = true },
-                                        functionLikeReturnTypes = { enabled = true },
-                                        enumMemberValues = { enabled = true },
-                                    },
+                                    inlayHints = js_inlay_hints_opts,
                                 },
                             },
                         })
