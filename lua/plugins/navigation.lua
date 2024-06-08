@@ -1,3 +1,9 @@
+local additional_grep_args = {
+    "--hidden",
+    "--smart-case",
+    "--iglob=!.git"
+}
+
 return {
     {
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
@@ -92,10 +98,7 @@ return {
             function()
                 require("telescope.builtin").grep_string({
                     -- these args have been found using rg --help
-                    additional_args = {
-                        "--hidden",
-                        "--smart-case"
-                    }
+                    additional_args = additional_grep_args
                 })
             end,
             desc = "[F]ind [C]urrent word"
@@ -104,10 +107,7 @@ return {
             function()
                 require("telescope.builtin").live_grep({
                     -- these args have been found using rg --help
-                    additional_args = {
-                        "--hidden",
-                        "--smart-case"
-                    }
+                    additional_args = additional_grep_args
                 })
             end,
             desc = "[F]ind [W]ord"
