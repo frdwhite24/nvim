@@ -58,7 +58,8 @@ return {
     config = true
 }, {
     "windwp/nvim-autopairs", -- https://github.com/windwp/nvim-autopairs
-    config = true
+    event = "InsertEnter",
+    config = true,
 }, {
     "windwp/nvim-ts-autotag", -- https://github.com/windwp/nvim-ts-autotag
     config = true
@@ -78,7 +79,7 @@ return {
         require('crates').setup()
     end,
 }, {
-    "folke/which-key.nvim",     -- https://github.com/folke/which-key.nvim
+    "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
     opts = {
         plugins = { spelling = { enabled = true, suggestions = 20 } },
         window = { border = "single" }
