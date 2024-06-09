@@ -39,7 +39,8 @@ return {
         git = {
             enable = true,
             show_on_dirs = false,
-            timeout = 500
+            timeout = 500,
+            ignore = false
         },
         diagnostics = {
             enable = true,
