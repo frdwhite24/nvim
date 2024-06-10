@@ -30,7 +30,7 @@ return {
 
             lsp_zero.extend_lspconfig()
 
-            lsp_zero.on_attach(function(client, bufnr)
+            lsp_zero.on_attach(function(_, bufnr)
                 lsp_zero.default_keymaps({
                     buffer = bufnr,
                     -- preserve_mappings = false -- will force key bindings if they're already taken
@@ -118,8 +118,14 @@ return {
                                             exclusions = { "this" },
                                         },
                                     },
+                                    format = {
+                                        settings = {
+                                            url = "~/.local/share/java/intellij_default_java.xml",
+                                            profile = "Default",
+                                        },
+                                    },
                                 }
-                            }
+                            },
                         })
                     end,
                     pyright = function()
@@ -207,10 +213,6 @@ return {
                 completion = {
                     completeopt = 'menu,menuone,noinsert'
                 },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
                 mapping = cmp.mapping.preset.insert({
                     -- NEW MAPPINGS
                     -- Trying out the super tab configuration
@@ -239,45 +241,27 @@ return {
         config = true,
         tag = 'legacy'
     }, {
-    "elentok/format-on-save.nvim", -- https://github.com/elentok/format-on-save.nvim
-    config = function()
-        local format_on_save = require("format-on-save")
-        local formatters = require("format-on-save.formatters")
-
-        format_on_save.setup({
-            exclude_path_patterns = {
-                "/node_modules/",
-                ".local/share/nvim/lazy",
-            },
-            formatter_by_ft = {
-                -- LSP formatters
-                lua = formatters.lsp,
-                rust = formatters.lsp,
-                scss = formatters.lsp,
-                toml = formatters.lsp,
-                sh = formatters.shfmt,
-
-                -- prettierd formatters
-                html = formatters.prettierd,
-                css = formatters.prettierd,
-                json = formatters.prettierd,
-                jsonc = formatters.prettierd,
-                markdown = formatters.prettierd,
-                svelte = formatters.prettierd,
-                javascript = formatters.prettierd,
-                typescript = formatters.prettierd,
-                typescriptreact = formatters.prettierd,
-                yaml = formatters.prettierd,
-
-                -- other formatters
-                python = formatters.black,
-            },
-            -- fallback_formatter = {
-            --     formatters.remove_trailing_whitespace,
-            --     formatters.prettierd,
-            -- }
-        })
-    end
+    'stevearc/conform.nvim', -- https://github.com/stevearc/conform.nvim
+    config = true,
+    opts = {
+        format_on_save = {
+            timeout_ms = 500,
+            lsp_fallback = true,
+        },
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        sh = { 'shfmt' },
+        html = { 'prettierd' },
+        css = { 'prettierd' },
+        json = { 'prettierd' },
+        jsonc = { 'prettierd' },
+        markdown = { 'prettierd' },
+        svelte = { 'prettierd' },
+        javascript = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
+        yaml = { 'prettierd' },
+    },
 },
     {
         "jcdickinson/codeium.nvim", -- https://github.com/jcdickinson/codeium.nvim
