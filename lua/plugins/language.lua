@@ -86,6 +86,7 @@ return {
                     "taplo",
                     "bashls",
                     -- "shfmt", -- this requires manual install as it's not a valid entry in this table for some reason
+                    -- "clang-format" -- this requires manual install as it's not a valid entry in this table for some reason
                     "yamlls",
                     "jdtls",
                 },
@@ -121,7 +122,6 @@ return {
                                     format = {
                                         settings = {
                                             url = "~/.local/share/java/intellij_default_java.xml",
-                                            profile = "Default",
                                         },
                                     },
                                 }
