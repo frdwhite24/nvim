@@ -44,6 +44,8 @@ return {
                     { buffer = bufnr, desc = "[G]o to type [D]efinition" })
                 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
                     { buffer = bufnr, desc = "Signature documentation" })
+                vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>',
+                    { buffer = bufnr, desc = "[G]et [L]ine diagnostic" })
                 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
             end)
 
