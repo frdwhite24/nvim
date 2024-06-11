@@ -1,3 +1,6 @@
+HEIGHT_PADDING = 10
+WIDTH_PADDING = 15
+
 return {
     {
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
@@ -67,13 +70,35 @@ return {
         update_focused_file = { enable = true, update_cwd = false },
         view = {
             centralize_selection = true,
-            width = {
-                min = 60,
-            },
+            adaptive_size = false,
             side = 'right',
             number = false,
             relativenumber = true,
-            signcolumn = "no"
+            signcolumn = "no",
+            float = {
+                enable = true,
+                open_win_config = function()
+                    local screen_w = vim.opt.columns:get()
+                    local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                    local window_w_f = (screen_w - WIDTH_PADDING * 2) / 1
+                    local window_w = math.floor(window_w_f)
+                    local window_h = screen_h - HEIGHT_PADDING * 2
+                    local center_x = WIDTH_PADDING - 1
+                    local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+
+                    return {
+                        border = "single",
+                        relative = "editor",
+                        row = center_y,
+                        col = center_x,
+                        width = window_w,
+                        height = window_h,
+                    }
+                end
+            },
+            width = function()
+                return vim.opt.columns:get() - WIDTH_PADDING * 2
+            end
         },
         actions = { open_file = { quit_on_open = true } }
     }
