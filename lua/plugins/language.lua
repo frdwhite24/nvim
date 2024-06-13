@@ -122,8 +122,9 @@ return {
                                         },
                                     },
                                     format = {
+                                        enabled = false,
                                         settings = {
-                                            url = "~/.local/share/java/intellij_default_java.xml",
+                                            url = "~/.local/share/java/eclipse-java-google-style.xml",
                                         },
                                     },
                                 }
