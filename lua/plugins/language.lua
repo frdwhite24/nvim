@@ -19,7 +19,14 @@ return {
         "MysticalDevil/inlay-hints.nvim",    -- https://github.com/MysticalDevil/inlay-hints.nvim
         event = "LspAttach",
         dependencies = { "neovim/nvim-lspconfig" },
-        config = true
+        config = true,
+        keys = {
+            {
+                '<leader>ih',
+                "<CMD>InlayHintsToggle<CR>",
+                desc = "Toggle [I]lay [H]ints"
+            }
+        }
     },
     {
         'VonHeikemen/lsp-zero.nvim', -- https://github.com/VonHeikemen/lsp-zero.nvim
@@ -251,19 +258,20 @@ return {
             timeout_ms = 500,
             lsp_fallback = true,
         },
-        lua = { "stylua" },
-        python = { "isort", "black" },
-        sh = { 'shfmt' },
-        html = { 'prettierd' },
-        css = { 'prettierd' },
-        json = { 'prettierd' },
-        jsonc = { 'prettierd' },
-        markdown = { 'prettierd' },
-        svelte = { 'prettierd' },
-        javascript = { { "prettierd", "prettier" } },
-        typescript = { { "prettierd", "prettier" } },
-        typescriptreact = { { "prettierd", "prettier" } },
-        yaml = { 'prettierd' },
+        formatters_by_ft = {
+            python = { "black" },
+            sh = { 'shfmt' },
+            html = { 'prettierd' },
+            css = { 'prettierd' },
+            json = { 'prettierd' },
+            jsonc = { 'prettierd' },
+            markdown = { 'prettierd' },
+            svelte = { 'prettierd' },
+            javascript = { { "prettierd", "prettier" } },
+            typescript = { { "prettierd", "prettier" } },
+            typescriptreact = { { "prettierd", "prettier" } },
+            yaml = { 'prettierd' },
+        }
     },
 },
     {
