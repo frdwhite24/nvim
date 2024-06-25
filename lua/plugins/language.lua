@@ -20,6 +20,9 @@ return {
         event = "LspAttach",
         dependencies = { "neovim/nvim-lspconfig" },
         config = true,
+        opts = {
+            autocmd = { enable = false }
+        },
         keys = {
             {
                 '<leader>ih',
