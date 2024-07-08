@@ -172,6 +172,9 @@ return {
                     end,
                     svelte = function()
                         require('lspconfig').svelte.setup({
+                            on_attach = function(client, bufnr)
+                                require("twoslash-queries").attach(client, bufnr)
+                            end,
                             settings = {
                                 javascript = {
                                     inlayHints = js_inlay_hints_opts,
@@ -285,11 +288,11 @@ return {
         "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
         config = true,
         lazy = true,
-        cmd = "InspectTwoslashQueries",
+        cmd = "TwoslashQueriesInspect",
         keys = {
             {
                 "<leader>it",
-                "<CMD>InspectTwoslashQueries<CR>",
+                "<CMD>TwoslashQueriesInspect<CR>",
                 desc = "[I]nspect [T]ype"
             }
         }
