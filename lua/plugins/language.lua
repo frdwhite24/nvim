@@ -261,7 +261,7 @@ return {
     config = true,
     opts = {
         format_on_save = {
-            timeout_ms = 500,
+            timeout_ms = 3000,
             lsp_fallback = true,
         },
         formatters_by_ft = {
@@ -272,7 +272,8 @@ return {
             json = { 'prettierd' },
             jsonc = { 'prettierd' },
             markdown = { 'prettierd' },
-            svelte = { 'prettierd' },
+            java = { "prettier" },
+            svelte = { { "prettierd", "prettier" } },
             javascript = { { "prettierd", "prettier" } },
             typescript = { { "prettierd", "prettier" } },
             typescriptreact = { { "prettierd", "prettier" } },
