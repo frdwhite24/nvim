@@ -80,9 +80,10 @@ return {
     end,
 }, {
     "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
+    config = true,
     opts = {
-        plugins = { spelling = { enabled = true, suggestions = 20 } },
-        window = { border = "single" }
+        preset = "modern",
+        notify = false
     }
 }, {
     "rmagatti/alternate-toggler", -- https://github.com/rmagatti/alternate-toggler
