@@ -4,8 +4,7 @@ This is the simplified version of my custom Neovim configuration. I am currently
 
 # Prerequisites
 
-- Install [this
-  font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.tt)
+- Install [the Nerd Font](https://github.com/ryanoasis/nerd-fonts) patch of your terminal font, so that you get all the icons rendering properly
   to get completion menu icons properly rendering
 - Install [Homebrew](https://brew.sh/)
 - Install [Node / `npm`](https://nodejs.org/en/download/package-manager)
