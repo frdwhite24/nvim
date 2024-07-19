@@ -13,7 +13,7 @@ This is my simplified version of my custom Neovim configuration. I am currently 
 ```bash
 npm i -g neovim @fsouza/prettierd
 # NOTE: Make sure you move or delete your existing nvim config before running this
-git clone git@github.com:frdwhite24/nvim.git ~/.config/nvim
+git clone -b meetup git@github.com:frdwhite24/nvim.git ~/.config/nvim
 brew install neovim
 
 # Check Neovim is installed properly
