@@ -5,7 +5,7 @@ This is the simplified version of my custom Neovim configuration. I am currently
 # Prerequisites
 
 - Install [this
-  font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.tt
+  font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.tt)
   to get completion menu icons properly rendering
 - Install [Homebrew](https://brew.sh/)
 - Install [Node / `npm`](https://nodejs.org/en/download/package-manager)
