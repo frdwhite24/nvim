@@ -130,17 +130,4 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim" },
     lazy = true,
 },
-    {
-        "dzfrias/arena.nvim", -- https://github.com/dzfrias/arena.nvim
-        event = "BufWinEnter",
-        config = true,
-        opts = {
-            ignore_current = true
-        },
-        keys = { {
-            '<leader>b',
-            "<CMD>ArenaToggle<CR>",
-            desc = "Find last open [B]uffers"
-        } }
-    }
 }

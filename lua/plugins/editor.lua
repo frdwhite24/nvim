@@ -1,48 +1,17 @@
 return {
-    { "tpope/vim-commentary" }, { 'tpope/vim-sleuth' }, -- https://github.com/tpope/vim-sleuth
-    { "JoosepAlviste/nvim-ts-context-commentstring" }, {
-    "folke/todo-comments.nvim",                         -- https://github.com/folke/todo-comments.nvim
-    opts = {
-        merge_keywords = true,
-        keywords = { TODO = { icon = " ", color = "info", alt = { "XX" } } }
-    }
-}, {
-    "segeljakt/vim-silicon", -- https://github.com/segeljakt/vim-silicon
-    keys = {
-        {
-            "<leader>i",
-            ":Silicon  ~/Pictures/Code<CR>",
-            mode = "v",
-            desc = "Yank code image"
-        }
-    },
-    config = function()
-        vim.g.silicon = {
-            theme = "Monokai Extended",
-            font = "FiraCode Nerd Font Mono",
-            background = "#AAAAFF",
-            ["shadow-color"] = "#555555",
-            ["line-pad"] = 2,
-            ["pad-horiz"] = 80,
-            ["pad-vert"] = 100,
-            ["shadow-blur-radius"] = 0,
-            ["shadow-offset-x"] = 0,
-            ["shadow-offset-y"] = 0,
-            ["line-number"] = true,
-            ["round-corner"] = true,
-            ["window-controls"] = true
-        }
-    end
-}, {
-    "lukas-reineke/indent-blankline.nvim", -- https://github.com/lukas-reineke/indent-blankline.nvim
-    main = "ibl",
-    opts = {
-        scope = {
-            show_start = false,
-            show_end = false
-        }
-    },
-}, {
+    { "tpope/vim-commentary" },                        -- https://github.com/tpope/vim-commentary
+    { 'tpope/vim-sleuth' },                            -- https://github.com/tpope/vim-sleuth
+    { "JoosepAlviste/nvim-ts-context-commentstring" }, -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+    {
+        "lukas-reineke/indent-blankline.nvim",         -- https://github.com/lukas-reineke/indent-blankline.nvim
+        main = "ibl",
+        opts = {
+            scope = {
+                show_start = false,
+                show_end = false
+            }
+        },
+    }, {
     "yamatsum/nvim-cursorline", -- https://github.com/yamatsum/nvim-cursorline
     opts = {
         cursorline = { enable = true, timeout = 50, number = false },
@@ -66,36 +35,5 @@ return {
 }, {
     "smjonas/inc-rename.nvim", -- https://github.com/smjonas/inc-rename.nvim
     config = true
-}, {
-    "ethanholz/nvim-lastplace", -- https://github.com/ethanholz/nvim-lastplace
-    config = true
-}, {
-    "NvChad/nvim-colorizer.lua", -- https://github.com/NvChad/nvim-colorizer.lua
-    config = true
-}, {
-    'saecki/crates.nvim',
-    event = { "BufRead Cargo.toml" },
-    config = function()
-        require('crates').setup()
-    end,
-}, {
-    "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
-    config = true,
-    opts = {
-        preset = "modern",
-        notify = false
-    }
-}, {
-    "rmagatti/alternate-toggler", -- https://github.com/rmagatti/alternate-toggler
-    config = true,
-    lazy = true,
-    cmd = "ToggleAlternate",
-    keys = {
-        {
-            "<leader>tv",
-            "<CMD>ToggleAlternate<CR>",
-            desc = "Toggle alternative value"
-        }
-    }
 }
 }

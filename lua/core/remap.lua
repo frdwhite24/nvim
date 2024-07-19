@@ -43,6 +43,8 @@ vim.keymap.set("n", "<Leader>l", ":noh<CR>", kopts)
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Centralise cursor after certain actions
+vim.keymap.set("n", "j", "jzz")
+vim.keymap.set("n", "k", "kzz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -82,55 +84,10 @@ vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart language 
 
 -- general buffer helpers
 vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>wq", ":w|bd<CR>", { desc = "Save and close" })
 vim.keymap.set("n", "<leader>wh", "<CMD>nohlsearch<CR>",
     { desc = "Wipe search highlights" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up to split" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move down to split" })
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move left to split" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right to split" })
-
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then return end
-
--- Insert
-which_key.register({
-    [","] = { ",<C-g>u", "which_key_ignore" }, -- add undo break point for ,
-    ["."] = { ".<C-g>u", "which_key_ignore" }, -- add undo break point for .
-    ["!"] = { "!<C-g>u", "which_key_ignore" }, -- add undo break point for !
-    ["?"] = { "?<C-g>u", "which_key_ignore" }  -- add undo break point for ?
-}, { mode = "i" })
-
--- Insert
-which_key.register({
-    [","] = { ",<C-g>u", "which_key_ignore" }, -- add undo break point for ,
-    ["."] = { ".<C-g>u", "which_key_ignore" }, -- add undo break point for .
-    ["!"] = { "!<C-g>u", "which_key_ignore" }, -- add undo break point for !
-    ["?"] = { "?<C-g>u", "which_key_ignore" }  -- add undo break point for ?
-}, { mode = "i" })
-
--- Normal
-which_key.register({
-    s = {
-        name = "Split buffer...",
-        h = { ":split<Return><C-w>w", "horizontally" },
-        v = { ":vsplit<Return><C-w>w", "vertically" }
-    }
-}, { mode = "n" })
-
--- Normal + leader
-which_key.register({
-    r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
-    s = {
-        name = "Spelling",
-        f = { "z=", "Fix spelling mistake", noremap = false },
-        a = { "zg", "Add to local dictionary" },
-        r = { "zug", "Remove word from local dictionary" },
-        j = { "]s", "Skip to next mistake" },
-        k = { "[s", "Skip to previous mistake" }
-    },
-    w = {
-        name = "Buffer / Wipe...",
-        q = { ":w|bd<CR>", "Save and close" },
-        h = { "<CMD>nohlsearch<CR>", "search highlights" }
-    }
-}, { prefix = "<leader>", mode = "n" })

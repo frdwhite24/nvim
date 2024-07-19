@@ -1,7 +1,3 @@
--- Spell checking
-vim.opt.spell = true
-vim.opt.spelllang = "en_gb"
-
 -- Tabs, spaces & indent
 vim.opt.autoindent = true
 vim.opt.expandtab = true
@@ -44,13 +40,3 @@ vim.opt.backup = false
 -- Editing help
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-
--- Which-key timeout
-vim.opt.timeoutlen = 500
-
--- Clean up command line for things already shown in statusbar
--- TODO: look into why this isn't vim.optting correctly
--- vim.opt.noshowmode = false
-
--- Python env vim.optup
-vim.g.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
