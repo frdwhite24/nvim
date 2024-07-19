@@ -2,6 +2,9 @@
 
 This is the simplified version of my custom Neovim configuration. I am currently using Neovim version 0.10, and the configuration is written entirely in Lua.
 
+> [!WARNING]
+> This has only been set up on MacOS, expect issues if you are on Linux or Windows.
+
 # Prerequisites
 
 - Install [the Nerd Font](https://github.com/ryanoasis/nerd-fonts) patch of your terminal font, so that you get all the icons rendering properly
