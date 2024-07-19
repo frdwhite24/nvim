@@ -1,6 +1,6 @@
 # Introduction
 
-This is my simplified version of my custom Neovim configuration. I am currently using Neovim version 0.10, and the configuration is written entirely in Lua.
+This is the simplified version of my custom Neovim configuration. I am currently using Neovim version 0.10, and the configuration is written entirely in Lua.
 
 # Prerequisites
 
