@@ -1,13 +1,22 @@
 return {
     {
-        "EdenEast/nightfox.nvim", -- https://github.com/EdenEast/nightfox.nvim
-        lazy = false,             -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000,          -- make sure to load this before all the other start plugins
+        "folke/tokyonight.nvim", -- https://github.com/folke/tokyonight.nvim
+        lazy = false,
+        priority = 1000,
+        opts = {},
         config = function()
-            vim.opt.termguicolors = true
-            vim.cmd.colorscheme("carbonfox")
+            vim.cmd.colorscheme('tokyonight')
         end
     }, {
+
+    --     "EdenEast/nightfox.nvim", -- https://github.com/EdenEast/nightfox.nvim
+    --     lazy = false,             -- make sure we load this during startup if it is your main colorscheme
+    --     priority = 1000,          -- make sure to load this before all the other start plugins
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.cmd.colorscheme("carbonfox")
+    --     end
+    -- }, {
     "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
     build = ":TSUpdate",
     dependencies = {
