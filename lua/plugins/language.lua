@@ -8,11 +8,6 @@ local js_inlay_hints_opts = {
 }
 
 return {
-    {
-        'barrett-ruth/import-cost.nvim', -- https://github.com/barrett-ruth/import-cost.nvim
-        build = 'sh install.sh npm',
-        config = true
-    },
     { 'williamboman/mason.nvim' },           -- https://github.com/williamboman/mason.nvim
     { 'williamboman/mason-lspconfig.nvim' }, -- https://github.com/williamboman/mason-lspconfig.nvim
     {
