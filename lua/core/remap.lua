@@ -76,6 +76,7 @@ vim.keymap.set("i", "<C-BS>", "<C-w>", opts)    -- delete word before
 
 -- NOTE: these two lines need to be done because otherwise remapping <TAB> messes with the jumplist movements
 -- this is because C-I and Tab are identical in the eyes of the terminal
+-- see: https://vi.stackexchange.com/questions/37287/in-nvim-can-i-map-tab-without-removing-c-i-as-jump-forward
 vim.keymap.set("n", "<C-I>", "<C-I>")
 vim.keymap.set("n", "<Tab>", "<Nop>")
 vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts)       -- move to next buffer
