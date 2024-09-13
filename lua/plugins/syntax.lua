@@ -58,5 +58,21 @@ return {
     cmd = 'Twilight',
     config = true,
     keys = { { "<leader>z", "<CMD>Twilight<CR>", desc = "Toggle zen mode" } }
+}, {
+    "folke/flash.nvim", -- https://github.com/folke/flash.nvim
+    event = "VeryLazy",
+    opts = {
+        modes = {
+            search = {
+                enabled = true
+            },
+            char = {
+                jump_labels = true
+            }
+        },
+    },
+    keys = {
+        { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    },
 }
 }
