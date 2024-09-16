@@ -67,7 +67,8 @@ return {
                 enabled = true
             },
             char = {
-                jump_labels = true
+                jump_labels = true,
+                multi_line = false,
             }
         },
     },
