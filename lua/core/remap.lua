@@ -119,18 +119,15 @@ which_key.register({
 
 -- Normal
 which_key.register({
-    s = {
-        name = "Split buffer...",
-        h = { ":split<Return><C-w>w", "horizontally" },
-        v = { ":vsplit<Return><C-w>w", "vertically" }
-    }
 }, { mode = "n" })
 
 -- Normal + leader
 which_key.register({
     r = { name = "Reload...", c = { "<CMD>luafile $MYVIMRC<CR>", "Neovim config" } },
     s = {
-        name = "Spelling",
+        name = "Spelling/Buffer split...",
+        h = { ":split<Return><C-w>w", "horizontally" },
+        v = { ":vsplit<Return><C-w>w", "vertically" },
         f = { "z=", "Fix spelling mistake", noremap = false },
         a = { "zg", "Add to local dictionary" },
         r = { "zug", "Remove word from local dictionary" },
