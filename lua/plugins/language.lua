@@ -81,6 +81,7 @@ return {
             require('mason-lspconfig').setup({
                 -- Find more servers here: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
                 ensure_installed = {
+                    "terraform_ls",
                     "vtsls",
                     "eslint",
                     "svelte",
