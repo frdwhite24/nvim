@@ -42,8 +42,8 @@ vim.keymap.set("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Centralise cursor after certain actions
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = 'Jump half page down', buffer = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Jump half page up', buffer = true })
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "}", "}zzzv")

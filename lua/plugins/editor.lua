@@ -79,11 +79,21 @@ return {
     config = true
 }, {
     "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
+    event = "VeryLazy",
     config = true,
     opts = {
-        preset = "modern",
+        preset = "helix",
         notify = false
-    }
+    },
+    keys = {
+        {
+            "<leader>?",
+            function()
+                require("which-key").show({ global = false })
+            end,
+            desc = "Buffer Local Keymaps (which-key)",
+        },
+    },
 }, {
     'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.icons (required by which-key)
     version = false,
