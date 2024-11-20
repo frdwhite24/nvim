@@ -53,9 +53,6 @@ vim.keymap.set("n", "{", "{zzzv")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- Add console log under current value
-vim.keymap.set("n", "<Leader>pv", "yiwoconsole.log({ <esc>pA });<esc>k^w", { desc = "Console log value under cursor" })
-
 -- Void pasting, deleting and copying
 vim.keymap.set("x", "<Leader>p", '"_dP', { desc = "Void paste" })
 vim.keymap.set("n", "<Leader>y", '"+y', { desc = "Yank movement to clipboard" })

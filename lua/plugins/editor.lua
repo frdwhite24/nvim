@@ -95,7 +95,7 @@ return {
         },
     },
 }, {
-    'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.icons (required by which-key)
+    'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.nvim (required by which-key)
     version = false,
     config = function()
         require('mini.icons').setup()
