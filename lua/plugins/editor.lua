@@ -10,7 +10,7 @@ return {
     "segeljakt/vim-silicon", -- https://github.com/segeljakt/vim-silicon
     keys = {
         {
-            "<leader>i",
+            "<Leader>i",
             ":Silicon  ~/Pictures/Code<CR>",
             mode = "v",
             desc = "Yank code image"
@@ -55,6 +55,7 @@ return {
 }, {
     "kylechui/nvim-surround", -- https://github.com/kylechui/nvim-surround
     version = "*",
+    event = "VeryLazy",
     config = true
 }, {
     "windwp/nvim-autopairs", -- https://github.com/windwp/nvim-autopairs
@@ -75,9 +76,7 @@ return {
 }, {
     'saecki/crates.nvim',
     event = { "BufRead Cargo.toml" },
-    config = function()
-        require('crates').setup()
-    end,
+    config = true
 }, {
     "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
     config = true,
@@ -86,13 +85,19 @@ return {
         notify = false
     }
 }, {
+    'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.icons (required by which-key)
+    version = false,
+    config = function()
+        require('mini.icons').setup()
+    end,
+}, {
     "rmagatti/alternate-toggler", -- https://github.com/rmagatti/alternate-toggler
     config = true,
     lazy = true,
     cmd = "ToggleAlternate",
     keys = {
         {
-            "<leader>tv",
+            "<Leader>tv",
             "<CMD>ToggleAlternate<CR>",
             desc = "Toggle alternative value"
         }

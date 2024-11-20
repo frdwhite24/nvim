@@ -20,7 +20,7 @@ return {
         },
         keys = {
             {
-                '<leader>ih',
+                '<Leader>ih',
                 "<CMD>InlayHintsToggle<CR>",
                 desc = "Toggle [I]lay [H]ints"
             }
@@ -51,7 +51,7 @@ return {
                     { buffer = bufnr, desc = "Signature documentation" })
                 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>',
                     { buffer = bufnr, desc = "[G]et [L]ine diagnostic" })
-                vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
+                vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
             end)
 
             lsp_zero.set_sign_icons({
@@ -288,7 +288,7 @@ return {
         cmd = "TwoslashQueriesInspect",
         keys = {
             {
-                "<leader>it",
+                "<Leader>it",
                 "<CMD>TwoslashQueriesInspect<CR>",
                 desc = "[I]nspect [T]ype"
             }
@@ -302,17 +302,17 @@ return {
         config = true,
         keys = {
             {
-                "<leader>cl",
+                "<Leader>cl",
                 "<CMD>Coverage<CR>",
                 desc = "[C]overage [L]oad"
             },
             {
-                "<leader>ct",
+                "<Leader>ct",
                 "<CMD>CoverageToggle<CR>",
                 desc = "[C]overage [T]oggle"
             },
             {
-                "<leader>cs",
+                "<Leader>cs",
                 "<CMD>CoverageSummary<CR>",
                 desc = "[C]overage [S]ummary"
             }
@@ -328,8 +328,8 @@ return {
             -- auto_refresh = false
         },
         keys = {
-            { "<leader>vs", "<cmd>:VenvSelect<cr>" },
-            { "<leader>vc", "<cmd>:VenvSelectCached<cr>" }
+            { "<Leader>vs", "<cmd>:VenvSelect<cr>" },
+            { "<Leader>vc", "<cmd>:VenvSelectCached<cr>" }
         }
     }
 }

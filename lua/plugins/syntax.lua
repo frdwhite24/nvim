@@ -57,7 +57,7 @@ return {
     lazy = true,
     cmd = 'Twilight',
     config = true,
-    keys = { { "<leader>z", "<CMD>Twilight<CR>", desc = "Toggle zen mode" } }
+    keys = { { "<Leader>z", "<CMD>Twilight<CR>", desc = "Toggle zen mode" } }
 }, {
     "folke/flash.nvim", -- https://github.com/folke/flash.nvim
     event = "VeryLazy",

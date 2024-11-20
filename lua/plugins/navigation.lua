@@ -37,64 +37,64 @@ return {
         end,
         keys = {
             {
-                '<leader>fd',
+                '<Leader>fd',
                 function()
                     require("telescope.builtin").diagnostics({ line_width = 99 })
                 end,
                 desc = "[F]ind [D]iagnostics"
             }, {
-            '<leader>fp',
+            '<Leader>fp',
             function()
                 require("telescope.builtin").resume()
             end,
             desc = "[F]ind [P]revious search results"
         }, {
-            '<leader>fe',
+            '<Leader>fe',
             function()
                 require("telescope.builtin").git_status()
             end,
             desc = "[F]ind [E]dited files"
         }, {
-            '<leader>fa',
+            '<Leader>fa',
             function()
                 require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
             end,
             desc = "[F]ind [A]ll files"
         }, {
-            '<leader>ff',
+            '<Leader>ff',
             function()
                 require("telescope.builtin").git_files({ show_untracked = true })
             end,
             desc = "[F]ind git [F]iles"
         }, {
-            '<leader>fh',
+            '<Leader>fh',
             function()
                 require("telescope.builtin").help_tags()
             end,
             desc = "[F]ind Neovim [H]elp"
         }, {
-            '<leader>fk',
+            '<Leader>fk',
             function() require("telescope.builtin").keymaps() end,
             desc = "[F]ind [K]eymaps"
         }, {
-            '<leader>fo',
+            '<Leader>fo',
             function()
                 require("telescope.builtin").oldfiles()
             end,
             desc = "[F]ind [O]ld files"
         }, {
-            '<leader>fs',
+            '<Leader>fs',
             function()
                 require("telescope.builtin").git_stash()
             end,
             desc = "[F]ind Git [S]tash"
         },
             {
-                '<leader>ft',
+                '<Leader>ft',
                 vim.cmd.TodoTelescope,
                 desc = "[F]ind [T]odo comments"
             }, {
-            '<leader>fc',
+            '<Leader>fc',
             function()
                 require("telescope.builtin").grep_string({
                     -- these args have been found using rg --help
@@ -103,7 +103,7 @@ return {
             end,
             desc = "[F]ind [C]urrent word"
         }, {
-            '<leader>fw',
+            '<Leader>fw',
             function()
                 require("telescope.builtin").live_grep({
                     -- these args have been found using rg --help
@@ -112,13 +112,13 @@ return {
             end,
             desc = "[F]ind [W]ord"
         }, {
-            '<leader>fu',
+            '<Leader>fu',
             function()
                 require("telescope").extensions.dir.live_grep()
             end,
             desc = "[F]ind word in directory"
         }, {
-            '<leader>fi',
+            '<Leader>fi',
             function()
                 require("telescope").extensions.dir.find_files()
             end,
@@ -138,7 +138,7 @@ return {
             ignore_current = true
         },
         keys = { {
-            '<leader>b',
+            '<Leader>b',
             "<CMD>ArenaToggle<CR>",
             desc = "Find last open [B]uffers"
         } }

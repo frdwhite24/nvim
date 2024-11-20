@@ -5,11 +5,11 @@ return {
         lazy = true,
         keys = {
             {
-                "<leader>gl",
+                "<Leader>gl",
                 "<CMD>lua require('gitlinker').get_buf_range_url('n')<CR>",
                 desc = "Remote line link"
             }, {
-            "<leader>gy",
+            "<Leader>gy",
             "<CMD>lua require('gitlinker').get_buf_range_url('v')<CR>",
             mode = "v",
             desc = "Remote range link"
@@ -41,8 +41,8 @@ return {
         current_line_blame  = false,
         sign_priority       = 6,
         update_debounce     = 100,
-        status_formatter    = nil,       -- Use default
-        max_file_length     = 40000,     -- Disable if file is longer than this (in lines)
+        status_formatter    = nil,   -- Use default
+        max_file_length     = 40000, -- Disable if file is longer than this (in lines)
         preview_config      = {
             -- Options passed to nvim_open_win
             border = 'single',
@@ -78,19 +78,19 @@ return {
             end)
 
             -- Actions
-            map('n', '<leader>hs', gitsigns.stage_hunk)
-            map('n', '<leader>hr', gitsigns.reset_hunk)
-            map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-            map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-            map('n', '<leader>hS', gitsigns.stage_buffer)
-            map('n', '<leader>hu', gitsigns.undo_stage_hunk)
-            map('n', '<leader>hR', gitsigns.reset_buffer)
-            map('n', '<leader>hp', gitsigns.preview_hunk)
-            map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end)
-            map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
-            map('n', '<leader>hd', gitsigns.diffthis)
-            map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
-            map('n', '<leader>td', gitsigns.toggle_deleted)
+            map('n', '<Leader>hs', gitsigns.stage_hunk)
+            map('n', '<Leader>hr', gitsigns.reset_hunk)
+            map('v', '<Leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+            map('v', '<Leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+            map('n', '<Leader>hS', gitsigns.stage_buffer)
+            map('n', '<Leader>hu', gitsigns.undo_stage_hunk)
+            map('n', '<Leader>hR', gitsigns.reset_buffer)
+            map('n', '<Leader>hp', gitsigns.preview_hunk)
+            map('n', '<Leader>hb', function() gitsigns.blame_line { full = true } end)
+            map('n', '<Leader>tb', gitsigns.toggle_current_line_blame)
+            map('n', '<Leader>hd', gitsigns.diffthis)
+            map('n', '<Leader>hD', function() gitsigns.diffthis('~') end)
+            map('n', '<Leader>td', gitsigns.toggle_deleted)
 
             -- Text object
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
@@ -115,7 +115,7 @@ return {
     },
     keys = {
         {
-            "<leader>go",
+            "<Leader>go",
             "<CMD>GitBlameOpenCommitURL<CR>",
             desc = "Open commit URL"
         }

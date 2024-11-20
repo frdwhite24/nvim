@@ -34,7 +34,7 @@ return {
     "kyazdani42/nvim-tree.lua",     -- https://github.com/kyazdani42/nvim-tree.lua
     cmd = "NvimTreeToggle",
     keys = {
-        { "<leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree" }
+        { "<Leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree" }
     },
     opts = {
         hijack_cursor = true,
@@ -124,7 +124,7 @@ return {
     opts = { padding = false, use_diagnostic_signs = true },
     keys = {
         {
-            "<leader>x",
+            "<Leader>x",
             "<cmd>Trouble diagnostics toggle<cr>",
             desc = "Toggle language diagnostics bottom bar"
         }
@@ -136,7 +136,7 @@ return {
     cmd = "UndotreeToggle",
     keys = {
         {
-            "<leader>u",
+            "<Leader>u",
             "<CMD>UndotreeToggle<CR>",
             desc = "[U]ndo tree toggle"
         }

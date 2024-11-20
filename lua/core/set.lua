@@ -57,3 +57,5 @@ option.timeoutlen = 500
 
 -- Python env vim.optup
 global.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
+global.loaded_perl_provider = 0
+global.loaded_ruby_provider = 0
