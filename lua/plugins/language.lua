@@ -276,60 +276,60 @@ return {
             yaml = { 'prettierd' },
         }
     },
-},
-    {
-        "jcdickinson/codeium.nvim", -- https://github.com/jcdickinson/codeium.nvim
-        config = true,
+}, {
+    "Exafunction/codeium.nvim", -- https://github.com/Exafunction/codeium.nvim
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
     },
-    {
-        "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
-        config = true,
-        lazy = true,
-        cmd = "TwoslashQueriesInspect",
-        keys = {
-            {
-                "<Leader>it",
-                "<CMD>TwoslashQueriesInspect<CR>",
-                desc = "[I]nspect [T]ype"
-            }
-        }
-    },
-    {
-        'andythigpen/nvim-coverage', -- https://github.com/andythigpen/nvim-coverage
-        opts = {
-            auto_reload = true,
-        },
-        config = true,
-        keys = {
-            {
-                "<Leader>cl",
-                "<CMD>Coverage<CR>",
-                desc = "[C]overage [L]oad"
-            },
-            {
-                "<Leader>ct",
-                "<CMD>CoverageToggle<CR>",
-                desc = "[C]overage [T]oggle"
-            },
-            {
-                "<Leader>cs",
-                "<CMD>CoverageSummary<CR>",
-                desc = "[C]overage [S]ummary"
-            }
-
-        }
-
-    },
-    {
-        "linux-cultist/venv-selector.nvim", -- https://github.com/linux-cultist/venv-selector.nvim
-        dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-        opts = {
-            name = ".venv",
-            -- auto_refresh = false
-        },
-        keys = {
-            { "<Leader>vs", "<cmd>:VenvSelect<cr>" },
-            { "<Leader>vc", "<cmd>:VenvSelectCached<cr>" }
+    config = true
+}, {
+    "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
+    config = true,
+    lazy = true,
+    cmd = "TwoslashQueriesInspect",
+    keys = {
+        {
+            "<Leader>it",
+            "<CMD>TwoslashQueriesInspect<CR>",
+            desc = "[I]nspect [T]ype"
         }
     }
+}, {
+    'andythigpen/nvim-coverage', -- https://github.com/andythigpen/nvim-coverage
+    opts = {
+        auto_reload = true,
+    },
+    config = true,
+    keys = {
+        {
+            "<Leader>cl",
+            "<CMD>Coverage<CR>",
+            desc = "[C]overage [L]oad"
+        },
+        {
+            "<Leader>ct",
+            "<CMD>CoverageToggle<CR>",
+            desc = "[C]overage [T]oggle"
+        },
+        {
+            "<Leader>cs",
+            "<CMD>CoverageSummary<CR>",
+            desc = "[C]overage [S]ummary"
+        }
+
+    }
+
+}, {
+    "linux-cultist/venv-selector.nvim",     -- https://github.com/linux-cultist/venv-selector.nvim
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
+    opts = {
+        name = ".venv",
+        -- auto_refresh = false
+    },
+    keys = {
+        { "<Leader>vs", "<cmd>:VenvSelect<cr>" },
+        { "<Leader>vc", "<cmd>:VenvSelectCached<cr>" }
+    }
+}
 }
