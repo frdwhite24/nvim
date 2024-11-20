@@ -1,56 +1,59 @@
+local option = vim.opt
+local global = vim.g
+
 -- Spell checking
-vim.opt.spell = true
-vim.opt.spelllang = "en_gb"
+option.spell = true
+option.spelllang = "en_gb"
 
 -- Tabs, spaces & indent
-vim.opt.autoindent = true
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.cindent = true
-vim.opt.breakindent = true
+option.autoindent = true
+option.expandtab = true
+option.smartindent = true
+option.smarttab = true
+option.cindent = true
+option.breakindent = true
 
 -- Wrapping, viewports and windows
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.errorbells = false
-vim.opt.hidden = true
-vim.opt.cmdheight = 1
-vim.opt.wrap = true
-vim.opt.scrolloff = 15
+option.splitbelow = true
+option.splitright = true
+option.errorbells = false
+option.hidden = true
+option.cmdheight = 1
+option.wrap = true
+option.scrolloff = 15
 
 -- Rulers and columns
-vim.opt.cursorline = true
-vim.g.cursorline_timeout = 25
-vim.opt.ruler = true
-vim.opt.relativenumber = true
-vim.opt.number = true
-vim.opt.signcolumn = "yes"
+option.cursorline = true
+global.cursorline_timeout = 25
+option.ruler = true
+option.relativenumber = true
+option.number = true
+option.signcolumn = "yes"
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#353535" })
 
 -- Search
-vim.opt.incsearch = true
-vim.opt.hlsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+option.incsearch = true
+option.hlsearch = true
+option.ignorecase = true
+option.smartcase = true
 
 -- Long update time (default 4s) leads to poor UX
-vim.opt.updatetime = 250
+option.updatetime = 250
 
 -- Get rid of swap files and backups - don't use these features
-vim.opt.swapfile = false
-vim.opt.backup = false
+option.swapfile = false
+option.backup = false
 
 -- Editing help
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+option.undodir = os.getenv("HOME") .. "/.vim/undodir"
+option.undofile = true
 
 -- Which-key timeout
-vim.opt.timeoutlen = 500
+option.timeoutlen = 500
 
 -- Clean up command line for things already shown in statusbar
--- TODO: look into why this isn't vim.optting correctly
--- vim.opt.noshowmode = false
+-- TODO: look into why this isn't optionting correctly
+-- option.noshowmode = false
 
 -- Python env vim.optup
-vim.g.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
+global.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
