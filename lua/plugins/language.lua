@@ -282,7 +282,14 @@ return {
         "nvim-lua/plenary.nvim",
         "hrsh7th/nvim-cmp",
     },
-    config = true
+    config = true,
+    keys = {
+        {
+            "<Leader>ai",
+            "<CMD>Codeium Chat<CR>",
+            desc = "Open Codeium Chat"
+        }
+    }
 }, {
     "marilari88/twoslash-queries.nvim", -- https://github.com/marilari88/twoslash-queries.nvim
     config = true,
@@ -321,7 +328,7 @@ return {
     }
 
 }, {
-    "linux-cultist/venv-selector.nvim",     -- https://github.com/linux-cultist/venv-selector.nvim
+    "linux-cultist/venv-selector.nvim", -- https://github.com/linux-cultist/venv-selector.nvim
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     opts = {
         name = ".venv",
