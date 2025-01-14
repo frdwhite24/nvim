@@ -52,6 +52,8 @@ return {
                 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>',
                     { buffer = bufnr, desc = "[G]et [L]ine diagnostic" })
                 vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
+                vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ show_line = false }) end,
+                    { buffer = bufnr, desc = "[G]o to [I]mplementation" })
             end)
 
             lsp_zero.set_sign_icons({
