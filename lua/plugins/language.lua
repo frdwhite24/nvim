@@ -193,11 +193,12 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lua",         -- https://github.com/hrsh7th/cmp-nvim-lua
             "hrsh7th/cmp-path",             -- https://github.com/hrsh7th/cmp-path
-            "jcdickinson/codeium.nvim",     -- https://github.com/jcdickinson/codeium.nvim
+            -- "jcdickinson/codeium.nvim",     -- https://github.com/jcdickinson/codeium.nvim
             "hrsh7th/cmp-nvim-lsp",         -- https://github.com/hrsh7th/cmp-nvim-lsp
             "hrsh7th/cmp-buffer",           -- https://github.com/hrsh7th/cmp-buffer
             "saadparwaiz1/cmp_luasnip",     -- https://github.com/saadparwaiz1/cmp_luasnip
             "rafamadriz/friendly-snippets", -- https://github.com/rafamadriz/friendly-snippets
+            "github/copilot.vim",           -- https://github.com/github/copilot.vim
         },
         config = function()
             local cmp = require('cmp')
@@ -217,7 +218,7 @@ return {
                 sources = {
                     { name = 'nvim_lua' },
                     { name = 'path' },
-                    { name = 'codeium' },
+                    -- { name = 'codeium' },
                     { name = 'nvim_lsp' },
                     { name = 'buffer',  keyword_length = 3 },
                     { name = 'luasnip', keyword_length = 2 },
@@ -232,8 +233,8 @@ return {
                     -- Trying out the super tab configuration
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
                     -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                    ['<Tab>'] = cmp_action.luasnip_supertab(),
-                    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+                    -- ['<Tab>'] = cmp_action.luasnip_supertab(),
+                    -- ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-l>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-h>'] = cmp.mapping.scroll_docs(4),
@@ -280,6 +281,7 @@ return {
     },
 }, {
     "Exafunction/codeium.nvim", -- https://github.com/Exafunction/codeium.nvim
+    enable = false,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "hrsh7th/nvim-cmp",
