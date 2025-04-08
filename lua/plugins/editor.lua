@@ -54,7 +54,7 @@ return {
     }
 }, {
     "kylechui/nvim-surround", -- https://github.com/kylechui/nvim-surround
-    version = "*",
+    version = "^3.0.0",
     event = "VeryLazy",
     config = true
 }, {
