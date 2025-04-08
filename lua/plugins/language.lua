@@ -187,72 +187,96 @@ return {
             })
         end
     },
-    { 'neovim/nvim-lspconfig' },            -- https://github.com/neovim/nvim-lspconfig
+    { 'neovim/nvim-lspconfig' }, -- https://github.com/neovim/nvim-lspconfig
     {
-        'hrsh7th/nvim-cmp',                 -- https://github.com/hrsh7th/nvim-cmp
-        dependencies = {
-            "hrsh7th/cmp-nvim-lua",         -- https://github.com/hrsh7th/cmp-nvim-lua
-            "hrsh7th/cmp-path",             -- https://github.com/hrsh7th/cmp-path
-            -- "jcdickinson/codeium.nvim",     -- https://github.com/jcdickinson/codeium.nvim
-            "hrsh7th/cmp-nvim-lsp",         -- https://github.com/hrsh7th/cmp-nvim-lsp
-            "hrsh7th/cmp-buffer",           -- https://github.com/hrsh7th/cmp-buffer
-            "saadparwaiz1/cmp_luasnip",     -- https://github.com/saadparwaiz1/cmp_luasnip
-            "rafamadriz/friendly-snippets", -- https://github.com/rafamadriz/friendly-snippets
-            "github/copilot.vim",           -- https://github.com/github/copilot.vim
-        },
-        config = function()
-            local cmp = require('cmp')
-            local cmp_action = require('lsp-zero').cmp_action()
-            local cmp_format = require('lsp-zero').cmp_format({ details = true })
-            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        'saghen/blink.cmp',      -- https://github.com/Saghen/blink.cmp
+        -- optional: provides snippets for the snippet source
+        dependencies = { 'rafamadriz/friendly-snippets' },
 
-            require('luasnip.loaders.from_vscode').lazy_load()
+        -- use a release tag to download pre-built binaries
+        version = '1.*',
+        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+        -- build = 'cargo build --release',
+        -- If you use nix, you can build from source using latest nightly rust with:
+        -- build = 'nix run .#build-plugin',
 
-            -- this inserts () after selecting a function or method item
-            cmp.event:on(
-                'confirm_done',
-                cmp_autopairs.on_confirm_done()
-            )
-
-            cmp.setup({
-                sources = {
-                    { name = 'nvim_lua' },
-                    { name = 'path' },
-                    -- { name = 'codeium' },
-                    { name = 'nvim_lsp' },
-                    { name = 'buffer',  keyword_length = 3 },
-                    { name = 'luasnip', keyword_length = 2 },
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            signature = { enabled = true },
+            cmdline = {
+                keymap = {
+                    ['<Tab>'] = { 'show', 'accept' },
+                    ['<CR>'] = { 'accept_and_enter', 'fallback' },
                 },
-                formatting = cmp_format,
-                preselect = 'item',
                 completion = {
-                    completeopt = 'menu,menuone,noinsert'
-                },
-                mapping = cmp.mapping.preset.insert({
-                    -- NEW MAPPINGS
-                    -- Trying out the super tab configuration
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                    -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                    -- ['<Tab>'] = cmp_action.luasnip_supertab(),
-                    -- ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-l>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-h>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-                    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                }),
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
-            })
-        end
+                    menu = {
+                        auto_show = function(ctx)
+                            return vim.fn.getcmdtype() == ':'
+                            -- enable for inputs as well, with:
+                            -- or vim.fn.getcmdtype() == '@'
+                        end,
+
+                    }
+                }
+            },
+            -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+            -- 'super-tab' for mappings similar to vscode (tab to accept)
+            -- 'enter' for enter to accept
+            -- 'none' for no mappings
+            --
+            -- All presets have the following mappings:
+            -- C-space: Open menu or open docs if already open
+            -- C-n/C-p or Up/Down: Select next/previous item
+            -- C-e: Hide menu
+            -- C-k: Toggle signature help (if signature.enabled = true)
+            --
+            -- See :h blink-cmp-config-keymap for defining your own keymap
+            keymap = {
+                preset = 'enter',
+                ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
+                ['<C-k>'] = { 'scroll_documentation_up', 'fallback' }
+            },
+
+            appearance = {
+                -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+                -- Adjusts spacing to ensure icons are aligned
+                nerd_font_variant = 'mono'
+            },
+
+            -- (Default) Only show the documentation popup when manually triggered
+            completion = { documentation = { auto_show = true, window = { border = 'rounded' } }, menu = { border = 'rounded' } },
+
+            -- Default list of enabled providers defined so that you can extend it
+            -- elsewhere in your config, without redefining it, due to `opts_extend`
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                providers = {
+                    cmdline = {
+                        min_keyword_length = function(ctx)
+                            -- when typing a command, only show when the keyword is 3 characters or longer
+                            if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then return 3 end
+                            return 0
+                        end
+                    }
+                }
+            },
+
+            -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+            -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+            -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+            --
+            -- See the fuzzy documentation for more information
+            fuzzy = { implementation = "prefer_rust_with_warning" }
+        },
+        opts_extend = { "sources.default" }
     },
-    { 'L3MON4D3/LuaSnip' },  -- https://github.com/L3MON4D3/LuaSnip
     {
-        "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
+        "github/copilot.vim", -- https://github.com/github/copilot.vim
+    },
+    { 'L3MON4D3/LuaSnip' },   -- https://github.com/L3MON4D3/LuaSnip
+    {
+        "j-hui/fidget.nvim",  -- https://github.com/j-hui/fidget.nvim
         config = true,
         tag = 'legacy'
     }, {
