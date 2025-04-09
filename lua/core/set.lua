@@ -59,15 +59,18 @@ option.timeoutlen = 500
 global.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
 global.loaded_perl_provider = 0
 global.loaded_ruby_provider = 0
-vim.diagnostic.config({
-    virtual_text = {
-        severity = {
-            max = vim.diagnostic.severity.WARN,
-        },
-    },
-    virtual_lines = {
-        severity = {
-            min = vim.diagnostic.severity.ERROR,
-        },
-    },
-})
+vim.diagnostic.config({ virtual_text = true })
+-- NOTE: enable this block if i want the virtual lines on language diagnostics
+-- so far i've found them too jarring as the UI shifts so much when they appear and disappear etc.
+-- vim.diagnostic.config({
+--     virtual_text = {
+--         severity = {
+--             max = vim.diagnostic.severity.WARN,
+--         },
+--     },
+--     virtual_lines = {
+--         severity = {
+--             min = vim.diagnostic.severity.ERROR,
+--         },
+--     },
+-- })
