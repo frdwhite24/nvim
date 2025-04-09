@@ -59,3 +59,15 @@ option.timeoutlen = 500
 global.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
 global.loaded_perl_provider = 0
 global.loaded_ruby_provider = 0
+vim.diagnostic.config({
+    virtual_text = {
+        severity = {
+            max = vim.diagnostic.severity.WARN,
+        },
+    },
+    virtual_lines = {
+        severity = {
+            min = vim.diagnostic.severity.ERROR,
+        },
+    },
+})

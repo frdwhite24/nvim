@@ -1,6 +1,20 @@
 HEIGHT_PADDING = 5
 WIDTH_PADDING = 15
 
+local symbols = {
+    ["!"] = "⊘", -- ignored
+    ["?"] = "?", -- untracked
+    ["A"] = "✚", -- added
+    ["C"] = "C", -- copied
+    ["D"] = "✖", -- deleted
+    ["M"] = "●", -- modified
+    ["R"] = "↻", -- renamed
+    ["T"] = "T", -- type changed
+    ["U"] = "U", -- unmerged
+    [" "] = " ", -- unmodified
+
+}
+
 return {
     {
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
@@ -31,77 +45,83 @@ return {
 }, {
     "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
 }, {
-    "kyazdani42/nvim-tree.lua",     -- https://github.com/kyazdani42/nvim-tree.lua
-    cmd = "NvimTreeToggle",
+    'stevearc/oil.nvim',            -- https://github.com/stevearc/oil.nvim
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    lazy = false,
+    config = true,
     keys = {
-        { "<Leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Toggle file tree" }
+        { "<Leader>e", "<CMD>lua require('oil').toggle_float()<CR>", desc = "Open file tree" }
     },
+    ---@module 'oil'
+    ---@type oil.SetupOpts
     opts = {
-        hijack_cursor = true,
-        auto_reload_on_write = true,
-        git = {
-            enable = true,
-            show_on_dirs = false,
-            timeout = 500,
-            ignore = false
+        columns = {
+            "icon",
         },
-        diagnostics = {
-            enable = true,
-            show_on_dirs = false
+        -- Window-local options to use for oil buffers
+        win_options = {
+            wrap = false,
+            signcolumn = "yes:2",
+            cursorcolumn = false,
+            foldcolumn = "0",
+            spell = false,
+            list = false,
+            conceallevel = 3,
+            concealcursor = "nvic",
         },
-        modified = {
-            enable = true,
-            show_on_dirs = false
+        delete_to_trash = false,
+        skip_confirm_for_simple_edits = true,
+        prompt_save_on_select_new_entry = true,
+        watch_for_changes = false,
+        -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
+        -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
+        -- Additionally, if it is a string that matches "actions.<name>",
+        -- it will use the mapping at require("oil.actions").<name>
+        -- Set to `false` to remove a keymap
+        -- See :help oil-actions for a list of all available actions
+        keymaps = {
+            ["g?"] = { "actions.show_help", mode = "n" },
+            ["<CR>"] = "actions.select",
+            ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+            ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+            ["<C-t>"] = { "actions.select", opts = { tab = true } },
+            ["<C-p>"] = "actions.preview",
+            ["<C-c>"] = { "actions.close", mode = "n" },
+            ["<C-l>"] = "actions.refresh",
+            ["-"] = { "actions.parent", mode = "n" },
+            ["_"] = { "actions.open_cwd", mode = "n" },
+            ["`"] = { "actions.cd", mode = "n" },
+            ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+            ["gs"] = { "actions.change_sort", mode = "n" },
+            ["gx"] = "actions.open_external",
+            ["g."] = { "actions.toggle_hidden", mode = "n" },
+            ["g\\"] = { "actions.toggle_trash", mode = "n" },
         },
-        renderer = {
-            group_empty = true,
-            root_folder_label = false,
-            highlight_diagnostics = "name",
-            indent_markers = {
-                enable = true,
-
-            },
-            icons = {
-                git_placement = "after",
-                diagnostics_placement = "after",
-                modified_placement = "after",
-            }
+        view_options = {
+            show_hidden = true,
         },
-        update_focused_file = { enable = true, update_cwd = false },
-        view = {
-            centralize_selection = true,
-            adaptive_size = false,
-            side = 'right',
-            number = false,
-            relativenumber = true,
-            signcolumn = "no",
-            float = {
-                enable = true,
-                open_win_config = function()
-                    local screen_w = vim.opt.columns:get()
-                    local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-                    local window_w_f = (screen_w - WIDTH_PADDING * 2) / 1
-                    local window_w = math.floor(window_w_f)
-                    local window_h = screen_h - HEIGHT_PADDING * 2
-                    local center_x = WIDTH_PADDING - 1
-                    local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
-
-                    return {
-                        border = "single",
-                        relative = "editor",
-                        row = center_y,
-                        col = center_x,
-                        width = window_w,
-                        height = window_h,
-                    }
-                end
-            },
-            width = function()
-                return vim.opt.columns:get() - WIDTH_PADDING * 2
-            end
+        preview_win = {
+            update_on_cursor_moved = true,
         },
-        actions = { open_file = { quit_on_open = true } }
     }
+}, {
+    "refractalize/oil-git-status.nvim",
+    dependencies = {
+        "stevearc/oil.nvim",
+    },
+    config = true,
+    opts = {
+        show_ignored = true,
+        symbols = {
+            index = symbols,
+            working_tree = symbols,
+        },
+
+    }
+}, {
+    "JezerM/oil-lsp-diagnostics.nvim",
+    dependencies = { "stevearc/oil.nvim" },
+    opts = {}
 }, {
     "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
     dependencies = { "kevinhwang91/nvim-hlslens" },
