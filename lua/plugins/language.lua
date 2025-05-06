@@ -271,12 +271,9 @@ return {
         },
         opts_extend = { "sources.default" }
     },
+    { 'L3MON4D3/LuaSnip' },  -- https://github.com/L3MON4D3/LuaSnip
     {
-        "github/copilot.vim", -- https://github.com/github/copilot.vim
-    },
-    { 'L3MON4D3/LuaSnip' },   -- https://github.com/L3MON4D3/LuaSnip
-    {
-        "j-hui/fidget.nvim",  -- https://github.com/j-hui/fidget.nvim
+        "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
         config = true,
         tag = 'legacy'
     }, {
