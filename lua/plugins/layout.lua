@@ -18,6 +18,7 @@ local symbols = {
 return {
     {
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
+        dependencies = { "nvim-mini/mini.icons" },
         opts = {
             options = {
                 show_close_icon = false,
@@ -32,10 +33,7 @@ return {
             }
         }
     }, {
-    "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
-}, {
-    'stevearc/oil.nvim',            -- https://github.com/stevearc/oil.nvim
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    'stevearc/oil.nvim', -- https://github.com/stevearc/oil.nvim
     lazy = false,
     config = true,
     keys = {
@@ -125,7 +123,7 @@ return {
     "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
     cmd = "TroubleToggle",
     lazy = true,
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = { "nvim-mini/mini.icons" },
     opts = { padding = false, use_diagnostic_signs = true },
     keys = {
         {

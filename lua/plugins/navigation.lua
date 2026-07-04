@@ -7,7 +7,7 @@ local additional_grep_args = {
 return {
     {
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-mini/mini.icons' },
         branch = 'master',
         cmd = "Telescope",
         version = false,

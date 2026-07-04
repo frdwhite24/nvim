@@ -92,10 +92,12 @@ return {
         },
     },
 }, {
-    'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.nvim (required by which-key)
+    'nvim-mini/mini.icons',
     version = false,
+    lazy = false,
     config = function()
         require('mini.icons').setup()
+        require('mini.icons').mock_nvim_web_devicons()
     end,
 }, {
     "rmagatti/alternate-toggler", -- https://github.com/rmagatti/alternate-toggler
@@ -111,9 +113,7 @@ return {
     }
 }, {
     'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
