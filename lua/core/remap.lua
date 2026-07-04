@@ -25,13 +25,13 @@ vim.keymap.set("n", "<Leader>rw",
     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "[R]eplace [W]ord under cursor" })
 
--- Search highlight plugin
+-- Search highlight plugin (hlslens + centre cursor)
 local kopts = { noremap = true, silent = true }
 vim.keymap.set("n", "n",
-    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz]],
     kopts)
 vim.keymap.set("n", "N",
-    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz]],
     kopts)
 vim.keymap.set("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -44,8 +44,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Centralise cursor after certain actions
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = 'Jump half page down', buffer = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Jump half page up', buffer = true })
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "}", "}zzzv")
 vim.keymap.set("n", "{", "{zzzv")
 
@@ -61,11 +59,11 @@ vim.keymap.set("n", "<Leader>Y", '"+Y', { desc = "Yank line to clipboard" })
 vim.keymap.set("n", "<Leader>d", '"_d', { desc = "Void delete movement" })
 vim.keymap.set("v", "<Leader>d", '"_d', { desc = "Void delete selection" })
 
--- Quick fix list navigation
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<Leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<Leader>j", "<cmd>lprev<CR>zz")
+-- Quickfix list navigation (e.g. after treesitter query with <C-q>)
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item" })
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item" })
+vim.keymap.set("n", "<Leader>k", "<cmd>lnext<CR>zz", { desc = "Next location list item" })
+vim.keymap.set("n", "<Leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location list item" })
 
 vim.keymap.set("i", "<C-Del>", "<C-o>dw", opts) -- delete word after
 vim.keymap.set("i", "<C-BS>", "<C-w>", opts)    -- delete word before
@@ -89,10 +87,6 @@ vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { desc = "Restart language 
 vim.keymap.set("n", "<Leader>q", ":bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<Leader>wh", "<CMD>nohlsearch<CR>",
     { desc = "Wipe search highlights" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up to split" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move down to split" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move left to split" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right to split" })
 
 -- Reload Neovim configuration
 vim.keymap.set("n", "<Leader>rc", "<CMD>luafile $MYVIMRC<CR>", { desc = "Reload Neovim config" })
