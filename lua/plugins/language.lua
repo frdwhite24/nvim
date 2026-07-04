@@ -1,12 +1,3 @@
-local js_inlay_hints_opts = {
-    parameterNames = { enabled = "all" },
-    parameterTypes = { enabled = true },
-    variableTypes = { enabled = true },
-    propertyDeclarationTypes = { enabled = true },
-    functionLikeReturnTypes = { enabled = true },
-    enumMemberValues = { enabled = true },
-}
-
 return {
     { 'williamboman/mason.nvim' },           -- https://github.com/williamboman/mason.nvim
     { 'williamboman/mason-lspconfig.nvim' }, -- https://github.com/williamboman/mason-lspconfig.nvim
@@ -51,12 +42,6 @@ return {
                 vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
                 vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ show_line = false }) end,
                     { buffer = bufnr, desc = "[G]o to [I]mplementation" })
-                vim.keymap.set('n', '<Leader>ih', function()
-                    vim.lsp.inlay_hint.enable(
-                        not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
-                        { bufnr = bufnr }
-                    )
-                end, { buffer = bufnr, desc = "Toggle [I]nlay [H]ints" })
             end)
 
             lsp_zero.set_sign_icons({
@@ -106,14 +91,6 @@ return {
                             on_attach = function(client, bufnr)
                                 require("twoslash-queries").attach(client, bufnr)
                             end,
-                            settings = {
-                                javascript = {
-                                    inlayHints = js_inlay_hints_opts,
-                                },
-                                typescript = {
-                                    inlayHints = js_inlay_hints_opts,
-                                },
-                            },
                         })
                     end,
                     lua_ls = function()
@@ -138,14 +115,6 @@ return {
                             on_attach = function(client, bufnr)
                                 require("twoslash-queries").attach(client, bufnr)
                             end,
-                            settings = {
-                                javascript = {
-                                    inlayHints = js_inlay_hints_opts,
-                                },
-                                typescript = {
-                                    inlayHints = js_inlay_hints_opts,
-                                },
-                            },
                         })
                     end
                 }

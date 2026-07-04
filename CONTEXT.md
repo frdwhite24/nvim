@@ -11,7 +11,7 @@ The always-loaded baseline in `lua/core/` — options (`set.lua`), keymaps (`rem
 A lazy.nvim plugin declaration in one of the `lua/plugins/*.lua` files. Specs declare dependencies, lazy-loading triggers, and config/opts.
 
 **LSP stack**:
-The language-server layer: Mason (installer) → mason-lspconfig (wiring) → lsp-zero (convenience wrapper) → nvim-lspconfig (server configs) → blink.cmp (completion). Extended by conform.nvim (formatting), twoslash-queries.nvim, and native inlay hints.
+The language-server layer: Mason (installer) → mason-lspconfig (wiring) → lsp-zero (convenience wrapper) → nvim-lspconfig (server configs) → blink.cmp (completion). Extended by conform.nvim (formatting) and twoslash-queries.nvim.
 
 **Modernization track**:
 The ongoing effort to align this config with the latest stable Neovim release, current plugin APIs, and community best practice — without breaking daily-driver workflows.
