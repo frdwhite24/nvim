@@ -6,9 +6,10 @@ return {
         branch = 'v3.x',
         config = function()
             local lsp_zero = require('lsp-zero')
-            local builtin = require("telescope.builtin")
 
             lsp_zero.extend_lspconfig()
+
+            require("lsp").setup()
 
             -- nvim-lspconfig's terraformls.lua calls vim.lsp.codelens.enable (removed in 0.11)
             vim.lsp.config('terraformls', {
@@ -23,36 +24,6 @@ return {
                         end,
                     })
                 end,
-            })
-
-            lsp_zero.on_attach(function(_, bufnr)
-                lsp_zero.default_keymaps({
-                    buffer = bufnr,
-                    -- preserve_mappings = false -- will force key bindings if they're already taken
-                })
-
-                vim.keymap.set('n', 'gr', function() builtin.lsp_references({ show_line = false }) end,
-                    { buffer = bufnr, desc = "[G]o to [R]eferences" })
-                vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ show_line = false }) end,
-                    { buffer = bufnr, desc = "[G]o to [D]efinition" })
-                vim.keymap.set('n', 'gD', function() builtin.lsp_type_definitions({ show_line = false }) end,
-                    { buffer = bufnr, desc = "[G]o to type [D]efinition" })
-                vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>',
-                    { buffer = bufnr, desc = "[G]et [L]ine diagnostic" })
-                vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
-                vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ show_line = false }) end,
-                    { buffer = bufnr, desc = "[G]o to [I]mplementation" })
-            end)
-
-            lsp_zero.set_sign_icons({
-                warn = "",
-                error = "",
-                hint = "",
-                info = ""
-                -- these are alternative icons I could use
-                -- error = '✘',
-                -- hint = '⚑',
-                -- info = '»'
             })
 
             -- TO DISABLE SEMANTIC HIGHLIGHTS IF I WANT TO
