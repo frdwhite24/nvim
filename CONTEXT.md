@@ -25,6 +25,9 @@ Short-term decision to keep `nvim-treesitter` on the frozen `master` branch unti
 **Modernization cadence**:
 Incremental, small, purposeful changes — one concern per step so the config stays usable as a daily driver. Work can be paused and resumed at any time. Each completed step is committed and pushed to remote before moving on. Run the QA plan in `docs/agents/qa-plan.md` before every commit.
 
+**Configuration philosophy**:
+Prefer vanilla plugin and Neovim defaults over custom hacks. If a setting matches the default, remove it. If a plugin provides a built-in way to do something (e.g. lualine's dynamic `color` function), use that instead of manual highlight manipulation. Less custom code means fewer API breakages on upgrade.
+
 ## Example dialogue
 
 > **Dev**: Treesitter is erroring on startup — should we fix the LSP stack first?
