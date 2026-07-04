@@ -133,29 +133,5 @@ return {
             desc = "[I]nspect [T]ype"
         }
     }
-}, {
-    'andythigpen/nvim-coverage', -- https://github.com/andythigpen/nvim-coverage
-    opts = {
-        auto_reload = true,
-    },
-    config = true,
-    keys = {
-        {
-            "<Leader>cl",
-            "<CMD>Coverage<CR>",
-            desc = "[C]overage [L]oad"
-        },
-        {
-            "<Leader>ct",
-            "<CMD>CoverageToggle<CR>",
-            desc = "[C]overage [T]oggle"
-        },
-        {
-            "<Leader>cs",
-            "<CMD>CoverageSummary<CR>",
-            desc = "[C]overage [S]ummary"
-        }
-
-    },
 }
 }
