@@ -59,9 +59,9 @@ vim.keymap.set("n", "<Leader>Y", '"+Y', { desc = "Yank line to clipboard" })
 vim.keymap.set("n", "<Leader>d", '"_d', { desc = "Void delete movement" })
 vim.keymap.set("v", "<Leader>d", '"_d', { desc = "Void delete selection" })
 
--- Quickfix list navigation (e.g. after treesitter query with <C-q>)
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item" })
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item" })
+-- Move between splits (e.g. file window and quickfix window after <C-q>)
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to split above", noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to split below", noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>k", "<cmd>lnext<CR>zz", { desc = "Next location list item" })
 vim.keymap.set("n", "<Leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location list item" })
 
