@@ -29,9 +29,12 @@ These are invoked by plugins or formatters — install only what you need:
 | `prettierd` | JS/TS/CSS/HTML/JSON/YAML/Markdown/Svelte formatting | `npm i -g @fsouza/prettierd` |
 | `biome` | JS/TS formatting (preferred) | `npm i -g @biomejs/biome` |
 | `shfmt` | Shell formatting | `brew install shfmt` or Mason |
+| `tree-sitter` | Parser installs for nvim-treesitter `main` (≥ 0.26.1; use Homebrew, not npm) | `brew install tree-sitter` |
 | `silicon` | Code screenshots (`<Leader>i` in visual) | `brew install silicon` |
 
 Python, Perl, and Ruby remote providers are disabled — no `:python` plugins in use.
+
+Treesitter is currently pinned to nvim-treesitter `master`, which does not need `tree-sitter` in PATH. You will need it when migrating to `main`.
 
 ## Structure
 
