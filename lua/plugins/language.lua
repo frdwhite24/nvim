@@ -294,8 +294,8 @@ return {
             markdown = { 'prettierd' },
             java = { "prettier" },
             svelte = { "prettierd", "prettier", stop_after_first = true },
-            javascript = { "prettierd", "prettier", stop_after_first = true },
-            typescript = { "prettierd", "prettier", stop_after_first = true },
+            javascript = { 'biome', "prettierd", "prettier", stop_after_first = true },
+            typescript = { 'biome', "prettierd", "prettier", stop_after_first = true },
             typescriptreact = { "prettierd", "prettier", stop_after_first = true },
             yaml = { 'prettierd' },
         }
