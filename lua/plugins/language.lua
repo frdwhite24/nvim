@@ -208,8 +208,8 @@ return {
     { 'L3MON4D3/LuaSnip' },  -- https://github.com/L3MON4D3/LuaSnip
     {
         "j-hui/fidget.nvim", -- https://github.com/j-hui/fidget.nvim
-        config = true,
-        tag = 'legacy'
+        version = "1.*",
+        opts = {},
     }, {
     'stevearc/conform.nvim', -- https://github.com/stevearc/conform.nvim
     config = true,
