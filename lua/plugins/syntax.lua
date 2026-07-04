@@ -17,35 +17,11 @@ return {
     --         vim.cmd.colorscheme("carbonfox")
     --     end
     -- }, {
-    "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
-    branch = "master", -- pinned: main branch removed nvim-treesitter.configs; migrate deliberately later
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter.configs").setup {
-            ensure_installed = {
-                "bash",
-                "css",
-                "dockerfile",
-                "graphql",
-                "hcl",
-                "html",
-                "javascript",
-                "json",
-                "lua",
-                "markdown",
-                "markdown_inline",
-                "svelte",
-                "tsx",
-                "typescript",
-                "yaml",
-            },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false
-            },
-        }
+        require("treesitter").setup()
     end
 }, {
     "folke/flash.nvim", -- https://github.com/folke/flash.nvim
