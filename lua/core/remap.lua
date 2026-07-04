@@ -79,9 +79,9 @@ vim.keymap.set("n", "<TAB>", ":bnext<CR>", opts)       -- move to next buffer
 vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", opts) -- move to previous buffer
 
 -- LSP, should these move?
-vim.keymap.set("n", "<C-p>", "<CMD>lua vim.lsp.diagnostics.goto_prev()<CR>",
+vim.keymap.set("n", "<C-p>", function() vim.diagnostic.jump({ count = -1, float = true }) end,
     opts)
-vim.keymap.set("n", "<C-n>", "<CMD>lua vim.lsp.diagnostics.goto_next()<CR>",
+vim.keymap.set("n", "<C-n>", function() vim.diagnostic.jump({ count = 1, float = true }) end,
     opts)
 vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { desc = "Restart language server" })
 
