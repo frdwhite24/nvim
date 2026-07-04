@@ -18,6 +18,7 @@ return {
     --     end
     -- }, {
     "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
+    branch = "master", -- pinned: main branch removed nvim-treesitter.configs; migrate deliberately later
     build = ":TSUpdate",
     dependencies = {
         "windwp/nvim-ts-autotag"
@@ -35,6 +36,7 @@ return {
                 "json",
                 "lua",
                 "markdown",
+                "markdown_inline",
                 "php",
                 "python",
                 "rust",
