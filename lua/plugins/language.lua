@@ -25,7 +25,6 @@ return {
             })
 
             require('mason-lspconfig').setup({
-                -- Find more servers here: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
                 ensure_installed = {
                     "terraformls",
                     "vtsls",
@@ -38,11 +37,6 @@ return {
                     "bashls",
                     "yamlls",
                 },
-                handlers = {
-                    function(server_name)
-                        require('lspconfig')[server_name].setup({})
-                    end,
-                }
             })
         end
     },
