@@ -24,13 +24,6 @@ return {
                 show_buffer_close_icons = false,
                 numbers = "ordinal",
                 enforce_regular_tabs = true,
-                offsets = {
-                    {
-                        filetype = "NvimTree",
-                        highlight = "Directory",
-                        text_align = "left"
-                    }
-                },
                 diagnostics = "nvim_lsp",
                 diagnostics_indicator = function(count, level, _, _)
                     local icon = level:match("error") and " " or " "
@@ -126,11 +119,7 @@ return {
     "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
     dependencies = { "kevinhwang91/nvim-hlslens" },
     config = function()
-        require('scrollbar').setup({
-            excluded_filetypes = {
-                "NvimTree",
-            },
-        })
+        require('scrollbar').setup({})
         require("scrollbar.handlers.search").setup({
             override_lens = function()
             end

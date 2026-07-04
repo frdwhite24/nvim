@@ -1,4 +1,4 @@
--- Recommended from https://github.com/kyazdani42/nvim-tree.lua
+-- Disable netrw in favour of oil.nvim (https://github.com/stevearc/oil.nvim#neovim-config)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

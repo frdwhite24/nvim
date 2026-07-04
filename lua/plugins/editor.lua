@@ -63,6 +63,7 @@ return {
     config = true,
 }, {
     "windwp/nvim-ts-autotag", -- https://github.com/windwp/nvim-ts-autotag
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = true
 }, {
     "smjonas/inc-rename.nvim", -- https://github.com/smjonas/inc-rename.nvim
