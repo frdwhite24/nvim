@@ -141,12 +141,13 @@ return {
                     end,
                     pyright = function()
                         require('lspconfig').pyright.setup({
-                            python = {
-                                analysis = {
-                                    useLibraryCodeForTypes = false
-                                }
-                            }
-
+                            settings = {
+                                python = {
+                                    analysis = {
+                                        useLibraryCodeForTypes = false,
+                                    },
+                                },
+                            },
                         })
                     end,
                     -- This came from the lsp-zero setup guide, suggestions that lua_ls has some issues if not done

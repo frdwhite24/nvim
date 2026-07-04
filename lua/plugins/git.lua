@@ -1,7 +1,7 @@
 return {
     {
         "ruifm/gitlinker.nvim", -- https://github.com/ruifm/gitlinker.nvim
-        requires = 'nvim-lua/plenary.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
         lazy = true,
         keys = {
             {
@@ -94,11 +94,12 @@ return {
 
             -- Text object
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-
-            require('gitsigns').setup()
-            require("scrollbar.handlers.gitsigns").setup()
-        end
+        end,
     },
+    config = function(_, opts)
+        require('gitsigns').setup(opts)
+        require('scrollbar.handlers.gitsigns').setup()
+    end,
 
 }, {
     "f-person/git-blame.nvim", -- https://github.com/f-person/git-blame.nvim#configuration

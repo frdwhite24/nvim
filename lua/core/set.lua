@@ -55,8 +55,8 @@ option.timeoutlen = 500
 -- TODO: look into why this isn't optionting correctly
 -- option.noshowmode = false
 
--- Python env vim.optup
-global.python3_host_prog = "/Users/fred/.pyenv/versions/py3nvim/bin/python"
+-- Disable unused remote providers (no :python/:perl/:ruby plugins in use)
+global.loaded_python3_provider = 0
 global.loaded_perl_provider = 0
 global.loaded_ruby_provider = 0
 vim.diagnostic.config({ virtual_text = true })
