@@ -71,42 +71,39 @@ local function ins_right(component)
     table.insert(config.sections.lualine_x, component)
 end
 
--- TODO: work out how to make this an actual highlight group rather than an insert into the status line
-ins_left({
-    function()
-        local mode_color = {
-            n = colors.red,
-            i = colors.green,
-            v = colors.blue,
-            [""] = colors.blue,
-            V = colors.blue,
-            c = colors.magenta,
-            no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [""] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            cv = colors.red,
-            ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ["r?"] = colors.cyan,
-            ["!"] = colors.red,
-            t = colors.red
-        }
-        vim.api.nvim_set_hl(0, "LualineMode", {
-            guibg = mode_color[vim.fn.mode()],
-            guifg = colors.bg,
-        })
-        return ""
-    end,
-    color = "LualineMode",
-    left_padding = 0
-})
+-- Mode indicator with per-mode background colour
+local mode_color = {
+    n = colors.red,
+    i = colors.green,
+    v = colors.blue,
+    ["\22"] = colors.blue,
+    V = colors.blue,
+    c = colors.magenta,
+    no = colors.red,
+    s = colors.orange,
+    S = colors.orange,
+    ["\19"] = colors.orange,
+    ic = colors.yellow,
+    R = colors.violet,
+    Rv = colors.violet,
+    cv = colors.red,
+    ce = colors.red,
+    r = colors.cyan,
+    rm = colors.cyan,
+    ["r?"] = colors.cyan,
+    ["!"] = colors.red,
+    t = colors.red,
+}
 
-ins_left({ "mode", color = "LualineMode" })
+ins_left({
+    "mode",
+    color = function()
+        return {
+            bg = mode_color[vim.fn.mode()] or colors.red,
+            fg = colors.bg,
+        }
+    end,
+})
 
 ins_left({ "branch", icon = "", cond = conditions.check_git_workspace })
 
