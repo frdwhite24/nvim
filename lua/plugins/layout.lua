@@ -32,10 +32,6 @@ return {
             }
         }
     }, {
-    "hoob3rt/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
-    dependencies = "kyazdani42/nvim-web-devicons"
-    -- options are still in /after dir, yet to be migrated
-}, {
     "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
 }, {
     'stevearc/oil.nvim',            -- https://github.com/stevearc/oil.nvim

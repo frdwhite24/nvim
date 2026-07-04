@@ -10,9 +10,6 @@ The always-loaded baseline in `lua/core/` — options (`set.lua`), keymaps (`rem
 **Plugin spec**:
 A lazy.nvim plugin declaration in one of the `lua/plugins/*.lua` files. Specs declare dependencies, lazy-loading triggers, and config/opts.
 
-**After plugin**:
-Legacy config under `after/plugin/` that runs outside the lazy.nvim spec system. Currently holds lualine setup pending migration.
-
 **LSP stack**:
 The language-server layer: Mason (installer) → mason-lspconfig (wiring) → lsp-zero (convenience wrapper) → nvim-lspconfig (server configs) → blink.cmp (completion). Extended by conform.nvim (formatting), inlay-hints.nvim, twoslash-queries.nvim, and venv-selector.nvim.
 
@@ -39,4 +36,4 @@ Day-to-day stack this config is trimmed to: TypeScript, Terraform, YAML, JSON, L
 >
 > **Dev**: Where does lualine config live?
 >
-> **Maintainer**: Still an **after plugin** in `after/plugin/lualine.lua`. Migrating it into a **plugin spec** in `layout.lua` is cleanup, not urgent.
+> **Maintainer**: In its own **plugin spec** at `lua/plugins/lualine.lua`.
