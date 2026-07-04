@@ -1,5 +1,5 @@
 return {
-    { "tpope/vim-commentary" }, { 'tpope/vim-sleuth' }, -- https://github.com/tpope/vim-sleuth
+    { 'tpope/vim-sleuth' }, -- https://github.com/tpope/vim-sleuth
     { "JoosepAlviste/nvim-ts-context-commentstring" }, {
     "folke/todo-comments.nvim",                         -- https://github.com/folke/todo-comments.nvim
     opts = {
