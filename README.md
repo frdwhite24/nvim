@@ -1,41 +1,50 @@
-# Introduction
+# Neovim configuration
 
-This is my custom Neovim configuration. I am currently using Neovim version 0.8
-and the configuration is written entirely in Lua.
+Personal Neovim setup — Lua, [lazy.nvim](https://github.com/folke/lazy.nvim), targeting **Neovim 0.11+** on macOS.
 
-# Prerequisites
+## Install
 
-- Install [this
-  font](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
-  to get completion menu icons properly rendering
-- Install [pyenv](https://github.com/pyenv/pyenv-installer#installation--update--uninstallation)
-- Install Python using pyenv `pyenv install 3.10.3` and setting it globally `pyenv global 3.10.3`
-- Install `pynvim` and `black` globally using `pip install --user --upgrade black pynvim`
-- Install `neovim` lib for Node.js with `npm i -g neovim`
-- Install `silicon` cli, can use Brew for this `brew install silicon`
-- Install `prettierd` globally with `npm install -g @fsouza/prettierd`
-
-# Usage
-
-⚠️ I haven't updated this for Mac setup yet, this is still a todo. And so this code block is likely not to work!
 ```bash
-# NOTE: Make sure you move or delete your existing nvim config before running this
+# Back up any existing config first
+mv ~/.config/nvim ~/.config/nvim.bak
+
 git clone git@github.com:frdwhite24/nvim.git ~/.config/nvim
-
-# Navigate to Neovim folder and install the latest Neovim version
-cd ~/.config/nvim
-make
-
-# Run Neovim! (you might need to exit a few times till everything is installed
-# while the Makefile is incomplete)
-nvim
 ```
 
-# To do
+Install Neovim (Homebrew):
 
-- Fill out the rest of this Readme (with screenshots)! Take inspiration from
-  [AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/main/README.md)
-- Enhance the "out of the box" functionality (improve initial start-up with
-  makefile by adding prerequisites, headless Neovim start-up to make sure plugins,
-  Treesitter parsers and language servers are all installed)
-- Record start-up time and incrementally improve it
+```bash
+brew install neovim
+```
+
+Open Neovim. lazy.nvim installs plugins on first launch; Mason installs language servers and formatters as you use them (`:Mason` to browse).
+
+## External tools
+
+These are invoked by plugins or formatters — install only what you need:
+
+| Tool | Used for | Install |
+|------|----------|---------|
+| [Nerd Font](https://www.nerdfonts.com/) | Icons in completion, statusline | e.g. `brew install --cask font-fira-code-nerd-font` |
+| `black` | Python formatting | `pip install black` or via Mason |
+| `prettierd` | JS/TS/CSS/HTML/JSON/YAML formatting | `npm i -g @fsouza/prettierd` |
+| `biome` | JS/TS formatting (preferred) | `npm i -g @biomejs/biome` |
+| `shfmt` | Shell formatting | `brew install shfmt` or Mason |
+| `silicon` | Code screenshots (`<Leader>i` in visual) | `brew install silicon` |
+
+Python, Perl, and Ruby remote providers are disabled — no `:python` plugins in use.
+
+## Structure
+
+```
+init.lua              lazy.nvim bootstrap
+lua/core/             options, keymaps, autocommands
+lua/plugins/          plugin specs by concern
+after/plugin/         legacy config (lualine — pending migration)
+CONTEXT.md            domain glossary for this config
+docs/agents/          agent skill and QA docs
+```
+
+## Modernization
+
+This config is being incrementally updated for Neovim 0.11+ and current plugin APIs. See `CONTEXT.md` and `docs/agents/qa-plan.md` for the approach.
