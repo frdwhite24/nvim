@@ -167,9 +167,6 @@ return {
                 "svelte",
                 'lua',
             },
-            custom_colorcolumn = {
-                python = "88"
-            }
         }
     },
 }

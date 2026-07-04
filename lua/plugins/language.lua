@@ -88,17 +88,11 @@ return {
                     "eslint",
                     "svelte",
                     "lua_ls",
-                    "rust_analyzer",
-                    "pyright",
                     "cssls",
                     "html",
                     "jsonls",
-                    "taplo",
                     "bashls",
-                    -- "shfmt", -- this requires manual install as it's not a valid entry in this table for some reason
-                    -- "clang-format" -- this requires manual install as it's not a valid entry in this table for some reason
                     "yamlls",
-                    "jdtls",
                 },
                 handlers = {
                     function(server_name)
@@ -119,39 +113,6 @@ return {
                             },
                         })
                     end,
-                    jdtls = function()
-                        require("lspconfig").jdtls.setup({
-                            settings = {
-                                java = {
-                                    inlayHints = {
-                                        parameterNames = {
-                                            enabled = "all",
-                                            exclusions = { "this" },
-                                        },
-                                    },
-                                    format = {
-                                        enabled = false,
-                                        settings = {
-                                            url = "~/.local/share/java/eclipse-java-google-style.xml",
-                                        },
-                                    },
-                                }
-                            },
-                        })
-                    end,
-                    pyright = function()
-                        require('lspconfig').pyright.setup({
-                            settings = {
-                                python = {
-                                    analysis = {
-                                        useLibraryCodeForTypes = false,
-                                    },
-                                },
-                            },
-                        })
-                    end,
-                    -- This came from the lsp-zero setup guide, suggestions that lua_ls has some issues if not done
-                    -- https://lsp-zero.netlify.app/v3.x/guide/neovim-lua-ls.html#fixed-config
                     lua_ls = function()
                         local lua_opts = lsp_zero.nvim_lua_ls({
                             settings = {
@@ -286,14 +247,12 @@ return {
             lsp_fallback = true,
         },
         formatters_by_ft = {
-            python = { "black" },
             sh = { 'shfmt' },
             html = { 'prettierd' },
             css = { 'prettierd' },
             json = { 'prettierd' },
             jsonc = { 'prettierd' },
             markdown = { 'prettierd' },
-            java = { "prettier" },
             svelte = { "prettierd", "prettier", stop_after_first = true },
             javascript = { 'biome', "prettierd", "prettier", stop_after_first = true },
             typescript = { 'biome', "prettierd", "prettier", stop_after_first = true },
@@ -336,18 +295,6 @@ return {
             desc = "[C]overage [S]ummary"
         }
 
-    }
-
-}, {
-    "linux-cultist/venv-selector.nvim", -- https://github.com/linux-cultist/venv-selector.nvim
-    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-    opts = {
-        name = ".venv",
-        -- auto_refresh = false
     },
-    keys = {
-        { "<Leader>vs", "<cmd>:VenvSelect<cr>" },
-        { "<Leader>vc", "<cmd>:VenvSelectCached<cr>" }
-    }
 }
 }

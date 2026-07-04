@@ -28,6 +28,9 @@ Incremental, small, purposeful changes — one concern per step so the config st
 **Configuration philosophy**:
 Prefer vanilla plugin and Neovim defaults over custom hacks. If a setting matches the default, remove it. If a plugin provides a built-in way to do something (e.g. lualine's dynamic `color` function), use that instead of manual highlight manipulation. Less custom code means fewer API breakages on upgrade.
 
+**Active languages**:
+Day-to-day stack this config is trimmed to: TypeScript, Terraform, YAML, JSON, Lua, Svelte (occasional), Dockerfile, GraphQL, Markdown, Bash/shell, HTML, CSS. JavaScript/TSX parsers and tooling are kept as TypeScript ecosystem dependencies.
+
 ## Example dialogue
 
 > **Dev**: Treesitter is erroring on startup — should we fix the LSP stack first?

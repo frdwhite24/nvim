@@ -75,10 +75,6 @@ return {
     "NvChad/nvim-colorizer.lua", -- https://github.com/NvChad/nvim-colorizer.lua
     config = true
 }, {
-    'saecki/crates.nvim',
-    event = { "BufRead Cargo.toml" },
-    config = true
-}, {
     "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
     event = "VeryLazy",
     config = true,

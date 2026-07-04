@@ -26,8 +26,7 @@ These are invoked by plugins or formatters — install only what you need:
 | Tool | Used for | Install |
 |------|----------|---------|
 | [Nerd Font](https://www.nerdfonts.com/) | Icons in completion, statusline | e.g. `brew install --cask font-fira-code-nerd-font` |
-| `black` | Python formatting | `pip install black` or via Mason |
-| `prettierd` | JS/TS/CSS/HTML/JSON/YAML formatting | `npm i -g @fsouza/prettierd` |
+| `prettierd` | JS/TS/CSS/HTML/JSON/YAML/Markdown/Svelte formatting | `npm i -g @fsouza/prettierd` |
 | `biome` | JS/TS formatting (preferred) | `npm i -g @biomejs/biome` |
 | `shfmt` | Shell formatting | `brew install shfmt` or Mason |
 | `silicon` | Code screenshots (`<Leader>i` in visual) | `brew install silicon` |
