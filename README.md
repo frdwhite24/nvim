@@ -38,6 +38,7 @@ Python, Perl, and Ruby remote providers are disabled — no `:python` plugins in
 ```
 init.lua              lazy.nvim bootstrap
 lua/core/             options, keymaps, autocommands
+lua/lsp/              LSP setup (servers, signs, LspAttach keymaps)
 lua/plugins/          plugin specs by concern
 CONTEXT.md            domain glossary for this config
 docs/agents/          agent skill and QA docs

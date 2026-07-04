@@ -1,6 +1,6 @@
-# LSP stack baseline (pre-migration)
+# LSP stack baseline
 
-Recorded before removing lsp-zero. Use for parity checks during migration.
+Parity reference for the native LSP migration (completed). Use when changing servers or attach behaviour.
 
 ## Servers (Mason ensure_installed)
 
@@ -20,7 +20,6 @@ terraformls, vtsls, eslint, svelte, lua_ls, cssls, html, jsonls, bashls, yamlls
 | `<Leader>ca` | Code action |
 | `<F2>` | Rename |
 | `<F3>` | Format (n/x) |
-| `<F4>` | Code action (lsp-zero default; x mode) |
 
 Global (not LSP attach): `<C-p>` / `<C-n>` diagnostics, `<Leader>lr` LspRestart
 
@@ -30,7 +29,7 @@ Global (not LSP attach): `<C-p>` / `<C-n>` diagnostics, `<Leader>lr` LspRestart
 |--------|-------|
 | terraformls | Codelens refresh autocmd (0.11 fix) |
 | vtsls, svelte | twoslash-queries attach |
-| lua_ls | Neovim runtime workspace (lsp-zero `nvim_lua_ls`) |
+| lua_ls | Neovim runtime workspace (`lua/lsp/servers.lua`) |
 
 ## Diagnostics gutter icons
 
@@ -38,4 +37,4 @@ error ``, warn `` hint `` info ``
 
 ## Completion
 
-blink.cmp sets `vim.lsp.config('*').capabilities` on 0.11 (no lsp-zero cmp needed).
+blink.cmp sets `vim.lsp.config('*').capabilities` on 0.11.
