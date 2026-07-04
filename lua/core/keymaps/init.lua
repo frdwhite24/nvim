@@ -1,0 +1,5 @@
+require("core.keymaps.editor")
+require("core.keymaps.window")
+require("core.keymaps.search")
+require("core.keymaps.spell")
+require("core.keymaps.config")

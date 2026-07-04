@@ -21,7 +21,7 @@ terraformls, vtsls, eslint, svelte, lua_ls, cssls, html, jsonls, bashls, yamlls
 | `<F2>` | Rename |
 | `<F3>` | Format (n/x) |
 
-Global (not LSP attach): `<C-p>` / `<C-n>` diagnostics, `<Leader>lr` LspRestart
+Global LSP/diagnostic keymaps live in `lua/lsp/keymaps.lua` (`<C-p>`/`<C-n>`, `<Leader>lr`).
 
 ## Server-specific
 

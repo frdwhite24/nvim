@@ -51,9 +51,8 @@ option.undofile = true
 -- Which-key timeout
 option.timeoutlen = 500
 
--- Clean up command line for things already shown in statusbar
--- TODO: look into why this isn't optionting correctly
--- option.noshowmode = false
+-- Mode shown in lualine (globalstatus); hide duplicate from cmdline area
+vim.o.showmode = false
 
 -- Disable unused remote providers (no :python/:perl/:ruby plugins in use)
 global.loaded_python3_provider = 0

@@ -5,19 +5,19 @@ Personal Neovim setup for daily development. Lua-first, plugin-managed via lazy.
 ## Language
 
 **Core**:
-The always-loaded baseline in `lua/core/` — options (`set.lua`), keymaps (`remap.lua`), and autocommands (`autocommands.lua`). Loaded directly from `init.lua` after lazy.nvim bootstraps.
+The always-loaded baseline in `lua/core/` — options (`set.lua`), keymaps (`keymaps/`), and autocommands (`autocommands.lua`). Editor-wide behaviour only; no cross-plugin orchestration. Loaded from `init.lua` after lazy.nvim bootstraps.
+
+**Stack module**:
+A directory under `lua/` that wires a concern spanning multiple plugins — e.g. `lua/lsp/` or `lua/treesitter/`. Holds setup, keymaps, and overrides for that stack. Plugin specs in `lua/plugins/` delegate to stack modules via `require()`.
 
 **Plugin spec**:
-A lazy.nvim plugin declaration in one of the `lua/plugins/*.lua` files. Specs declare dependencies, lazy-loading triggers, and config/opts.
+A lazy.nvim plugin declaration in one of the `lua/plugins/*.lua` files. Specs declare dependencies, lazy-loading triggers, and minimal config that delegates to stack modules where applicable.
 
 **LSP stack**:
-The language-server layer: Mason (installer) → mason-lspconfig (`ensure_installed` + `automatic_enable`) → nvim-lspconfig (server definition catalog) → `lua/lsp/` (`vim.lsp.config` overrides, diagnostic signs, single `LspAttach` keymaps) → blink.cmp (completion). Extended by conform.nvim (formatting) and twoslash-queries.nvim. No lsp-zero — native `vim.lsp.config` / `vim.lsp.enable`.
+The language-server layer: Mason (installer) → mason-lspconfig (`ensure_installed` + `automatic_enable`) → nvim-lspconfig (server definition catalog) → `lua/lsp/` (`vim.lsp.config` overrides, diagnostic signs, global and buffer keymaps, `LspAttach`) → blink.cmp (completion). Extended by conform.nvim (formatting) and twoslash-queries.nvim.
 
 **Treesitter stack**:
 Parser and query management via nvim-treesitter `main` → `lua/treesitter/` (`install` bootstrap, `FileType` → `vim.treesitter.start`). Requires `tree-sitter-cli` in PATH. Extended by nvim-ts-autotag, nvim-ts-context-commentstring, and render-markdown.nvim.
-
-**Modernization track**:
-The ongoing effort to align this config with the latest stable Neovim release, current plugin APIs, and community best practice — without breaking daily-driver workflows.
 
 **Modernization cadence**:
 Incremental, small, purposeful changes — one concern per step so the config stays usable as a daily driver. Work can be paused and resumed at any time. Each completed step is committed and pushed to remote before moving on. Run the QA plan in `docs/agents/qa-plan.md` before every commit.
@@ -30,9 +30,13 @@ Day-to-day stack this config is trimmed to: TypeScript, Terraform, YAML, JSON, L
 
 ## Example dialogue
 
+> **Dev**: Where do global LSP keymaps live?
+>
+> **Maintainer**: In the **LSP stack** module — `lua/lsp/keymaps.lua`. Buffer-local LSP keys are in `lua/lsp/on_attach.lua`. **Core** keymaps are editor-wide only.
+>
 > **Dev**: Treesitter is erroring on startup — should we fix the LSP stack first?
 >
-> **Maintainer**: No — the **LSP stack** works independently. Treesitter lives in a **plugin spec** in `syntax.lua` and delegates to `lua/treesitter/`. Check `:checkhealth nvim-treesitter` and that `tree-sitter-cli` is in PATH.
+> **Maintainer**: No — stacks are independent. Treesitter delegates to `lua/treesitter/`. Check `:checkhealth nvim-treesitter` and that `tree-sitter-cli` is in PATH.
 >
 > **Dev**: Where does lualine config live?
 >

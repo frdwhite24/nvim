@@ -1,6 +1,3 @@
-HEIGHT_PADDING = 5
-WIDTH_PADDING = 15
-
 local symbols = {
     ["!"] = "⊘", -- ignored
     ["?"] = "?", -- untracked
@@ -12,12 +9,11 @@ local symbols = {
     ["T"] = "T", -- type changed
     ["U"] = "U", -- unmerged
     [" "] = " ", -- unmodified
-
 }
 
 return {
     {
-        "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
+        "akinsho/bufferline.nvim",
         dependencies = { "nvim-mini/mini.icons" },
         opts = {
             options = {

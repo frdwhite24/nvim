@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<Leader>sf", "z=", { desc = "Fix spelling mistake", noremap = false })
+vim.keymap.set("n", "<Leader>sa", "zg", { desc = "Add to local dictionary" })
+vim.keymap.set("n", "<Leader>sr", "zug", { desc = "Remove word from local dictionary" })
+vim.keymap.set("n", "<Leader>sj", "]s", { desc = "Skip to next spelling mistake" })
+vim.keymap.set("n", "<Leader>sk", "[s", { desc = "Skip to previous spelling mistake" })

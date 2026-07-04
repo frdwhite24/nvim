@@ -1,3 +1,3 @@
 require("core.set")
-require("core.remap")
+require("core.keymaps")
 require("core.autocommands")

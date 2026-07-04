@@ -31,6 +31,7 @@ end
 function M.setup()
     require("lsp.signs").setup()
     require("lsp.servers").setup()
+    require("lsp.keymaps").setup()
     M.setup_attach()
 
     require("mason").setup({

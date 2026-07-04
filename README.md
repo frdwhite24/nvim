@@ -39,12 +39,18 @@ Python, Perl, and Ruby remote providers are disabled — no `:python` plugins in
 ```
 init.lua              lazy.nvim bootstrap
 lua/core/             options, keymaps, autocommands
-lua/lsp/              LSP setup (servers, signs, LspAttach keymaps)
-lua/treesitter/       parser install and highlight setup
-lua/plugins/          plugin specs by concern
+lua/lsp/              LSP stack (servers, signs, keymaps, LspAttach)
+lua/treesitter/       treesitter stack (parsers, highlighting)
+lua/plugins/          lazy plugin specs by concern
 CONTEXT.md            domain glossary for this config
 docs/agents/          agent skill and QA docs
 ```
+
+Config layout:
+
+- **Core** (`lua/core/`) — Neovim options and editor keymaps, no stack logic
+- **Stack modules** (`lua/lsp/`, `lua/treesitter/`) — cross-plugin wiring for a concern
+- **Plugin specs** (`lua/plugins/`) — lazy declarations; delegate to stack modules where needed
 
 ## Modernization
 
