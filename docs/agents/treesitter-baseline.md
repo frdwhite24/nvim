@@ -1,6 +1,6 @@
 # Treesitter baseline (pre-main migration)
 
-Recorded on nvim-treesitter `master` before migrating to `main`.
+Historical reference recorded on nvim-treesitter `master`. Migration to `main` completed in `b1a570e`.
 
 ## Environment
 
