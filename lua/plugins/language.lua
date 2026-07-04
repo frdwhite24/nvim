@@ -11,22 +11,6 @@ return {
     { 'williamboman/mason.nvim' },           -- https://github.com/williamboman/mason.nvim
     { 'williamboman/mason-lspconfig.nvim' }, -- https://github.com/williamboman/mason-lspconfig.nvim
     {
-        "MysticalDevil/inlay-hints.nvim",    -- https://github.com/MysticalDevil/inlay-hints.nvim
-        event = "LspAttach",
-        dependencies = { "neovim/nvim-lspconfig" },
-        config = true,
-        opts = {
-            autocmd = { enable = false }
-        },
-        keys = {
-            {
-                '<Leader>ih',
-                "<CMD>InlayHintsToggle<CR>",
-                desc = "Toggle [I]lay [H]ints"
-            }
-        }
-    },
-    {
         'VonHeikemen/lsp-zero.nvim', -- https://github.com/VonHeikemen/lsp-zero.nvim
         branch = 'v3.x',
         config = function()
@@ -67,6 +51,12 @@ return {
                 vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ctions" })
                 vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ show_line = false }) end,
                     { buffer = bufnr, desc = "[G]o to [I]mplementation" })
+                vim.keymap.set('n', '<Leader>ih', function()
+                    vim.lsp.inlay_hint.enable(
+                        not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+                        { bufnr = bufnr }
+                    )
+                end, { buffer = bufnr, desc = "Toggle [I]nlay [H]ints" })
             end)
 
             lsp_zero.set_sign_icons({
