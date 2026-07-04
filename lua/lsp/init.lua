@@ -17,6 +17,7 @@ end
 
 function M.setup()
     require("lsp.signs").setup()
+    require("lsp.servers").setup()
     M.setup_attach()
 end
 

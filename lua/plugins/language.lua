@@ -11,21 +11,6 @@ return {
 
             require("lsp").setup()
 
-            -- nvim-lspconfig's terraformls.lua calls vim.lsp.codelens.enable (removed in 0.11)
-            vim.lsp.config('terraformls', {
-                on_attach = function(client, bufnr)
-                    if not client:supports_method('textDocument/codeLens') then
-                        return
-                    end
-                    vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-                        buffer = bufnr,
-                        callback = function()
-                            vim.lsp.codelens.refresh({ bufnr = bufnr })
-                        end,
-                    })
-                end,
-            })
-
             -- TO DISABLE SEMANTIC HIGHLIGHTS IF I WANT TO
             -- lsp_zero.set_server_config({
             --     on_init = function(client)
@@ -57,37 +42,6 @@ return {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})
                     end,
-                    vtsls = function()
-                        require('lspconfig').vtsls.setup({
-                            on_attach = function(client, bufnr)
-                                require("twoslash-queries").attach(client, bufnr)
-                            end,
-                        })
-                    end,
-                    lua_ls = function()
-                        local lua_opts = lsp_zero.nvim_lua_ls({
-                            settings = {
-                                Lua = {
-                                    hint = {
-                                        enable = true,
-                                    }
-                                }
-                            }
-                        })
-                        require('lspconfig').lua_ls.setup(lua_opts)
-                        --         EXAMPLE TO DISABLE LSP FORMATTING
-                        --         on_init = function(client)
-                        --             client.server_capabilities.documentFormattingProvider = false
-                        --             client.server_capabilities.documentFormattingRangeProvider = false
-                        --         end,
-                    end,
-                    svelte = function()
-                        require('lspconfig').svelte.setup({
-                            on_attach = function(client, bufnr)
-                                require("twoslash-queries").attach(client, bufnr)
-                            end,
-                        })
-                    end
                 }
             })
         end

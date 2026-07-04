@@ -18,6 +18,10 @@ function M.setup(client, bufnr)
     map("n", "gl", function() vim.diagnostic.open_float() end, "[G]et [L]ine diagnostic")
     map("n", "<Leader>ca", function() vim.lsp.buf.code_action() end, "[C]ode [A]ctions")
     map("n", "gi", function() builtin.lsp_implementations({ show_line = false }) end, "[G]o to [I]mplementation")
+
+    if client.name == "vtsls" or client.name == "svelte" then
+        require("twoslash-queries").attach(client, bufnr)
+    end
 end
 
 return M
