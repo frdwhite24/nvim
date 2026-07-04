@@ -35,6 +35,21 @@ return {
 
             lsp_zero.extend_lspconfig()
 
+            -- nvim-lspconfig's terraformls.lua calls vim.lsp.codelens.enable (removed in 0.11)
+            vim.lsp.config('terraformls', {
+                on_attach = function(client, bufnr)
+                    if not client:supports_method('textDocument/codeLens') then
+                        return
+                    end
+                    vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.codelens.refresh({ bufnr = bufnr })
+                        end,
+                    })
+                end,
+            })
+
             lsp_zero.on_attach(function(_, bufnr)
                 lsp_zero.default_keymaps({
                     buffer = bufnr,
