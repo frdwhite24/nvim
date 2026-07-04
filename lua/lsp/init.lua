@@ -1,3 +1,16 @@
+local ensure_installed = {
+    "terraformls",
+    "vtsls",
+    "eslint",
+    "svelte",
+    "lua_ls",
+    "cssls",
+    "html",
+    "jsonls",
+    "bashls",
+    "yamlls",
+}
+
 local M = {}
 
 local augroup = vim.api.nvim_create_augroup("UserLspAttach", { clear = true })
@@ -19,6 +32,14 @@ function M.setup()
     require("lsp.signs").setup()
     require("lsp.servers").setup()
     M.setup_attach()
+
+    require("mason").setup({
+        ui = { border = "rounded" },
+    })
+
+    require("mason-lspconfig").setup({
+        ensure_installed = ensure_installed,
+    })
 end
 
 return M

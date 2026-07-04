@@ -1,46 +1,16 @@
 return {
-    { 'williamboman/mason.nvim' },           -- https://github.com/williamboman/mason.nvim
-    { 'williamboman/mason-lspconfig.nvim' }, -- https://github.com/williamboman/mason-lspconfig.nvim
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
     {
-        'VonHeikemen/lsp-zero.nvim', -- https://github.com/VonHeikemen/lsp-zero.nvim
-        branch = 'v3.x',
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+        },
         config = function()
-            local lsp_zero = require('lsp-zero')
-
-            lsp_zero.extend_lspconfig()
-
-            require("lsp").setup()
-
-            -- TO DISABLE SEMANTIC HIGHLIGHTS IF I WANT TO
-            -- lsp_zero.set_server_config({
-            --     on_init = function(client)
-            --         client.server_capabilities.semanticTokensProvider = nil
-            --     end,
-            -- })
-
-            require('mason').setup({
-                ui = {
-                    border = "rounded"
-                }
-            })
-
-            require('mason-lspconfig').setup({
-                ensure_installed = {
-                    "terraformls",
-                    "vtsls",
-                    "eslint",
-                    "svelte",
-                    "lua_ls",
-                    "cssls",
-                    "html",
-                    "jsonls",
-                    "bashls",
-                    "yamlls",
-                },
-            })
-        end
+            require('lsp').setup()
+        end,
     },
-    { 'neovim/nvim-lspconfig' }, -- https://github.com/neovim/nvim-lspconfig
     {
         'saghen/blink.cmp',      -- https://github.com/Saghen/blink.cmp
         -- optional: provides snippets for the snippet source
