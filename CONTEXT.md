@@ -17,7 +17,7 @@ A lazy.nvim plugin declaration in one of the `lua/plugins/*.lua` files. Specs de
 The plugin layer for project-wide discovery — files, text search, git history, diagnostics lists, keymaps. Distinct from in-buffer navigation (flash) and directory browsing (oil). Stays on telescope.nvim; no picker migration planned.
 
 **Symbol outline**:
-File-structure sidebar for skimming and jumping within a buffer. Implemented via aerial.nvim; toggle with `<Leader>a`.
+File-structure sidebar for skimming and jumping within a buffer. Implemented via aerial.nvim; opens automatically on supported buffers. Toggle with `<Leader>a`; jump symbols with `]a` / `[a` (parent: `]]` / `[[`).
 
 **LSP stack**:
 The language-server layer: Mason (installer) → mason-lspconfig (`ensure_installed` + `automatic_enable`) → nvim-lspconfig (server definition catalog) → `lua/lsp/` (`vim.lsp.config` overrides, diagnostic signs, global and buffer keymaps, `LspAttach`) → blink.cmp (completion). Buffer LSP navigation (`gd`, `gr`, `gi`, `gD`) uses telescope pickers — peek-style plugins (e.g. glance) not planned. Extended by conform.nvim (formatting) and twoslash-queries.nvim.

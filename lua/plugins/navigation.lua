@@ -145,14 +145,31 @@ return {
     },
     {
         "stevearc/aerial.nvim",
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-mini/mini.icons",
         },
         opts = {
+            attach_mode = "global",
+            open_automatic = true,
+            autojump = false,
+            highlight_on_jump = 300,
+            close_automatic_events = {},
+            ignore = {
+                filetypes = {
+                    "aerial",
+                    "help",
+                    "lazy",
+                    "oil",
+                    "qf",
+                    "TelescopePrompt",
+                },
+            },
             layout = {
                 min_width = 25,
                 max_width = { 40, 0.25 },
+                default_direction = "prefer_right",
             },
         },
         keys = {
@@ -161,15 +178,17 @@ return {
                 "<cmd>AerialToggle!<CR>",
                 desc = "Toggle symbol outline",
             },
+            { "]a", "<cmd>AerialNext<CR>", desc = "Next symbol" },
+            { "[a", "<cmd>AerialPrev<CR>", desc = "Previous symbol" },
             {
-                "<Leader>]a",
-                "<cmd>AerialNext<CR>",
-                desc = "Next symbol",
+                "]]",
+                function() require("aerial").next_up() end,
+                desc = "Next parent symbol",
             },
             {
-                "<Leader>[a",
-                "<cmd>AerialPrev<CR>",
-                desc = "Previous symbol",
+                "[[",
+                function() require("aerial").prev_up() end,
+                desc = "Previous parent symbol",
             },
         },
     },
