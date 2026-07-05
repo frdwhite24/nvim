@@ -131,7 +131,7 @@ return {
     lazy = true,
 },
     {
-        "dzfrias/arena.nvim", -- https://github.com/dzfrias/arena.nvim
+        "dzfrias/arena.nvim",
         event = "BufWinEnter",
         config = true,
         opts = {
@@ -142,5 +142,35 @@ return {
             "<CMD>ArenaToggle<CR>",
             desc = "Find last open [B]uffers"
         } }
-    }
+    },
+    {
+        "stevearc/aerial.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-mini/mini.icons",
+        },
+        opts = {
+            layout = {
+                min_width = 25,
+                max_width = { 40, 0.25 },
+            },
+        },
+        keys = {
+            {
+                "<Leader>a",
+                "<cmd>AerialToggle!<CR>",
+                desc = "Toggle symbol outline",
+            },
+            {
+                "<Leader>]a",
+                "<cmd>AerialNext<CR>",
+                desc = "Next symbol",
+            },
+            {
+                "<Leader>[a",
+                "<cmd>AerialPrev<CR>",
+                desc = "Previous symbol",
+            },
+        },
+    },
 }
