@@ -152,7 +152,6 @@ return {
         },
         opts = {
             attach_mode = "global",
-            open_automatic = true,
             autojump = false,
             highlight_on_jump = 300,
             close_automatic_events = {},
@@ -172,6 +171,46 @@ return {
                 default_direction = "prefer_right",
             },
         },
+        config = function(_, opts)
+            local MIN_LINES = 50
+
+            local function should_auto_show(bufnr)
+                bufnr = bufnr or vim.api.nvim_get_current_buf()
+                local aerial = require("aerial")
+                return vim.api.nvim_buf_line_count(bufnr) > MIN_LINES
+                    or aerial.num_symbols(bufnr) > 1
+            end
+
+            local function sync_auto_visibility(bufnr)
+                if bufnr ~= vim.api.nvim_get_current_buf() then
+                    return
+                end
+                vim.schedule(function()
+                    if bufnr ~= vim.api.nvim_get_current_buf() then
+                        return
+                    end
+                    local aerial = require("aerial")
+                    if should_auto_show(bufnr) then
+                        if not aerial.is_open() then
+                            require("aerial.window").maybe_open_automatic(bufnr)
+                        end
+                    elseif aerial.is_open() then
+                        aerial.close()
+                    end
+                end)
+            end
+
+            opts.open_automatic = should_auto_show
+            opts.on_first_symbols = sync_auto_visibility
+            require("aerial").setup(opts)
+
+            vim.api.nvim_create_autocmd("BufEnter", {
+                group = vim.api.nvim_create_augroup("aerial_auto_show", { clear = true }),
+                callback = function(args)
+                    sync_auto_visibility(args.buf)
+                end,
+            })
+        end,
         keys = {
             {
                 "<Leader>a",
