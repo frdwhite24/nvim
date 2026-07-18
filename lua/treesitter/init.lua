@@ -3,6 +3,7 @@ local M = {}
 M.parsers = {
     "bash",
     "css",
+    "diff",
     "dockerfile",
     "graphql",
     "hcl",
