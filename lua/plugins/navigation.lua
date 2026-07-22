@@ -176,6 +176,9 @@ return {
 
             local function should_auto_show(bufnr)
                 bufnr = bufnr or vim.api.nvim_get_current_buf()
+                if vim.bo[bufnr].filetype == "aerial" or vim.bo[bufnr].buftype ~= "" then
+                    return false
+                end
                 local aerial = require("aerial")
                 return vim.api.nvim_buf_line_count(bufnr) > MIN_LINES
                     or aerial.num_symbols(bufnr) > 1
@@ -183,6 +186,9 @@ return {
 
             local function sync_auto_visibility(bufnr)
                 if bufnr ~= vim.api.nvim_get_current_buf() then
+                    return
+                end
+                if vim.bo[bufnr].filetype == "aerial" or vim.bo[bufnr].buftype ~= "" then
                     return
                 end
                 vim.schedule(function()
@@ -204,10 +210,41 @@ return {
             opts.on_first_symbols = sync_auto_visibility
             require("aerial").setup(opts)
 
+            local aerial_augroup = vim.api.nvim_create_augroup("aerial_auto_show", { clear = true })
+
             vim.api.nvim_create_autocmd("BufEnter", {
-                group = vim.api.nvim_create_augroup("aerial_auto_show", { clear = true }),
+                group = aerial_augroup,
                 callback = function(args)
                     sync_auto_visibility(args.buf)
+                end,
+            })
+
+            -- Aerial's built-in last-window quit only fires when cmdline history
+            -- looks like :q/:wq/:x. Close aerial in QuitPre so :q on the final
+            -- code window exits Neovim instead of leaving a full-screen outline.
+            vim.api.nvim_create_autocmd("QuitPre", {
+                group = aerial_augroup,
+                desc = "Close aerial when quitting the last code window",
+                callback = function()
+                    local aerial_wins = {}
+                    local code_wins = 0
+                    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+                        if vim.api.nvim_win_get_config(win).relative == "" then
+                            local buf = vim.api.nvim_win_get_buf(win)
+                            if vim.bo[buf].filetype == "aerial" then
+                                table.insert(aerial_wins, win)
+                            else
+                                code_wins = code_wins + 1
+                            end
+                        end
+                    end
+                    if code_wins == 1 and #aerial_wins > 0 and vim.bo.filetype ~= "aerial" then
+                        for _, win in ipairs(aerial_wins) do
+                            if vim.api.nvim_win_is_valid(win) then
+                                vim.api.nvim_win_close(win, true)
+                            end
+                        end
+                    end
                 end,
             })
         end,
