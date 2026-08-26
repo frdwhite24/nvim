@@ -172,6 +172,80 @@ return {
             },
         },
         config = function(_, opts)
+            local aerial_border_augroup = vim.api.nvim_create_augroup("aerial_border", { clear = true })
+            local aerial_border_state = {}
+
+            local function set_aerial_border_hl()
+                local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+                local fg = normal.fg or normal.foreground
+                if fg then
+                    vim.api.nvim_set_hl(0, "AerialBorder", { fg = fg })
+                end
+            end
+
+            local function set_source_winhighlight(source_win, pair)
+                local winhl = vim.wo[source_win].winhighlight
+                if winhl == "" then
+                    vim.wo[source_win].winhighlight = pair
+                elseif winhl:find("WinSeparator:") then
+                    vim.wo[source_win].winhighlight = winhl:gsub("WinSeparator:[^,]+", pair)
+                else
+                    vim.wo[source_win].winhighlight = winhl .. "," .. pair
+                end
+            end
+
+            local function apply_aerial_border(aerial_win)
+                local source_win = vim.w[aerial_win].source_win
+                if not source_win or not vim.api.nvim_win_is_valid(source_win) then
+                    return
+                end
+                aerial_border_state[aerial_win] = {
+                    source_win = source_win,
+                    prev_winhl = vim.wo[source_win].winhighlight,
+                    prev_fillchars = vim.wo[source_win].fillchars,
+                }
+                set_source_winhighlight(source_win, "WinSeparator:AerialBorder")
+                vim.wo[source_win].fillchars = "vert:▎"
+            end
+
+            local function restore_aerial_border(aerial_win)
+                local state = aerial_border_state[aerial_win]
+                if not state then
+                    return
+                end
+                aerial_border_state[aerial_win] = nil
+                if vim.api.nvim_win_is_valid(state.source_win) then
+                    vim.wo[state.source_win].winhighlight = state.prev_winhl
+                    vim.wo[state.source_win].fillchars = state.prev_fillchars
+                end
+            end
+
+            set_aerial_border_hl()
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = aerial_border_augroup,
+                callback = set_aerial_border_hl,
+            })
+
+            -- Vertical split separators inherit highlight from the window on their left.
+            -- Aerial opens on the right, so style the source (code) window, not aerial.
+            vim.api.nvim_create_autocmd("FileType", {
+                group = aerial_border_augroup,
+                pattern = "aerial",
+                callback = function(args)
+                    local aerial_win = vim.fn.bufwinid(args.buf)
+                    if aerial_win ~= -1 then
+                        apply_aerial_border(aerial_win)
+                    end
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("WinClosed", {
+                group = aerial_border_augroup,
+                callback = function(args)
+                    restore_aerial_border(tonumber(args.match))
+                end,
+            })
+
             local MIN_LINES = 50
 
             local function should_auto_show(bufnr)
