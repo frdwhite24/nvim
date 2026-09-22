@@ -24,7 +24,25 @@ local function close_buffer()
     vim.cmd.bdelete()
 end
 
+local function close_all_buffers()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted then
+            if vim.bo[buf].modified then
+                vim.notify("Unsaved buffer: " .. vim.api.nvim_buf_get_name(buf), vim.log.levels.ERROR)
+                return
+            end
+        end
+    end
+
+    if package.loaded.aerial then
+        require("aerial").close_all()
+    end
+
+    vim.cmd("%bdelete")
+end
+
 vim.keymap.set("n", "<Leader>q", close_buffer, { desc = "Close buffer" })
+vim.keymap.set("n", "<Leader>Q", close_all_buffers, { desc = "Close all buffers" })
 vim.keymap.set("n", "<Leader>wq", function()
     vim.cmd.write()
     close_buffer()
