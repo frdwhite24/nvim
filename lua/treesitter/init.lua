@@ -29,11 +29,16 @@ local function language_for_buf(buf)
     return vim.treesitter.language.get_lang(ft) or ft
 end
 
+local function is_supported_language(language)
+    return require("nvim-treesitter.parsers")[language] ~= nil
+end
+
 local function should_highlight(buf)
     if vim.bo[buf].buftype ~= "" then
         return false
     end
-    return language_for_buf(buf) ~= nil
+    local language = language_for_buf(buf)
+    return language ~= nil and is_supported_language(language)
 end
 
 function M.start_highlight(buf)
